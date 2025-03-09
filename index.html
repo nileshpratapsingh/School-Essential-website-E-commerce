@@ -5,56 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online school uniform shopping site of Kanpur</title>
     <link rel="stylesheet" href="main page style.css">
-   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-   
-  
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <script>
+    function toggleMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('active');
+    }
+    </script>
 </head>
 <body>
-    <header>
-        <h1>Shree Namrata Dress and Tailor</h1>
-        <div class="container">
-            <nav>
-             <ul class="hideSidebar">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="pages/Civil.html">Civil</a></li>
-                    <li><a href="pages/order.html">Orders</a></li>
-                    <li><a href="pages/contacts.html">Contact Us</a></li>
-                    <li><a href="pages/about.html">About</a></li>
-                    <li onClick = showSidebar()><a href="#"></a><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#e8eaed"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z/"></svg></li>
-                </ul>
-
-                <ul class="sidebar">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="pages/Civil.html">Civil</a></li>
-                    <li><a href="pages/order.html">Orders</a></li>
-                    <li><a href="pages/contacts.html">Contact Us</a></li>
-                    <li><a href="pages/about.html">About</a></li>
-                   
-                </ul>
-            </nav>
-           <script>
-                function showSidebar(){
-                    const sidebar = document.querySelector('.sidebar')
-                    sidebar.style.display='flex'
-                    }
-                function hideSidebar(){
-                    const sidebar = document.querySelector('.sidebar')
-                    sidebar.style.display='none'
-                }
-            </script> 
+    <header class="header">
+        <span class="container" id="logo">
+            <a href="../index.html" class="logo-link">
+            <video autoplay loop muted playsinline width="120">
+                <source src="animation/logo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </span>
+   
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for products">
+            <button class="search-button">Search</button>
         </div>
-        <div class="button-container">
-            <button class="btn login" onclick="showLoginForm()">Login</button>
-            <button class="btn signup" onclick="showSignupForm()">Sign Up</button>
-          </div>
-          
+
+        <div class="nav-links">
+            <a href="pages/contacts.html">Contacts</a>
+            <a href="pages/orders.html">Orders</a>
+            <a href="pages/cart.html">Cart</a>
+            <a href="pages/account.html">Account</a>
+            <a href="pages/about.html">About</a>
+        </div>
+        
+        <div class="auth-buttons">
+            <button class="login-btn">Login</button>
+            <button class="signup-btn">Sign Up</button>
+        </div>
+        
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </header>
+    
+    <nav class="sidebar">
+        <button class="close-btn" onclick="toggleMenu()">&times;</button>
+        <ul>
+            <li><a href="../index.html">Home</a></li>
+            <li><a href="pages/contacts.html">Contact</a></li>
+            <li><a href="pages/orders.html">Orders</a></li>
+            <li><a href="pages/cart.html">Cart</a></li>
+            <li><a href="pages/account.html">Account</a></li>
+            <li><a href="pages/about.html">About</a></li>
+        </ul>
+    </nav>
 
 <main>
     <section>
         <div class="productContainer">
             <h1 class="slide-down">We provide all types of school accessories</h1>
-            <nav>
                 <ul class="animated-list">
                     
                 <li><a href="pages/uniforms.html"><img src="IMAGE\uniform.png" alt="School Uniform">Uniforms</a></li>
@@ -82,7 +88,6 @@
                 <li><a href=""><img src="IMAGE\swim.png" alt="">Kids Swim Wear</a></li>
                 
             </ul>
-            </nav>
         </div>
     </section>
 
@@ -91,7 +96,6 @@
            <h1 class="slide-down"> We also provide services for you purchased uniforms.</h1>
         </div>
         <div class="servicecontainer" id="uniformservice">
-           <nav>
                <ul>
                    <li><a href=""><img src="IMAGE\fitting.png" alt=""></a>Cloths and Uniform fitting</a></li>
 
@@ -103,7 +107,6 @@
                 
                    <li><a href="order.html"><img src="IMAGE\order.png" alt=""></a>Some thing related to order</a></li>
                </ul>
-           </nav>
         </div>
     </section>
 
