@@ -32,7 +32,7 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
 
 1. Clone the repository:
    ```sh
-   githttps://github.com/nileshpratapsingh/My-Website.git
+   git clone https://github.com/nileshpratapsingh/My-Website.git
    ```
 2. Navigate to the project folder:
    ```sh
