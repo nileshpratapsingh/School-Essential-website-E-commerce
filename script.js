@@ -10,7 +10,7 @@
   }
 
 
-  function toggleMenu() {
+  function toggleMenu() {                                         //Function to toggle sidebar
     const sidebar = document.querySelector('.sidebar');
     sidebar.classList.toggle('active');
   }
