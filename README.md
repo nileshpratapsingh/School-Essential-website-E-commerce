@@ -7,7 +7,7 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
 ## ✨ Features
 
 - **📱 Responsive Design**: The website is optimized for desktop and mobile devices.
-- **📦 Product Categories**: Users can browse through school uniforms, accessories, and stationery items.
+- **📦 Product Categories**: Users can browse through school uniforms, accessories,stationery items etc.
 - **🔎 Search Functionality**: A responsive search bar allows users to quickly find products.
 - **🔐 User Authentication**: Login and Sign-up options for personalized experiences.
 - **🛒 Shopping Cart**: Easily add and manage items before checkout.
