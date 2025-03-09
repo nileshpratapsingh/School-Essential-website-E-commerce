@@ -6,12 +6,11 @@
     <link rel="stylesheet" href="/main page style.css">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    <script src="/script.js"></script>
     <title>School Bags</title>
 </head>
 <body>
     <header class="header">
-        <span class="container" id="logo">
+        <span class="video-container" id="logo">
             <a href="/index.html" class="logo">
             <video autoplay loop muted playsinline width="120">
                 <source src="/animation/logo.mp4" type="video/mp4">
@@ -28,11 +27,11 @@
         </div>
 
         <div class="nav-links">
-            <big><a href="pages/contacts.html"><ion-icon name="Call"></ion-icon> Contacts</a>
-                <a href="pages/orders.html"><ion-icon name="Cube-outline"></ion-icon> Orders</a>
-                <a href="pages/cart.html"><ion-icon name="cart-outline"></ion-icon> Cart</a>
-                <a href="pages/account.html"> <ion-icon name="person-circle-outline"></ion-icon> Account</a>
-                <a href="pages/about.html"><ion-icon name="document-text"></ion-icon>About Us</a></big>
+            <a href="contacts.html">Contacts</a>
+            <a href="orders.html">Orders</a>
+            <a href="cart.html">Cart</a>
+            <a href="account.html">Account</a>
+            <a href="about.html">About</a>
         </div>
         
         <div class="auth-buttons">
@@ -46,16 +45,28 @@
     <nav class="sidebar">
         <button class="close-btn" onclick="toggleMenu()">&times;</button>
         <ul>
-            <big>
-                <li><a href="pages/contacts.html"><ion-icon name="Call"></ion-icon> Contacts</a></li>
-                <li><a href="pages/orders.html"><ion-icon name="Cube-outline"></ion-icon> Orders</a></li>
-                <li><a href="pages/cart.html"><ion-icon name="cart-outline"></ion-icon> Cart</a></li>
-                <li><a href="pages/account.html"> <ion-icon name="person-circle-outline"></ion-icon> Account</a></li>
-                <li><a href="pages/about.html"><ion-icon name="document-text"></ion-icon> About Us</a></li>
-            </big>
+            <li><a href="/index.html"><ion-icon name="Home"></ion-icon> Home</a></li>
+             <li><a href="contacts.html"><ion-icon name="call"><ion-icon name="Home"></ion-icon> Contact Us</a></li>
+             <li><a href="orders.html"></a><ion-icon name="Cube-outline"></ion-icon> Orders</a></li>
+             <li><a href="cart.html"><ion-icon name="cart"></ion-icon> Cart</a></li>
+             <li><a href="account.html"><ion-icon name="person-circle-outline"></ion-icon> Account</a></li>
+             <li><a href="about.html"><ion-icon name="document-text"></ion-icon> About</a></li>
         </ul>
     </nav>
 
+
+
+<script>
+    function showBoyBag() {
+        document.getElementById('bagImage').src = 'bott';
+        document.getElementById('bagImage').alt = 'Boy Bag';
+    }
+
+    function showGirlBag() {
+        document.getElementById('bagImage').src = 'girl-bag.jpg';
+        document.getElementById('bagImage').alt = 'Girl Bag';
+    }
+</script>
 <main>
     <section class="products">
         <div class="container">
@@ -63,7 +74,7 @@
                 <img src="https://via.placeholder.com/200" alt="Product 1">
                 <h3>Product 1</h3>
                 <p>$19.99</p>
-                <a href="product.html"><button>Add to cart</button></a>
+                <a href="product.html"><button>product</button></a>
             </div>
             <div class="product">
                 <img src="https://via.placeholder.com/200" alt="Product 2">

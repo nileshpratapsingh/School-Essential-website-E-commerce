@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../main page style.css">
+    <link rel="stylesheet" href="/main page style.css">
     <style>
         .products {
     padding: 2rem 0;
@@ -48,20 +48,55 @@
 
 </head>
 <body>
-    <header>
-        <h1>Shree Namrata Dress and Tailor</h1>
-        <div class="container">
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="Civil.html">Civil</a></li>
-                    <li><a href="order.html">Orders</a></li>
-                    <li><a href="contacts.html">Contact Us</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </nav>
+    <header class="header">
+        <span class="container" id="logo">
+            <a href="../index.html" class="logo">
+            <video autoplay loop muted playsinline width="120">
+                <source src="/animation/logo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </span>
+        <!--div class="logo-container">
+            <a href="index.html" class="logo">
+                <img src="logo.png" alt="Logo">
+            </a>
+        </div-->
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for products">
+            <button class="search-button">
+                <span>Search</span>
+                <ion-icon name= "search"></ion-icon>
+                </button>
         </div>
+
+        <div class="nav-links">
+            <a href="contacts.html">Contacts</a>
+            <a href="orders.html">Orders</a>
+            <a href="cart.html">Cart</a>
+            <a href="account.html">Account</a>
+            <a href="about.html">About</a>
+        </div>
+        
+        <div class="auth-buttons">
+            <button class="login-btn">Login</button>
+            <button class="signup-btn">Sign Up</button>
+        </div>
+        
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </header>
+    
+    <nav class="sidebar">
+        <button class="close-btn" onclick="toggleMenu()">&times;</button>
+        <ul>
+            <li><a href="/index.html"><ion-icon name="Home"></ion-icon> Home</a></li>
+             <li><a href="contacts.html"><ion-icon name="call"><ion-icon name="Home"></ion-icon> Contact Us</a></li>
+             <li><a href="orders.html"></a><ion-icon name="Cube-outline"></ion-icon> Orders</a></li>
+             <li><a href="cart.html"><ion-icon name="cart"></ion-icon> Cart</a></li>
+             <li><a href="account.html"><ion-icon name="person-circle-outline"></ion-icon> Account</a></li>
+             <li><a href="about.html"><ion-icon name="document-text"></ion-icon> About</a></li>
+        </ul>
+    </nav>
     <main>
     <section class="products">
         <div class="container">

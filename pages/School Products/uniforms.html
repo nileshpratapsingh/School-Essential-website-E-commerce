@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Online school uniform shopping site of Kanpur</title>
-    <link rel="stylesheet" href="../main page style.css">
+    <link rel="stylesheet" href="/main page style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
@@ -25,17 +25,16 @@
         <div class="search-container">
             <input type="text" class="search-input" placeholder="Search for products">
             <button class="search-button">
-                <span>Search</span>
-                <ion-icon name= "search"></ion-icon>
-                </button>
+            <span>Search</span></button>
+            <ion-icon name="search"></ion-icon>
         </div>
 
         <div class="nav-links">
-            <big><a href="pages/contacts.html"><ion-icon name="Call"></ion-icon> Contacts</a>
-                <a href="pages/orders.html"><ion-icon name="Cube-outline"></ion-icon> Orders</a>
-                <a href="pages/cart.html"><ion-icon name="cart-outline"></ion-icon> Cart</a>
-                <a href="pages/account.html"> <ion-icon name="person-circle-outline"></ion-icon> <big>Account</big></a>
-                <a href="pages/about.html"><ion-icon name="document-text"></ion-icon>About Us</a></big>
+            <a href="pages/contacts.html">Contacts</a>
+            <a href="pages/orders.html">Orders</a>
+            <a href="pages/cart.html">Cart</a>
+            <a href="pages/account.html">Account</a>
+            <a href="pages/about.html">About</a>
         </div>
         
         <div class="auth-buttons">
@@ -49,32 +48,39 @@
     <nav class="sidebar">
         <button class="close-btn" onclick="toggleMenu()">&times;</button>
         <ul>
-            <big>
             <li><a href="/index.html"><ion-icon name="Home"></ion-icon> Home</a></li>
-             <li><a href="contacts.html"><ion-icon name="call"></ion-icon> Contact Us</a></li>
+             <li><a href="contacts.html"><ion-icon name="call"><ion-icon name="Home"></ion-icon> Contact Us</a></li>
              <li><a href="orders.html"></a><ion-icon name="Cube-outline"></ion-icon> Orders</a></li>
              <li><a href="cart.html"><ion-icon name="cart"></ion-icon> Cart</a></li>
              <li><a href="account.html"><ion-icon name="person-circle-outline"></ion-icon> Account</a></li>
              <li><a href="about.html"><ion-icon name="document-text"></ion-icon> About</a></li>
-            </big>
-        </ul>
     </nav>
-    <main>
-        <section>
-            <ul>
-                <li><a href=""></a></li>
-            </ul>
-        </section>
-    </main>
-        
-    
+    <section>
+   
+    <div class="container">
+        <h1 class="slide-down">
+            Please select your school
+        </h1>
+        <div class="tile-container">
+            <div class="tile"><a href="../School pages/vsec.html">Virendra Swaroop</a></div>
+            <div class="tile"><a href="../School pages/ahss.html">Archies Higher Secondary School</a></div>
+            <div class="tile"><a href="../School pages/ssa.html">Sughar Singh Academy</a></div>
+            <div class="tile"><a href="../School pages/oxford.html">Oxford Model</a></div>
+            <div class="tile"><a href="../School pages/kv.html">Kendra Vidyalaya</a></div>
+            <div class="tile"><a href="../School pages/juhi_international.html">Juhi International</a></div>
+            <div class="tile"><a href="../School pages/nps.html">National Public School</a></div>
+            <div class="tile"><a href="../School pages/methodist.html">Methodist High School</a></div>
+        </div>
+    </div>
+    </section>
     <footer>
         <div class="container">
                 <p>&copy; 2024 Shree Namrata Dresses and Tailor Website. All rights reserved.</p>
                 <ul class="social-links">
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="https://www.instagram.com/shree_namrata_dresses?igsh=MTh2ZHU4M2Y0cTZhdA==">Instagram</a></li>
+                    <h2>Follow us on</h2>
+                    <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                    <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                    <li><a href="https://www.instagram.com/shree_namrata_dresses?igsh=MTh2ZHU4M2Y0cTZhdA=="><ion-icon name="logo-instagram"></ion-icon></a></li>
                 </ul>
         </div>
         </footer>

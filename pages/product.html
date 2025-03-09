@@ -5,8 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../main page style.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/script.js"></script>
     <style>
-
 
 .product-description {
     display: flex;
@@ -57,16 +59,18 @@
 
 
 .product-details button {
-    background: #333;
+    background: #b1cc04;
     color: #fff;
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 10px;
     cursor: pointer;
     font-size: 1rem;
+    border-radius: 3px;
+    margin-top: 10px;
 }
 
 .product-details button:hover {
-    background: #575757;
+    background: #bae804;
 }
 .product-details .specifications,
 .product-details .reviews {
@@ -77,20 +81,53 @@
 
 </head>
 <body>
-    <header>
-        <h1>Shree Namrata Dress and Tailor</h1>
-        <div class="container">
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="Civil.html">Civil</a></li>
-                    <li><a href="order.html">Orders</a></li>
-                    <li><a href="contacts.html">Contacts</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </nav>
+    <header class="header">
+        <span class="video-container" id="logo">
+            <a href="/index.html" class="logo">
+            <video autoplay loop muted playsinline width="120">
+                <source src="/animation/logo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            </a>
+        </span>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for products">
+            <button class="search-button">
+            <span>Search</span>
+            <ion-icon name="search"></ion-icon>
+            </button>
         </div>
+
+        <div class="nav-links">
+                <a href="pages/contacts.html"><ion-icon name="Call"></ion-icon><big> Contacts</a>
+                <a href="pages/orders.html"><ion-icon name="Cube-outline"></ion-icon> Orders</a>
+                <a href="pages/cart.html"><ion-icon name="cart-outline"></ion-icon> Cart</a>
+                <a href="pages/account.html"> <ion-icon name="person-circle-outline"></ion-icon> <big>Account</big></a>
+                <a href="pages/about.html"><ion-icon name="document-text"></ion-icon>About Us</big></a>
+        </div>
+        
+        <div class="auth-buttons">
+            <button class="login-btn">Login</button>
+            <button class="signup-btn">Sign Up</button>
+        </div>
+        
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </header>
+    
+    <nav class="sidebar">
+        <button class="close-btn" onclick="toggleMenu()">&times;</button>
+    <ul>
+        <big>
+            <li><a href="/index.html"><ion-icon name="Home"></ion-icon> Home</a></li>
+            <li><a href="contacts.html"><ion-icon name="call"><ion-icon name="Home"></ion-icon> Contact Us</a></li>
+            <li><a href="orders.html"></a><ion-icon name="Cube-outline"></ion-icon> Orders</a></li>
+            <li><a href="cart.html"><ion-icon name="cart"></ion-icon> Cart</a></li>
+            <li><a href="account.html"><ion-icon name="person-circle-outline"></ion-icon> Account</a></li>
+            <li><a href="about.html"><ion-icon name="document-text"></ion-icon> About Us</a></li>
+        </big>
+    </ul>
+    </nav>
     <body>
         <main>
             <section class="product-description">
@@ -123,10 +160,21 @@
                                 <p><em>Rating: ★★★★☆</em></p>
                             </div>
                         </div>
-                        <button>Add to Cart</button>
+                        <button>Add to Cart</button> OR
+                        <button>Buy now</button>
                     </div>
                 </div>
             </section>
-    
-    </body>
-    </html>
+            <footer>
+                <div class="container">
+                        <p>&copy; 2024 Shree Namrata Dresses and Tailor Website. All rights reserved.</p>
+                        <ul class="social-links">
+                            <h2>Follow us on</h2>
+                            <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                            <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                            <li><a href="https://www.instagram.com/shree_namrata_dresses?igsh=MTh2ZHU4M2Y0cTZhdA=="><ion-icon name="logo-instagram"></ion-icon></a></li>
+                        </ul>
+                </div>
+            </footer>
+</body>
+</html>

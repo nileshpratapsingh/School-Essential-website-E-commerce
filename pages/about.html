@@ -5,83 +5,144 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../main page style.css">
-
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="/script.js"></script>
+    
 </head>
 <style>
+    *{
+        padding: 0%;
+        margin: 0;
+        box-sizing: border-box;
+    }
     body{
         background-color: rgb(252, 215, 179);
-        text-align: center;
+        text-align:left;
         margin: auto;
         font-style:normal;
         text-decoration: solid;
         font-family: Arial, Helvetica, sans-serif;
         margin-top: -0px;
+        padding-left: 0px;
         color: rgb(0, 0, 0);
     }
     section p{
         margin-top: -150px;
         color: rgb(0, 0, 0);
+        text-align: left;
+        
     }
 
     h2{
         color: rgb(0, 0, 0);
+        margin-top: 10px;
+        text-decoration: underline;
+        text-align: center;
+    }
+    h3{
+        font-size: 1.6rem;
+    }
+
+    .about-text{
+        padding: 0px 10px 0 10px;
+        font-size: 1.2rem;
     }
     
+    
 </style>
-<body>
-    <header>
-        <h1>Shree Namrata Dress and Tailor</h1>
-        <div class="container">                                                         
-            <nav>
-                <ul>
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="Civil.html">Civil</a></li>
-                    <li><a href="order.html">Orders</a></li>
-                    <li><a href="contacts.html">Contacts</a></li>
-                    <li><a href="about.html">About</a></li>
-                </ul>
-            </nav>
+    <header class="header">
+        <span class="video-container" id="logo">
+            <a href="/index.html" class="logo">
+            <video autoplay loop muted playsinline width="120">
+                <source src="/animation/logo.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            </a>
+        </span>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for products">
+            <button class="search-button">
+            <span>Search</span>
+            <ion-icon name="search"></ion-icon>
+            </button>
         </div>
+
+        <div class="nav-links">
+            <a href="pages/contacts.html"><ion-icon name="Call"></ion-icon><big> Contacts</a>
+                <a href="pages/orders.html"><ion-icon name="Cube-outline"></ion-icon> Orders</a>
+                <a href="pages/cart.html"><ion-icon name="cart-outline"></ion-icon> Cart</a>
+                <a href="pages/account.html"> <ion-icon name="person-circle-outline"></ion-icon> <big>Account</big></a>
+                <a href="pages/about.html"><ion-icon name="document-text"></ion-icon>About Us</big></a>
+        </div>
+        
+        <div class="auth-buttons">
+            <button class="login-btn">Login</button>
+            <button class="signup-btn">Sign Up</button>
+        </div>
+        
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
     </header>
-    <section id="about">
-       <h1>About Shree Namrata Dress and Tailor</h1>
-       <p>Founded in 2000, Shree Namrata Dress and Tailor has established itself as a cornerstone of quality and craftsmanship in Shyam Nagar, Kanpur, Uttar Pradesh. With over two decades of experience, we have become synonymous with excellence in tailoring, specializing in school uniforms and a variety of civil garments. Our journey has been one of continuous dedication to providing our customers with the finest apparel, meticulously crafted to meet their specific needs and </p>
+    
+    <nav class="sidebar">
+        <button class="close-btn" onclick="toggleMenu()">&times;</button>
+        <ul>
+            <big>
+            <li><a href="/index.html"><ion-icon name="Home"></ion-icon> Home</a></li>
+            <li><a href="contacts.html"><ion-icon name="call"></ion-icon> Contact Us</a></li>
+            <li><a href="orders.html"></a><ion-icon name="Cube-outline"></ion-icon> Orders</a></li>
+            <li><a href="cart.html"><ion-icon name="cart"></ion-icon> Cart</a></li>
+            <li><a href="account.html"><ion-icon name="person-circle-outline"></ion-icon> Account</a></li>
+            <li><a href="about.html"><ion-icon name="document-text"></ion-icon> About</a></li>
+            </big>
+        </ul>
+    </nav>
+<body>    
+<section id="about">
+    <div class="about-text">
+     <h2>About Shree Namrata Dress and Tailor</h2>
+       Founded by Mr.Kunwar Pal Singh in 2000, Shree Namrata Dress and Tailor has established itself as a cornerstone of quality and craftsmanship in Shyam Nagar, Kanpur, Uttar Pradesh. With over two decades of experience, we have become synonymous with excellence in tailoring, specializing in school uniforms and a variety of civil garments. Our journey has been one of continuous dedication to providing our customers with the finest apparel, meticulously crafted to meet their specific needs. 
 
-<h2>AA Legacy of Quality</h2>
-Under the leadership of Mr. Kunwar Pal Singh, Shree Namrata Dress and Tailor has grown from a humble beginning into a well-respected name in the tailoring industry. Mr. Singh, with his vast experience and unwavering commitment to quality, has been the driving force behind our success. His vision has always been clear: to offer garments that are not only comfortable and durable but also reflect the personality and style of the wearer.
+    <h2>AA Legacy of Quality</h2>
+       Under the leadership of Mr. Kunwar Pal Singh, Shree Namrata Dress and Tailor has grown from a humble beginning into a well-respected name in the tailoring industry. Mr. Singh, with his vast experience and unwavering commitment to quality, has been the driving force behind our success. His vision has always been clear: to offer garments that are not only comfortable and durable but also reflect the personality and style of the wearer.
 
-Our shop is renowned for its attention to detail, ensuring that every stitch is perfect, and every garment fits flawlessly. This commitment to quality has earned us a loyal customer base in Shyam Nagar and beyond, making us a preferred destination for those seeking well-made school uniforms and other custom-tailored garments.
+       Our shop is renowned for its attention to detail, ensuring that every stitch is perfect, and every garment fits flawlessly. This commitment to quality has earned us a loyal customer base in Shyam Nagar and beyond, making us a preferred destination for those seeking well-made school uniforms and other custom-tailored garments.
 
-<h2>Specialization in School Uniforms</h2>
-One of our core specialties at Shree Namrata Dress and Tailor is the creation of school uniforms. We understand the importance of uniforms in a student’s life; they are not just clothing but a representation of the school’s identity and values. Our uniforms are designed to be both practical and comfortable, allowing students to focus on their studies without distraction.
+    <h2>Specialization in School Uniforms</h2>
+        One of our core specialties at Shree Namrata Dress and Tailor is the creation of school uniforms. We understand the importance of uniforms in a student’s life; they are not just clothing but a representation of the school’s identity and values. Our uniforms are designed to be both practical and comfortable, allowing students to focus on their studies without distraction.
 
-We work closely with schools to ensure that our uniforms meet the specific requirements of each institution. From fabric selection to the final fitting, we take pride in producing uniforms that are durable, easy to maintain, and tailored to perfection. Our uniforms are not only a testament to our craftsmanship but also to our understanding of the needs of students and schools alike.
+        We work closely with schools to ensure that our uniforms meet the specific requirements of each institution. From fabric selection to the final fitting, we take pride in producing uniforms that are durable, easy to maintain, and tailored to perfection. Our uniforms are not only a testament to our craftsmanship but also to our understanding of the needs of students and schools alike.
 
-<h2>Expertise in Civil Garments</h2>
-In addition to school uniforms, Shree Namrata Dress and Tailor also excels in the creation of civil garments. Whether you need a custom-tailored suit, a traditional outfit for a special occasion, or everyday wear that fits just right, we have the expertise to deliver. Our range of civil garments is as diverse as our clientele, and we cater to all tastes and preferences.
+    <h2>Expertise in Civil Garments</h2>
+        In addition to school uniforms, Shree Namrata Dress and Tailor also excels in the creation of civil garments. Whether you need a custom-tailored suit, a traditional outfit for a special occasion, or everyday wear that fits just right, we have the expertise to deliver. Our range of civil garments is as diverse as our clientele, and we cater to all tastes and preferences.
 
-Each garment is crafted with the same level of care and precision that has become our hallmark. We use only the highest quality fabrics, ensuring that our clothing is not only stylish but also long-lasting. Our customers know that when they choose Shree Namrata Dress and Tailor, they are choosing garments that are made to measure, made to last, and made to impress.
+        Each garment is crafted with the same level of care and precision that has become our hallmark. We use only the highest quality fabrics, ensuring that our clothing is not only stylish but also long-lasting. Our customers know that when they choose Shree Namrata Dress and Tailor, they are choosing garments that are made to measure, made to last, and made to impress.
 
-<h2> Approach</h2>
-At Shree Namrata Dress and Tailor, our customers are at the heart of everything we do. We believe in building long-term relationships with our clients, based on trust, satisfaction, and a shared appreciation for quality. From the moment you walk into our shop, you are treated with the utmost respect and attention. Our team is dedicated to understanding your needs and ensuring that you leave with a garment that exceeds your expectations.
+    <h2> Approach</h2>
+        At Shree Namrata Dress and Tailor, our customers are at the heart of everything we do. We believe in building long-term relationships with our clients, based on trust, satisfaction, and a shared appreciation for quality. From the moment you walk into our shop, you are treated with the utmost respect and attention. Our team is dedicated to understanding your needs and ensuring that you leave with a garment that exceeds your expectations.
 
-We offer personalized consultations, where we take the time to discuss your requirements in detail. Whether you have a specific design in mind or need guidance on the best fabrics and styles, we are here to help. Our goal is to ensure that every customer leaves our shop feeling confident and satisfied with their purchase.
+        We offer personalized consultations, where we take the time to discuss your requirements in detail. Whether you have a specific design in mind or need guidance on the best fabrics and styles, we are here to help. Our goal is to ensure that every customer leaves our shop feeling confident and satisfied with their purchase.
 
-<h2>Looking Ahead</h2>
-As we look to the future, Shree Namrata Dress and Tailor remains committed to maintaining the high standards that have made us a trusted name in Shyam Nagar. We are constantly exploring new techniques and trends to enhance our offerings while staying true to our core values of quality, craftsmanship, and customer satisfaction.
+    <h2>Looking Ahead</h2>
+        As we look to the future, Shree Namrata Dress and Tailor remains committed to maintaining the high standards that have made us a trusted name in Shyam Nagar. We are constantly exploring new techniques and trends to enhance our offerings while staying true to our core values of quality, craftsmanship, and customer satisfaction.
 
-We invite you to visit Shree Namrata Dress and Tailor and experience the difference that two decades of expertise and dedication can make. Whether you need a school uniform, a custom-tailored suit, or any other garment, we promise to deliver the best in tailoring, every time.
-    </section>
+        We invite you to visit Shree Namrata Dress and Tailor and experience the difference that two decades of expertise and dedication can make. Whether you need a school uniform, a custom-tailored suit, or any other garment, we promise to deliver the best in tailoring, every time.
+    </div>
+</section>
     
     <footer>
         <div class="container">
                 <p>&copy; 2024 Shree Namrata Dresses and Tailor Website. All rights reserved.</p>
                 <ul class="social-links">
-                    <li><a href="#">Facebook</a></li>
-                    <li><a href="#">Twitter</a></li>
-                    <li><a href="#">Instagram</a></li>
+                    <h3>Follow us on</h3>
+                    <li><a href="#"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                    <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                    <li><a href="https://www.instagram.com/shree_namrata_dresses?igsh=MTh2ZHU4M2Y0cTZhdA=="><ion-icon name="logo-instagram"></ion-icon></a></li>
                 </ul>
-        </div>
-    </footer>
+        </footer>
+</body>
+</html>
+
     </body>
     </html>

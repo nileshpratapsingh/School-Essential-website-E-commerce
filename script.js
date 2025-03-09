@@ -9,3 +9,9 @@
     document.getElementById("signup-form").style.display = "block"; // Show signup form
   }
 
+
+  function toggleMenu() {
+    const sidebar = document.querySelector('.sidebar');
+    sidebar.classList.toggle('active');
+  }
+    
