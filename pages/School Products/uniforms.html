@@ -3,12 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Online school uniform shopping site of Kanpur</title>
-    <link rel="stylesheet" href="/main page style.css">
+    <title>School Uniforms</title>
+    <link rel="stylesheet" href="\main page style.css">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="/script.js"></script>
+    <style>
+        /* Tile Container Styling - Responsive */
+.tile-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 15px;
+    justify-content: center;
+}
+
+/* Individual Tile Styling */
+.tile {
+    background: #f8f9fa;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+}
+
+.tile:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Image Styling */
+.tile img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Link Styling */
+.tile a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    padding: 10px 0;
+}
+
+.tile a:hover {
+    color: #007bff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .tile-container {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+    .tile {
+        padding: 10px;
+    }
+    .tile img {
+        width: 60px;
+        height: 60px;
+    }
+    .tile a {
+        font-size: 12px;
+        padding: 8px 0;
+    }
+}
+
+    </style>
 </head>
 <body>
     <header class="header">
@@ -51,7 +118,7 @@
         <button class="close-btn" onclick="toggleMenu()">&times;</button>
         <ul>
             <li><a href="/index.html"><ion-icon name="Home"></ion-icon> Home</a></li>
-             <li><a href="/pages/contacts.html"><ion-icon name="call"><ion-icon name="Home"></ion-icon> Contact Us</a></li>
+             <li><a href="/pages/contacts.html"><ion-icon name="call"></ion-icon> Contact Us</a></li>
              <li><a href="/pages/orders.html"><ion-icon name="Cube-outline"></ion-icon> Orders</a></li>
              <li><a href="/pages/cart.html"><ion-icon name="cart"></ion-icon> Cart</a></li>
              <li><a href="/pages/account.html"><ion-icon name="person-circle-outline"></ion-icon> Account</a></li>
@@ -64,14 +131,14 @@
             Please select your school
         </h1>
         <div class="tile-container">
-            <div class="tile"><a href="../School pages/vsec.html"><img src="" alt="">Virendra Swaroop</a></div>
-            <div class="tile"><a href="../School pages/ahss.html"><img src="" alt="">Archies Higher Secondary School</a></div>
-            <div class="tile"><a href="../School pages/ssa.html"><img src="" alt="">Sughar Singh Academy</a></div>
-            <div class="tile"><a href="../School pages/oxford.html"><img src="" alt="">Oxford Model</a></div>
-            <div class="tile"><a href="../School pages/kv.html">Kendra Vidyalaya</a></div>
-            <div class="tile"><a href="../School pages/juhi_international.html"><img src="" alt="">Juhi International</a></div>
-            <div class="tile"><a href="../School pages/nps.html"><img src="" alt="">National Public School</a></div>
-            <div class="tile"><a href="../School pages/methodist.html"><img src="" alt="">Methodist High School</a></div>
+            <div class="tile"><a href="../School pages/vsec.html"><img src="/IMAGE/vsec.png" alt="Virendra Swaroop logo"><p>Virendra Swaroop</p></a></div>
+            <div class="tile"><a href="../School pages/ahss.html"><img src="" alt=""><p>Archies Higher Secondary School</p></a></div>
+            <div class="tile"><a href="../School pages/ssa.html"><img src="" alt=""><p>Sughar Singh Academy</p></a></div>
+            <div class="tile"><a href="../School pages/oxford.html"><img src="" alt=""><p>Oxford Modal</p></a></div>
+            <div class="tile"><a href="../School pages/kv.html"><p>Kendra Vidyalaya</p></a></div>
+            <div class="tile"><a href="../School pages/juhi_international.html"><img src="" alt=""><p>Juhi International</p></a></div>
+            <div class="tile"><a href="../School pages/nps.html"><img src="" alt=""><p>National Public School</p></a></div>
+            <div class="tile"><a href="../School pages/methodist.html"><img src="" alt=""><p>Methodist High School</p></a></div>
         </div>
     </div>
     </section>
