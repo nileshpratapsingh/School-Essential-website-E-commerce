@@ -103,7 +103,7 @@ body {
     left: -250px;
     width: 250px;
     height: 100%;
-    background-color: rgba(19, 138, 154, 0.83);
+    background-color: rgba(44, 151, 197, 0.712);
     color: white;
     padding-top: 60px;
     transition: left 0.3s;
@@ -120,7 +120,7 @@ body {
     padding: 15px 20px;
     margin: 10px;
     border-radius: 10px ;
-    box-shadow: 0 5px 9px -0.6px #00000028;
+    box-shadow: -3px 5px 9px -3.6px #0000003c;
 }
 
 .sidebar ul li a {
