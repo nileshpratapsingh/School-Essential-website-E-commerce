@@ -103,11 +103,12 @@ body {
     left: -250px;
     width: 250px;
     height: 100%;
-    background-color: #37475a;
+    background-color: rgba(19, 138, 154, 0.83);
     color: white;
     padding-top: 60px;
     transition: left 0.3s;
     z-index: 999;
+    backdrop-filter: blur(10px);
 }
 
 .sidebar ul {
@@ -116,7 +117,10 @@ body {
 }
 
 .sidebar ul li {
-    padding: 10px 20px;
+    padding: 15px 20px;
+    margin: 10px;
+    border-radius: 10px ;
+    box-shadow: 0 5px 9px -0.6px #00000028;
 }
 
 .sidebar ul li a {
@@ -241,7 +245,7 @@ section h1 {
 
 /* Apply the animation to the heading */
 .slide-down {
-    animation: slideDown 1s ease-out forwards;
+    animation: slideDown .3s ease-out forwards;
 }
 
 .loginform{
@@ -420,6 +424,70 @@ section ul li a:hover {
 .servicecontainer ul li a:hover {
     color: #ff0000;
 }
+/* Uniform Tile Container Styling - Responsive */
+.tile-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    padding: 15px;
+    justify-content: center;
+}
+/* Individual Tile Styling */
+.tile {
+    background: #f8f9fa;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 15px;
+}
+
+.tile:hover {
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Images Styling */
+.tile img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+/* Link Styling */
+.tile a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+    color: #333;
+    display: block;
+    padding: 10px 0;
+}
+
+.tile a:hover {
+    color: #007bff;
+}
+
+/* Mobile Responsiveness */
+@media (max-width: 600px) {
+    .tile-container {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 10px;
+        padding: 10px;
+    }
+    .tile {
+        padding: 10px;
+    }
+    .tile img {
+        width: 60px;
+        height: 60px;
+    }
+    .tile a {
+        font-size: 12px;
+        padding: 8px 0;
+    }
+}
+
 
 
 /* Footer */

@@ -4,6 +4,15 @@
 
 This is an eCommerce website designed for selling school uniforms, accessories, and stationery items. The platform provides an easy shopping experience for students, parents, and schools looking for high-quality educational supplies. 🏫✨
 
+## Preview
+
+![Shree Namrata Desktop preview](Images/front%201.png "Front view")
+![Shree Namrata Desktop preview](Images/front%202.png "Front view")
+![Shree Namrata Desktop preview](Images/front%203.png "Front view")
+![Shree Namrata Desktop preview](Images/product%20preview.png "Product view")
+![Shree Namrata Mobile preview](Images/mobile%20view.png "Mobile view")
+![Shree Namrata MObile sidebar preview](Images/sidebar.png "Mobile Sidebar view")
+
 ## ✨ Features
 
 - **📱 Responsive Design**: The website is optimized for desktop and mobile devices.
@@ -32,7 +41,7 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/nileshpratapsingh/My-Website.git
+   git clone https://github.com/nileshpratapsingh/School-Essential-website-E-commerce-.git
    ```
 2. Navigate to the project folder:
    ```sh
@@ -46,7 +55,11 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
    ```sh
    npm start
    ```
-5. Open the `index.html` file in your browser. 🌐
+5. or Run Alternate command:
+   ```sh
+   npx serve   
+   ```
+6. Open the `index.html` file in your browser. 🌐
 
 ## 🤝 Contributing
 
@@ -62,5 +75,5 @@ For any queries or suggestions, feel free to reach out:
 
 - 📧 Email: nileshpratap190902@gmail.com
 - 🌐 Website: [www.ecommerce-school.com](#)
-- 📱 Social Media: [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/profile.php?id=100025358221368) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=twitter&logoColor=white)](#) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/nilesh_pratap_singh666?igsh=MTlwMHVqMmJlZ2puOA==)
+- 📱 Social Media: [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/profile.php?id=100025358221368) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/ShriNamrata7951) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/nilesh_pratap_singh666?igsh=MTlwMHVqMmJlZ2puOA==)
 
