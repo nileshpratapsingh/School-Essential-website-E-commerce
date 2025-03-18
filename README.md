@@ -41,7 +41,7 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/nileshpratapsingh/School-Essential-website-E-commerce-.git
+   git clone https://github.com/nileshpratapsingh/School-Essential-website-E-commerce.git
    ```
 2. Navigate to the project folder:
    ```sh
