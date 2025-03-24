@@ -6,12 +6,12 @@
     <title>Online school uniform shopping site of Kanpur</title>
     <link rel="stylesheet" href="main page style.css">
     <link rel="shortcut icon" href="favicon.ico" type="Image/x-icon">
-    <script src="script.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-    
+    <script src="script.js"></script>
 </head>
 <body>
+   
     <header class="header">
         <span class="video-container" id="logo">
             <a href="index.html" class="logo-link">
@@ -43,7 +43,7 @@
     </div>
         
         <div class="auth-buttons">
-            <button class="login-btn">Login</button>
+            <a href="pages/loginpage.html"><button class="login-btn">Login</button></a>
             <button class="signup-btn">Sign Up</button>
         </div>
         
@@ -52,7 +52,8 @@
     
     <nav class="sidebar">
         <button class="close-btn" onclick="toggleMenu()">&times;</button>
-    <ul>
+        <h2 style="padding: 10px;">Menu</h2> 
+        <ul>
         <big>
             <li><a href="index.html"><ion-icon name="home"></ion-icon> Home</a></li>
             <li><a href="pages/contacts.html"><ion-icon name="call"></ion-icon> Contact Us</a></li>
@@ -62,6 +63,10 @@
             <li><a href="pages/about.html"><ion-icon name="document"></ion-icon> About Us</a></li>
         </big>
     </ul>
+    <div class="auth-buttons-sidebar">
+        <a href="pages/loginpage.html"><button class="Auth-login-btn">Login</button></a>
+        <a href="pages/SignUp.html"><button class="Auth-signup-btn">Sign Up</button></a>
+    </div>
     </nav>
 
 <main>
@@ -69,17 +74,17 @@
         <div class="productContainer">
             <h1 class="slide-down">We provide all types of school Essentials</h1>
             <ul class="animated-list">
-                <li><a href="pages/School Products/uniforms.html"><img src="Images\uniform.png" alt="School Uniform">Uniforms</a></li>
-                <li><a href="pages/School Products/bag.html"><img src="Images\BAGS.PNG.png" alt="School Bags"width="95">School Bags</a></li>
-                <li><a href="pages/School Products/bottles.html"><img src="Images\bottel.png" alt="Water Bottles"width="95">Water Bottles</a></li>
-                <li><a href="pages/tiffin.html"><img src="Images\lunch.png" alt="School Lunch Box"width="95">School Lunch Box (Tiffin)</a></li>
-                <li><a href="pages/socks.html"><img src="Images\sockes.png" alt="Socks"width="95">School Socks</a></li>
+                <li><a href="pages/School Products/uniforms.html"><img loading="lazy" src="Images\uniform.png" alt="School Uniform">Uniforms</a></li>
+                <li><a href="pages/School Products/bag.html"><img loading="lazy" src="Images\BAGS.PNG.png" alt="School Bags"width="95">School Bags</a></li>
+                <li><a href="pages/School Products/bottles.html"><img loading="lazy" src="Images\bottel.png" alt="Water Bottles"width="95">Water Bottles</a></li>
+                <li><a href="pages/tiffin.html"><img loading="lazy" src="Images\lunch.png" alt="School Lunch Box"width="95">School Lunch Box (Tiffin)</a></li>
+                <li><a href="pages/socks.html"><img loading="lazy" src="Images\sockes.png" alt="Socks"width="95">School Socks</a></li>
                 <li><a href="pages/School Products/stationary.html"><img src="Images/Stationary.png" alt="Stationary"width="95">Stationary</a></li>
-                <li><a href="pages/shoes.html"><img src="Images\shoes.png" alt="Shoes"width="95">Shoes</a></li>
-                <li><a href=""><img src="Images\uni under.png" alt="">School Under Wears</a></li>
-                <li><a href=""><img src="Images\men and women.png" alt="">Genral under Garments</a></li>
-                <li><a href=""><img src="Images\garment.png" alt=""><p>Men Garments</p></a></li>
-                <li><a href=""><img src="Images\swim.png" alt=""><p>Kids Swim-Wear</p></a></li>
+                <li><a href="pages/shoes.html"><img loading="lazy" src="Images\shoes.png" alt="Shoes"width="95">Shoes</a></li>
+                <li><a href=""><img loading="lazy" src="Images\uni under.png" alt="">School Under Wears</a></li>
+                <li><a href=""><img loading="lazy" src="Images\men and women.png" alt="">Genral under Garments</a></li>
+                <li><a href=""><img loading="lazy" src="Images\garment.png" alt=""><p>Men Garments</p></a></li>
+                <li><a href=""><img loading="lazy" src="Images\swim.png" alt=""><p>Kids Swim-Wear</p></a></li>
             </ul>
         </div>
     </section>
@@ -90,14 +95,10 @@
         </div>
         <div class="servicecontainer" id="uniformservice">
                <ul>
-                   <li><a href=""><img src="Images\fitting.png" alt=""></a>Cloths and Uniform fitting</a></li>
-
-                   <li><a href=""><img src="Images\defect.png" alt="Defected Item"></a>Defected Items</a></li>
-                
-                   <li><a href=""><img src="Images\incorrect size.png" alt=""></a>Size Defect</a></li>
-                
-                   <li><a href=""><img src="Images\exchange.png" alt=""></a>Exchange</a></li>
-                
+                   <li><a href=""><img loading="lazy" src="Images\fitting.png" alt=""></a>Cloths and Uniform fitting</a></li>
+                   <li><a href=""><img loading="lazy" src="Images\defect.png" alt="Defected Item"></a>Defected Items</a></li>
+                   <li><a href=""><img loading="lazy" src="Images\incorrect size.png" alt=""></a>Size Defect</a></li>
+                   <li><a href=""><img loading="lazy" src="Images\exchange.png" alt=""></a>Exchange</a></li>
                    <li><a href="order.html"><img src="Images\order.png" alt=""></a>Some thing related to order</a></li>
                </ul>
         </div>
@@ -109,9 +110,9 @@
           <h1 class="slide-down"> We have some other services and features.</h1>
           <nav>
             <ul>    
-                <li><a href=""><img src="Images\enquiry.png" alt="">Bussiness Enquiry</a></li>
-                <li><a href=""><img src="Images\feedback.png" alt="">Customer Feedback</a></li>
-                <li><a href=""><img src="Images\mobile app.png" alt="">Mobile App</a></li>
+                <li><a href=""><img loading="lazy" src="Images\enquiry.png" alt="">Bussiness Enquiry</a></li>
+                <li><a href=""><img loading="lazy" src="Images\feedback.png" alt="">Customer Feedback</a></li>
+                <li><a href=""><img loading="lazy" src="Images\mobile app.png" alt="">Mobile App</a></li>
             </ul>
           </nav>
         </div>

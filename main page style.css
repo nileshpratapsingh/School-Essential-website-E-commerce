@@ -2,10 +2,10 @@
 *{
     padding: 0;
     margin: 0;
-    box-sizing: border-box;
+    box-sizing: border-box; 
+    font-family: 'poppins',sans-serif;
 }
 body {
-    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: aqua;
@@ -74,6 +74,8 @@ body {
 }
 .nav-links a ion-icon{
     font-size: 1.5rem;
+    position: relative;
+    top: 5.1px;
 }
 
 .auth-buttons .login-btn,
@@ -106,6 +108,9 @@ body {
     background-color: rgba(44, 151, 197, 0.712);
     color: white;
     padding-top: 60px;
+    overflow-y: auto; /* Enables scrolling */
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff77 #2c3e50; /* Scrollbar styling */
     transition: left 0.3s;
     z-index: 999;
     backdrop-filter: blur(10px);
@@ -129,6 +134,28 @@ body {
     display: block;
 }
 
+.auth-buttons-sidebar {
+    background-color: #00000000;
+    position: relative;
+    bottom: -150px;
+    padding: 10px;
+    justify-content: space-between;
+    text-align: center;
+}
+.Auth-login-btn,.Auth-signup-btn{
+    padding: 10px;
+    color: white;
+    border-radius: 8px ;
+    background-color: rgba(44, 182, 197, 0);
+    box-shadow: -3px 5px 9px -3.6px #0000003c;
+    border: 0px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin:10px;
+}
+.Auth-login-btn:hover,.Auth-signup-btn:hover{
+    color: yellow;
+}
 .menu-toggle {
     display: none;
     background: none;
@@ -183,6 +210,11 @@ body {
     }
     .search-button span {
         display: none;
+    }
+    #logo video{
+        display: flex;
+        width: 70px;
+        margin-left: 10px;
     }
 }
 /* Container */
@@ -248,67 +280,71 @@ section h1 {
     animation: slideDown .3s ease-out forwards;
 }
 
+/*login form*/
+
 .loginform{
     text-align: center;
-    padding: 50px;
-    background-color: #232523;
+    padding: 50px 50px 50px 50px;
+    background-color: #ffffff;
     background-size:contain;
-    margin: 20px;
-    border-radius: 20px;
-    margin-bottom: 300px;
-    margin-left: 200px;
-    margin-right: 200px;
-    color: #52f1e1
-    
+    margin: 20px 300px 0px 300px;
+    border-radius: 6px;
+    color: #000000;
+    box-shadow:0px 5px 20px -15px  #000000;
 }
 #email{
-    padding: 10px;
-    border-radius: 10px;
-    border-color: #22222200;
+    border-radius: 3px;
+    border-color: #0000005c;
 }
 #password{
     padding: 10px;
-    border-radius: 10px;
-    border-color: #22222200;
+    border-radius: 3px;
+    border-color: #00000067;
 }
 .loginform label {
     display: block;
+    text-align: center;
     margin-bottom: 8px;
     font-weight: bold;
-    color: #ffffff;
+    color: #000000;
     padding: 10px;
+    background-color: #0057b300;
 }
 .loginform input[type="email"]{
-    width: 50%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #000000;
     box-sizing: border-box;
     
 }
 .loginform input[type="password"] {
-    width: 50%;
+    width: 100%;
     padding: 10px;
     margin-bottom: 15px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid #000000;
+    border-radius: 5px;
     box-sizing: border-box;
     
 }
+.authentication-button{
+    background-color: #0057b300;
+    padding: 50px 0 0 0;
+}
+
 .loginform button {
     width: 20%;
     padding: 10px;
-    background-color:#222;
-    color: white;
+    background-color:#f1ca4c;
+    color: rgb(0, 0, 0);
     border: none;
     border-radius: 4px;
     font-size: 16px;
     cursor: pointer;
-    box-shadow: 1px 10px 25px 1px rgba(0, 0, 0, 0.704);
+    box-shadow: 0px 1px 2px -1px rgb(96, 94, 94);
 }
 
-.loginform button[type="button"] {
+.loginform button[type="button"]{
     background-color: #6c757d;
     margin-top: 10px;
     margin-bottom: 10px;
@@ -316,16 +352,149 @@ section h1 {
 
 .loginform button:hover {
     background-color: #0056b3;
+    color: #52f1e1;
 }
 
 .loginform button[type="button"]:hover {
     background-color: #5a6268;
 }
 
+/*Responsive design for form */
+@media screen and (max-width: 990px) {
+    .loginform{
+        text-align: center;
+        padding: 20px;
+        background-color: #ffffff;
+        background-size:contain;
+        margin: 20px 20px 20px 20px;
+        border-radius: 6px;
+        color: #000000;
+        box-shadow:0px 5px 20px -15px  #000000;
+        
+    }
+    .loginform label {
+        display: flex;
+        text-align: center;
+        margin-bottom: 8px;
+        font-weight: bold;
+        color: #000000;
+        padding: 8px 8px 8px 0px;
+        background-color: #0057b300;
+    }
+    .authentication-button{
+        background-color: #0057b300;
+        padding: 50px 0 10px 0;
+        width: 100%;
+    }
+    .loginform button{
+        font-size: clamp(15px,3vw,20px)  ;
+        padding: 6px;
+        display: inline;
+        width: 86px;
+        text-decoration: solid ;
+    }
+}
+/*Signup form*/
+
+.signup-form{
+    background-color: rgb(255, 255, 255);
+    border-radius: 6px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 0 300px 0 300px;
+}
+main{
+    padding: 10px;
+}
+.signup-form input[type="name"]{
+    display: block;
+    border: 0.5px solid rgba(0, 0, 0, 0.334);
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 5px 10px 5px;
+}
+.signup-form input[type="password"]{
+    display: block;
+    border: 0.5px solid rgba(0, 0, 0, 0.334);
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 5px 10px 5px;
+}
+.signup-form input[type="date"]{
+    display: block;
+    border: 0.5px solid rgba(0, 0, 0, 0.334);
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 5px 10px 5px;
+}
+.signup-form input[type="text"]{
+    display: block;
+    border:0.5px solid #00000057;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 5px 10px 5px;
+}
+.signup-form select {
+    display: block;
+    border:0.5px solid #00000057;
+    border-radius: 4px;
+    width: 100%;
+    padding: 10px;
+    margin: 10px 5px 10px 5px;
+}
+.upload-container {
+    background: rgb(255, 255, 255);
+    padding: 10px;
+    border-radius: 4px;
+    border: 0.5px solid rgba(0, 0, 0, 0.334);
+    margin: 10px 5px 10px 5px;
+    width: 100%;
+    
+}
+img {
+    max-width: 100%;
+    height: auto;
+    margin-top: 10px;
+}
+.button-conatiner{
+    padding: 10px;
+    color: yellow;
+    background-color: black;
+}
+.signup-button-container{
+    background-color: rgba(238, 130, 238, 0);
+    text-align: center;
+    box-sizing:content-box;
+}
+.signup-button-container button{
+  background-color: rgba(186, 223, 38, 0.811);
+  padding: 10px;
+  border-radius: 4px;
+  font-size: clamp(13px,3vw,18px)  ;
+  border: none;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+}
+
+@media screen and (max-width: 990px) {
+    .signup-form{
+        background-color: rgb(255, 255, 255);
+        border-radius: 6px;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        margin:20px;
+    }
+}
+
 br {
-    margin: 100px 0;
+    margin: 10px 0;
     text-align: center;
     padding: 20%;
+    font-weight: bold;
 }
 
 /* Tiles */
@@ -488,8 +657,101 @@ section ul li a:hover {
     }
 }
 
+/*product page*/
+.product-description {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #ddd;
+}
+
+.product-details {
+    max-width: 600px;
+}
+
+.product-details h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.product-details .price {
+    font-size: 1.5rem;
+    color: #b12704;
+    margin-bottom: 1rem;
+}
+
+.product-details .description {
+    margin-bottom: 1rem;
+}
+
+.product-details .specifications,
+.product-details .reviews {
+    margin-top: 1rem;
+}
+
+.specifications h3,
+.reviews h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+}
+
+.specifications ul {
+    list-style-type: disc;
+    margin-left: 1.5rem;
+}
 
 
+.product-details button {
+    background: #b1cc04;
+    color: #fff;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 1rem;
+    border-radius: 3px;
+    margin-top: 10px;
+}
+
+.product-details button:hover {
+    background: #bae804;
+}
+.product-details .specifications,
+.product-details .reviews {
+    margin-top: 1rem;
+    
+}
+/*About Page*/
+.about{
+    background-color: rgb(252, 215, 179);
+    text-align:left;
+    margin: auto;
+    font-style:normal;
+    text-decoration: solid;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-top: -0px;
+    padding-left: 0px;
+    color: rgb(0, 0, 0);
+}
+
+.about h2{
+    color: rgb(0, 0, 0);
+    margin-top: 10px;
+    text-decoration: underline;
+    text-align: center;
+}
+h3{
+    font-size: 1.6rem;
+}
+
+.about-text{
+    padding: 0px 10px 0 10px;
+    font-size: 1.2rem;
+}
 /* Footer */
 footer {
     background: rgb(37, 36, 39);
