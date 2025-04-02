@@ -1,14 +1,3 @@
-
-  function showLoginForm() {
-    document.getElementById("login-form").style.display = "block"; // Show login form
-    document.getElementById("signup-form").style.display = "none"; // Hide signup form
-  }
-
-  function showSignupForm() {
-    document.getElementById("login-form").style.display = "none"; // Hide login form
-    document.getElementById("signup-form").style.display = "block"; // Show signup form
-  }
-
   function toggleMenu() {                                         //Function to toggle sidebar
     const sidebar = document.querySelector('.sidebar');
     sidebar.classList.toggle('active');
@@ -73,9 +62,9 @@
     if (valid) {
         alert("Sign-up successful!");
     }
-});
+    });
 
-document.addEventListener("DOMContentLoaded", function () {                //Sign up form address: state city selector
+ document.addEventListener("DOMContentLoaded", function () {                //Sign up form address: state city selector
   const stateCityData = {
       "Uttar Pradesh": ["Kanpur", "Lucknow", "Varanasi", "Agra", "Allahabad"],
       "Maharashtra": ["Mumbai", "Pune", "Nagpur", "Nashik", "Aurangabad"],
@@ -116,3 +105,56 @@ document.addEventListener("DOMContentLoaded", function () {                //Sig
   });
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  const searchContainer = document.querySelector('.search-container');
+  const searchInput = document.querySelector('.search-input');
+  const searchButton = document.querySelector('.search-button');
+  const body = document.body;
+  
+  // Create overlay element
+  const overlay = document.createElement('div');
+  overlay.className = 'search-overlay';
+  document.body.appendChild(overlay);
+  
+  // Toggle search expansion
+  function toggleSearch() {
+      searchContainer.classList.toggle('expanded');
+      overlay.classList.toggle('active');
+      
+      if (searchContainer.classList.contains('expanded')) {
+          searchInput.focus();
+      }
+  }
+  
+  // Event listeners
+  searchInput.addEventListener('click', function(e) {
+      e.stopPropagation();
+      if (!searchContainer.classList.contains('expanded')) {
+          toggleSearch();
+      }
+  });
+  
+  searchButton.addEventListener('click', function(e) {
+      e.stopPropagation();
+      toggleSearch();
+  });
+  
+  // Close when clicking outside
+  overlay.addEventListener('click', function() {
+      if (searchContainer.classList.contains('expanded')) {
+          toggleSearch();
+      }
+  });
+  
+  // Close on escape key
+  document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && searchContainer.classList.contains('expanded')) {
+          toggleSearch();
+      }
+  });
+  
+  // Prevent propagation when clicking inside search container
+  searchContainer.addEventListener('click', function(e) {
+      e.stopPropagation();
+  });
+  });
