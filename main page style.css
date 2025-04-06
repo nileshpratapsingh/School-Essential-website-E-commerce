@@ -8,7 +8,8 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: aqua;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);          
+    
 }
 
 /* Header Styles */
@@ -1059,7 +1060,7 @@ section h1 {
       flex-direction: column;
     }
   }
-  
+
 /*About Page*/
 
   .about body {
