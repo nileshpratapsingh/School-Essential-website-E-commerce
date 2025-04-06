@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../main page style.css">
+    <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../script.js"></script>
+    <style>
+        
+    </style>
+</head>
+<body>
+    <header class="header">
+        <span class="video-container" id="logo">
+            <a href="../index.html" class="logo">
+                <video autoplay loop muted playsinline width="120">
+                    <source src="../animation/logo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </a>
+        </span>
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for products">
+            <button class="search-button">
+                <span>Search</span>
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </div>
+        
+            <div class="nav-links">
+            
+                    <a href="../pages/contacts.html"><ion-icon name="Call"></ion-icon> Contact Us</a>
+                    <a href="../pages/order.html"><ion-icon name="Cube-outline"></ion-icon> Orders</a>
+                    <a href="../pages/cart.html"><ion-icon name="cart-outline"></ion-icon> Cart</a>
+                    <a href="../pages/account.html"> <ion-icon name="person-circle-outline"></ion-icon> <big>Account</big></a>
+                    <a href="../pages/about.html"><ion-icon name="document-text"></ion-icon>About Us</big></a>
+                </big>
+            </div>
+            
+            <div class="auth-buttons">
+                <a href="loginpage.html"><button class="login-btn">Login</button></a>
+                <a href="SignUp.html"><button class="signup-btn">Sign Up</button></a>
+            </div>
+            
+            <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+        </header>
+        
+        <nav class="sidebar">
+            <button class="close-btn" onclick="toggleMenu()">&times;</button>
+            <h2 style="padding: 10px;">Menu</h2>
+            <ul>
+                <big>
+                    <li><a href="../index.html"><ion-icon name="Home"></ion-icon> Home</a></li>
+                    <li><a href="../pages/contacts.html"><ion-icon name="call"></ion-icon> Contact Us</a></li>
+                    <li><a href="../pages/order.html"></a><ion-icon name="Cube-outline"></ion-icon> Orders</a></li>
+                    <li><a href="../pages/cart.html"><ion-icon name="cart"></ion-icon> Cart</a></li>
+                    <li><a href="../pages/account.html"><ion-icon name="person-circle-outline"></ion-icon> Account</a></li>
+                    <li><a href="../pages/about.html"><ion-icon name="document-text"></ion-icon> About Us</a></li>
+                </big>
+            </ul>
+            <div class="auth-buttons-sidebar">
+                <a href="loginpage.html"><button class="Auth-login-btn">Login</button></a>
+                <a href="SignUp.html"><button class="Auth-signup-btn">Sign Up</button></a>
+            </div>
+        </nav>
+        <body>
+            <main>
+                <div class="product-container">
+                    <div class="product-page">
+                      <div class="product-image">
+                        <img src="https://via.placeholder.com/500x500" alt="Product Image">
+                      </div>
+                      <div class="product-details">
+                        <div class="product-title">Wireless Noise Cancelling Headphones</div>
+                        <div class="product-rating">⭐⭐⭐⭐☆ (4.5/5)</div>
+                        <div class="product-price">$149.99</div>
+                        <div class="product-description">
+                          Experience world-class sound and advanced noise cancellation with our latest wireless headphones. With up to 30 hours of battery life, fast charging, and comfortable over-ear fit, these are perfect for long listening sessions.
+                        </div>
+                
+                        <div class="features">
+                          <h3>Key Features:</h3>
+                          <ul>
+                            <li>Industry-leading noise cancellation</li>
+                            <li>30-hour battery life</li>
+                            <li>Touch controls</li>
+                            <li>Bluetooth 5.0 connectivity</li>
+                            <li>Built-in voice assistant</li>
+                          </ul>
+                        </div>
+                
+                        <div class="product-buy">
+                          <button onclick="addToCart()">Add to Cart</button>
+                          <button onclick="buyNow()" style="background-color: #ffa41c; border: 1px solid #f89808;">Buy Now</button>
+                        </div>
+                      </div>
+                    </div>
+                
+                    <div class="shipping-info">
+                      <h3>Shipping Information:</h3>
+                      <p>Ships in 1-2 business days. Free shipping on orders over $50. Expedited options available at checkout.</p>
+                    </div>
+                
+                    <div class="specs">
+                      <h3>Technical Specifications:</h3>
+                      <ul>
+                        <li>Driver Size: 40mm</li>
+                        <li>Frequency Response: 20Hz - 20kHz</li>
+                        <li>Battery Life: 30 hours</li>
+                        <li>Charging Time: 1.5 hours</li>
+                        <li>Weight: 250g</li>
+                      </ul>
+                    </div>
+                
+                    <div class="reviews">
+                      <h3>Customer Reviews:</h3>
+                      <ul>
+                        <li><strong>Jane D.:</strong> Amazing sound quality and great battery life!</li>
+                        <li><strong>Mark T.:</strong> Love the comfort and noise cancellation.</li>
+                        <li><strong>Linda P.:</strong> Worth every penny, highly recommend!</li>
+                      </ul>
+                    </div>
+                
+                    <div class="qa">
+                      <h3>Q & A:</h3>
+                      <ul>
+                        <li><strong>Q:</strong> Does it support fast charging?<br><strong>A:</strong> Yes, it charges fully in about 1.5 hours.</li>
+                        <li><strong>Q:</strong> Can I use it with a wired connection?<br><strong>A:</strong> Yes, it includes an optional 3.5mm cable.</li>
+                      </ul>
+                    </div>
+                  </div>
+            </main>
+            <footer>
+                <div class="container">
+                    <p>&copy; 2024 Shree Namrata Dresses and Tailor Website. All rights reserved.</p>
+                    <ul class="social-links">
+                        <h2>Follow us on</h2>
+                        <li><a href="https://www.facebook.com/profile.php?id=100025358221368"><ion-icon name="logo-facebook"></ion-icon></a></li>
+                        <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                        <li><a href="https://www.instagram.com/shree_namrata_dresses?igsh=MTh2ZHU4M2Y0cTZhdA=="><ion-icon name="logo-instagram"></ion-icon></a></li>
+                    </ul>
+                </div>
+            </footer>
+        </body>
+        </html>
