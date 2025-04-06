@@ -691,7 +691,7 @@ section h1 {
 }
 
 
-/* Tiles */
+/* main page Tiles */
 
 .productContainer , .other-service , .service-container {
     padding: 20px;
@@ -704,6 +704,7 @@ section h1 {
     list-style: none;
     padding: 0;
     margin: 0;
+    
 }
 
 .animated-list li {
@@ -713,7 +714,7 @@ section h1 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     text-align: center;
     transition: transform 0.2s ease;
-    height: 200px; /* 👈 Fixed height for uniformity */
+    height: 200px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -771,7 +772,7 @@ section h1 {
 .animated-list p {
     margin: 0;
     font-size: 20px;
-    font-weight: bold; /* 👈 This makes the text bold */
+    font-weight: bold; 
     color: inherit;
     text-align: center;
     line-height: 1.3;
@@ -805,7 +806,7 @@ section h1 {
     color: #000000;
 }
 
-/*product containers*/
+/*product page style*/
 
 .products {
     padding: 2rem 1rem;
@@ -822,12 +823,12 @@ section h1 {
 
 .product {
     background: #ffffff;
-    border-radius: 5px; /* Keep rounded corners */
+    border-radius: 5px; 
     text-align: center;
     padding: 1rem;
     margin: 0;
     width: calc(25% - 1rem); /* 4 per row on large screens */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Light shadow for separation */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); 
 }
 
 .product img {
@@ -893,7 +894,9 @@ section h1 {
 .servicecontainer ul li a:hover {
     color: #ff0000;
 }
+
 /* Uniform Tile Container Styling - Responsive */
+
 .tile-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -1060,6 +1063,90 @@ section h1 {
       flex-direction: column;
     }
   }
+
+/*stationnery page styling*/
+
+#allstationary {
+    background: rgba(251, 251, 251, 0.434); /* light transparent background */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* for Safari */
+    padding: 2rem 1rem;
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+    margin: 1rem;
+}
+
+.stationary-items {
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+    
+}
+.stationary-items h2 {
+    font-size: 2rem;
+    color: #2c3e50;
+    margin-bottom: 2rem;
+    font-weight: 600;
+}
+
+.stationary-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+    gap: 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 800px;
+}
+
+.stationary-list li {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  
+  .stationary-list li:hover {
+    color: #55ff00;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+  }
+  
+  .stationary-list a {
+    display: block;
+    padding: 1rem;
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  
+  .stationary-list img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    margin-bottom: 0.5rem;
+  }
+   
+  /* Responsive tweaks */
+  @media (max-width: 600px) {
+    .stationary-list img {
+      width: 60px;
+      height: 60px;
+    }
+  
+    .stationary-list a {
+      font-size: 0.95rem;
+    }
+    
+    #allstationary{
+        margin:0;
+    }
+}
+
+  
+
 
 /*About Page*/
 
