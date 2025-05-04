@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Contact Us</title>
+        <link rel="stylesheet" href="../main page style.css">
+        <link rel="shortcut icon" href="../favicon.ico" type="image/x-icon">
+        <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+        <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+        <script src="../script.js"></script>
+    </head>
+<style>
+        /* Feedback Form Styling */
+        #feedback-form-container {
+            max-width: 600px;
+            margin: 50px auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        #feedback-form h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        #feedback-form label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #444;
+            font-size: 1rem;
+        }
+
+        #feedback-form input[type="text"],
+        #feedback-form input[type="email"],
+        #feedback-form select,
+        #feedback-form textarea {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1rem;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+            font-size: 1rem;
+            transition: border-color 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        #feedback-form input:focus,
+        #feedback-form select:focus,
+        #feedback-form textarea:focus {
+            border-color: #007bff;
+            box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+            outline: none;
+        }
+
+        #feedback-form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-buttons {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        #feedback-form button {
+            flex: 1;
+            padding: 0.75rem;
+            background: blue;
+            color: white;
+            font-size: 1rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        #feedback-form button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05);
+        }
+
+        #feedback-form button:active {
+            transform: scale(0.95);
+        }
+
+        @media (max-width: 768px) {
+            #feedback-form-container {
+                padding: 20px;
+            }
+
+            #feedback-form h2 {
+                font-size: 1.5rem;
+            }
+
+            #feedback-form label {
+                font-size: 0.9rem;
+            }
+
+            #feedback-form input[type="text"],
+            #feedback-form input[type="email"],
+            #feedback-form select,
+            #feedback-form textarea {
+                font-size: 0.9rem;
+            }
+
+            .form-buttons {
+                flex-direction: row;
+            }
+
+            #feedback-form button {
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+<body>
+    <header class="header">
+        <span class="container" id="logo">
+            <a href="../index.html" class="logo-link">
+             <video autoplay loop muted playsinline width="120">
+                 <source src="../animation/logo.mp4" type="video/mp4">
+                 Your browser does not support the video tag.
+             </video>
+            </a>
+        </span>
+   
+        
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for products">
+            <button class="search-button"><span>Search</span>
+            <ion-icon name="search"></ion-icon>
+            </button>
+        </div>
+
+        <div class="nav-links">
+            <a href="../pages/contacts.html"><ion-icon name="call"></ion-icon> Contacts</a>
+            <a href="../pages/order.html"><ion-icon name="cube"></ion-icon> Orders</a>
+            <a href="../pages/cart.html"><ion-icon name="cart-outline"></ion-icon> Cart</a>
+            <a href="../pages/account.html"><ion-icon name="person-circle-outline"></ion-icon> Account</a>
+            <a href="../pages/ChatBot.html"><ion-icon name="help-circle-outline"></ion-icon> Help</a>
+            <a href="../pages/about.html"><ion-icon name="document-text"></ion-icon> About Us</a>
+        </div>
+        
+        <div class="auth-buttons">
+            <a href="loginpage.html"><button class="login-btn">Login</button></a>
+            <a href="SignUp.html"><button class="signup-btn">Sign Up</button></a>
+        </div>
+        
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+    
+    <nav class="sidebar">
+        <button class="close-btn" onclick="toggleMenu()">&times;</button>
+       <h2 style="padding: 10px;">Menu</h2> 
+       <ul>
+            <big>
+            <li><a href="../index.html"><ion-icon name="home"></ion-icon> Home</a></li>
+            <li><a href="../pages/contacts.html"><ion-icon name="call"></ion-icon> Contacts</a></li>
+                <li><a href="../pages/order.html"><ion-icon name="cube"></ion-icon> Orders</a></li>
+                <li><a href="../pages/cart.html"><ion-icon name="cart-outline"></ion-icon> Cart</a></li>
+                <li><a href="../pages/account.html"><ion-icon name="person-circle-outline"></ion-icon> Account</a></li>
+                <li><a href="../pages/about.html"><ion-icon name="document-text"></ion-icon> About Us</a></li>
+            </big>
+        </ul>
+
+        <div class="bottom-links">
+            <ul>
+                <big>
+                    <li><a href="../pages/ChatBot.html"><ion-icon name="help-circle-outline"></ion-icon> Help</a></li>
+                </big>
+            </ul>
+        </div>
+
+        <div class="auth-buttons-sidebar">
+            <a href="loginpage.html"><button class="Auth-login-btn">Login</button></a>
+            <a href="SignUp.html"><button class="Auth-signup-btn">Sign Up</button></a>
+        </div>
+    </nav>
+ 
+
+<!-- Feedback Form -->
+    <div id="feedback-form-container">
+        <form id="feedback-form">
+            <h2>Feedback Form</h2>
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="rating">Rating:</label>
+            <select id="rating" name="rating" required>
+                <option value="" disabled selected>Select a rating</option>
+                <option value="5">Excellent</option>
+                <option value="4">Good</option>
+                <option value="3">Average</option>
+                <option value="2">Poor</option>
+                <option value="1">Very Poor</option>
+            </select>
+
+            <label for="comments">Comments:</label>
+            <textarea id="comments" name="comments" placeholder="Write your feedback here..." rows="5" required></textarea>
+
+            <div class="form-buttons">
+                <button id="submit-button" type="submit">Submit</button>
+                <button id="reset-button" type="reset">Reset</button>
+            </div>
+        </form>
+    </div>    
+</body>
+</html>
