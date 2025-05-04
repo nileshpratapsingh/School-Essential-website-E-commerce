@@ -67,7 +67,7 @@ document.addEventListener("DOMContentLoaded", function () {
       } else if(lowerMessage==="order"||lowerMessage === "order status"||lowerMessage === "orderstatus"||lowerMessage === "order status?"||lowerMessage === "order status!"||lowerMessage === "order status"||lowerMessage === "orderenquiry"||lowerMessage === "orderdetails") {
         appendIncomingMessage("📦 Your order is on the way! You can track it <a href='order.html'>here</a>.");
          ShowOrderOption();
-      }else if (lowerMessage === "yo"||lowerMessage === "yo bro"||lowerMessage === "yo bro!"||lowerMessage === "What's up cuh"||lowerMessage === "What's up cuh!"||lowerMessage === "Yo! What's up cuh"||lowerMessage === "Yo! What's up cuh!"||lowerMessage === "Yo! What's up cuh?"||lowerMessage === "What's u") {
+      }else if (lowerMessage === "yo"||lowerMessage === "yo bro"||lowerMessage === "yo bro!"||lowerMessage === "What's up cuh"||lowerMessage === "What's up cuh!"||lowerMessage === "Yo! What's up cuh"||lowerMessage === "Yo! What's up cuh!"||lowerMessage === "Yo! What's up cuh?"||lowerMessage === "what's up") {
         appendIncomingMessage("😎 Yo! What's up cuh, You Good ?");
       } else if(lowerMessage === "namaste"){
         appendIncomingMessage("नमस्ते मैं आपकी क्या मदद कर सकता हूँ");
