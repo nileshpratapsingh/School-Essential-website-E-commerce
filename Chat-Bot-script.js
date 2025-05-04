@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function () {
       const lowerMessage = message.toLowerCase();
   
       if (containsBadWords(lowerMessage)) {
-        appendIncomingMessage("⚠️ Teri Maa Chod dalunga Bhosadike\nTameez me bol kar\nRandi ke");
+        appendIncomingMessage("⚠️ Teri Maa Chod dalunga Betichod\nTameez me bol kar\nRandi ke");
         return;
       }
   
