@@ -10,7 +10,27 @@ document.addEventListener("DOMContentLoaded", function () {
       "bhosadike", "betichod", "chutiye", "maa ki chut", 
       "makichut", "nigger","pajeet","bhadwe","chinaal","chinaar","hijde","chakke","maadifuddi","maadifudi","fuddideya","fudideya","cunt","bitchassnigga","nigga","kuttiya","kutiya","randikebeej","chutmarike","randa","lund","lundkebaal","lodeke","lodeki","lawde","lode","chut","peniskehair","jhantu","jhaatkebaal","terimaadafudda","teribhendafudda","blyat","shithole","cykablyat","bhenkelund","behenkelaude","maakelaude","bhenkichut","behenkelaudi","maakelaudi","bhenkelund","behenkelawde","maakelawde","behenkelawdi","maakelawdi","dumbass"
     ];
-  
+    
+    const clean = str => str.replace(/[^a-z]/gi, '').toLowerCase();
+
+    const helpMessages = ["help", "main menu", "menu", "help me", "help me out"];
+    const identityQuestions = ["who are you", "who r u", "what is your name", "whats your name", "what's your name", "whatisyourname"];
+    const orderQueries = ["order", "order status", "orderstatus", "order status?", "order status!", "orderenquiry", "orderdetails"];
+    const casualGreetings = ["ayoo","yo", "yo bro", "yo bro!", "what's up cuh", "yo! what's up cuh", "yo! what's up cuh!", "yo! what's up cuh?", "what's up","yo whats up"];
+    const greetings = {
+      namaste: "नमस्ते मैं आपकी क्या मदद कर सकता हूँ",
+      assalamualaikum: "वालेकुम अस्सलाम भाईजान मैं आपकी क्या मदद कर सकता हूँ?",
+      satsriakal: "ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਵੀਰੇ, ਮੈਂ ਤੁਹਾਡੀ ਕਿਵੇਂ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ?हूँ",
+      jaishreeram: "जयश्रीराम मैं आपकी क्या सहायता कर सकता हूँ",
+      'jai shree ram': "जयश्रीराम मैं आपकी क्या सहायता कर सकता हूँ",
+      ramram: "राम राम  मैं आपकी क्या सहायता कर सकता हूँ",
+      'ram ram': "राम राम  मैं आपकी क्या सहायता कर सकता हूँ",
+      radheyradhey: "राधे राधे भैय्या मैं आपकी क्या सहायता कर सकता हूँ",
+      'radhey radhey': "राधे राधे भैय्या मैं आपकी क्या सहायता कर सकता हूँ",
+      hello: "Hey bro what's up",
+      hey: "Hey bro what's up"
+    };
+
     function containsBadWords(text) {
       return badWords.some(word => text.toLowerCase().includes(word));
     }
@@ -62,31 +82,31 @@ document.addEventListener("DOMContentLoaded", function () {
         return;
       }
   
-      if (lowerMessage === "help"||lowerMessage === "main menu"||lowerMessage === "menu"||lowerMessage === "help me"||lowerMessage === "help me out") {
+      if (helpMessages.includes(lowerMessage)) {
         showHelpOptions();
-      } else if(lowerMessage==="order"||lowerMessage === "order status"||lowerMessage === "orderstatus"||lowerMessage === "order status?"||lowerMessage === "order status!"||lowerMessage === "order status"||lowerMessage === "orderenquiry"||lowerMessage === "orderdetails") {
+      
+      // Identity queries
+      } else if (identityQuestions.some(q => clean(q) === clean(lowerMessage))) {
+        appendIncomingMessage("🤖 I am Namrata virtual assistant. How may I help you today?");
+      
+      // Order status
+      } else if (orderQueries.some(q => clean(q) === clean(lowerMessage))) {
         appendIncomingMessage("📦 Your order is on the way! You can track it <a href='order.html'>here</a>.");
-         ShowOrderOption();
-      }else if (lowerMessage === "yo"||lowerMessage === "yo bro"||lowerMessage === "yo bro!"||lowerMessage === "What's up cuh"||lowerMessage === "What's up cuh!"||lowerMessage === "Yo! What's up cuh"||lowerMessage === "Yo! What's up cuh!"||lowerMessage === "Yo! What's up cuh?"||lowerMessage === "what's up") {
+        ShowOrderOption();
+      
+      // Casual greetings
+      } else if (casualGreetings.some(q => clean(q) === clean(lowerMessage))) {
         appendIncomingMessage("😎 Yo! What's up cuh, You Good ?");
-      } else if(lowerMessage === "namaste"){
-        appendIncomingMessage("नमस्ते मैं आपकी क्या मदद कर सकता हूँ");
-      }else if(lowerMessage === "assalamualaikum"){
-        appendIncomingMessage("वालेकुम अस्सलाम भाईजान मैं आपकी क्या मदद कर सकता हूँ?");
-      }else if(lowerMessage === "satsriakal"){
-        appendIncomingMessage("ਸਤਿ ਸ੍ਰੀ ਅਕਾਲ ਵੀਰੇ, ਮੈਂ ਤੁਹਾਡੀ ਕਿਵੇਂ ਮਦਦ ਕਰ ਸਕਦਾ ਹਾਂ?हूँ");
-      }else if(lowerMessage === "jaishreeram"||lowerMessage === "jai shree ram"){
-        appendIncomingMessage("जयश्रीराम मैं आपकी क्या सहायता कर सकता हूँ");
-      }else if(lowerMessage === "ramram"||lowerMessage === "ram ram"){
-        appendIncomingMessage("राम राम  मैं आपकी क्या सहायता कर सकता हूँ");
-      }else if(lowerMessage === "radheyradhey"||lowerMessage === "radhey radhey"){
-        appendIncomingMessage("राधे राधे भैय्या मैं आपकी क्या सहायता कर सकता हूँ");
-      }else if(lowerMessage === "hello"||lowerMessage=== "hey"){
-        appendIncomingMessage("Hey bro what's up");
-      }else if (lowerMessage.includes("not working") || lowerMessage.includes("error")){
+      
+      // Regional greetings
+      } else if (greetings[lowerMessage]) {
+        appendIncomingMessage(greetings[lowerMessage]);
+      
+      // Error or issue reports
+      } else if (lowerMessage.includes("not working") || lowerMessage.includes("error")) {
         appendIncomingMessage("⚠️ If something is wrong, please fill out the feedback form. Our backend team will contact you soon.");
         ShowFeedbackOption();
-      }else{
+      } else {
         setTimeout(() => {
           appendIncomingMessage("🤖 Pardon.");
         }, 1000);
