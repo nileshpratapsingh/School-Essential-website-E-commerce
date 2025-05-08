@@ -133,31 +133,31 @@ document.addEventListener("DOMContentLoaded", function () {
             houseSelector.disabled = false;
         });
     }
-    
+
     //========= Uniform Section Display ==========
     const genderSelect = document.getElementById('gender-select');
     const uniformSelect = document.getElementById('uniform-select');
-    
+
     const summerSection = document.getElementById('summer-uniform');
     const winterSection = document.getElementById('winter-uniform');
-    
+
     const summerTitle = document.getElementById('summer-title');
     const winterTitle = document.getElementById('winter-title');
-    
+
     const addToCartContainer = document.getElementById('add-to-cart-container');
     const addToCartButton = document.getElementById('add-to-cart-btn');
-    
+
     const quantityInputs = document.querySelectorAll('input[type="number"]');
     const resetButton = document.getElementById('reset-btn');
-    
+
     // Function to show/hide summer/winter uniform
     function updateUniformDisplay() {
         const gender = genderSelect.value;
         const uniform = uniformSelect.value;
-        
+
         summerSection.style.display = 'none';
         winterSection.style.display = 'none';
-        
+
         if (gender && uniform === 'Summer') {
             summerSection.style.display = 'block';
             summerTitle.textContent = `${gender} Summer Uniform`;
@@ -165,13 +165,12 @@ document.addEventListener("DOMContentLoaded", function () {
             winterSection.style.display = 'block';
             winterTitle.textContent = `${gender} Winter Uniform`;
         }
-        
+
         // Also reset the Add to Cart visibility when uniform type changes
         checkQuantities();
     }
-    
-    //=======Reset Button==========
-    
+
+    //======= Reset Button ==========
     if (resetButton && quantityInputs.length > 0) {
         resetButton.addEventListener('click', () => {
             quantityInputs.forEach(input => {
@@ -182,11 +181,11 @@ document.addEventListener("DOMContentLoaded", function () {
             }
         });
     }
+
     genderSelect.addEventListener('change', updateUniformDisplay);
     uniformSelect.addEventListener('change', updateUniformDisplay);
-    
+
     // --- Add to Cart Button Logic ---
-    
     function checkQuantities() {
         let hasQuantity = false;
         if (quantityInputs.length > 0) {
@@ -200,17 +199,15 @@ document.addEventListener("DOMContentLoaded", function () {
             addToCartContainer.style.display = hasQuantity ? 'block' : 'none';
         }
     }
-    
+
     // Attach listener to all number inputs
     quantityInputs.forEach(input => {
         input.addEventListener('input', checkQuantities);
     });
-    
+
     // Optional: Handle Add to Cart click
     addToCartButton.addEventListener('click', () => {
         alert('Items added to cart!');
         // Add your logic here to process cart data
-        
     });
-    
 });
