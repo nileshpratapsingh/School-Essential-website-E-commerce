@@ -506,8 +506,10 @@ body {
     }
   }
 
+
 /* Container */
-.container {
+
+  .container {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
@@ -579,7 +581,7 @@ h2 {
 }
 
 .form-buttons {
-    display: flex;
+    display: inline;
     justify-content: space-between;
     gap: 10px;
 }
@@ -591,7 +593,7 @@ h2 {
     color: white;
     font-size: 1rem;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease, transform 0.2s ease;
 }
@@ -626,7 +628,8 @@ h2 {
     }
 
     .form-buttons {
-        flex-direction: row;
+        display: inline;
+
     }
 
     #feedback-form button {
@@ -871,6 +874,77 @@ br {
     padding: 20%;
     font-weight: bold;
 }
+/*account profile
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.profile-card {
+    background: #fff;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 16px;
+    padding: 2rem;
+    max-width: 500px;
+    width: 100%;
+}
+
+.profile-image {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.upload-label {
+    display: inline-block;
+    margin-top: 10px;
+    cursor: pointer;
+    color: #007bff;
+    text-decoration: underline;
+    font-size: 0.9rem;
+}
+
+.profile-details label {
+    font-weight: bold;
+    display: block;
+    margin-top: 15px;
+}
+
+.profile-details input,
+.profile-details textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 4px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+}
+
+.update-btn {
+    margin-top: 20px;
+    width: 100%;
+    padding: 12px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.update-btn:hover {
+    background: #0056b3;
+}*/
 
 
 /*order form style*/
@@ -997,7 +1071,7 @@ form textarea:focus {
 
 /* Textarea */
 textarea {
-    min-height: 100px;
+    min-height: 63px;
     resize: vertical;
 }
 

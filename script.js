@@ -208,6 +208,5 @@ document.addEventListener("DOMContentLoaded", function () {
     // Optional: Handle Add to Cart click
     addToCartButton.addEventListener('click', () => {
         alert('Items added to cart!');
-        // Add your logic here to process cart data
     });
 });

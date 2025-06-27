@@ -109,13 +109,15 @@ const badWords = [
 
 const helpMessages = ["help", "main menu", "menu", "help me", "help me out"];
 
-const identityQuestions = ["who are you", "who r u", "what is your name", "whats your name", "what's your name", "whatisyourname"];
+const identityQuestions = ["who are you", "who r u", "what is your name", "whats your name", "what's your name", "whatisyourname", "who are you?", "who r u?", "what is your name?", "whats your name?", "what's your name?", "whatisyourname?"];
 
-const orderQueries = ["order", "order status", "orderstatus", "order status?", "order status!", "orderenquiry", "orderdetails"];
+const orderQueries = ["order", "order status", "orderstatus", "order status?", "order status!", "orderenquiry", "orderdetails", "order details", "order details?", "order details!", "order status", "order status?", "order status!", "order status inquiry", "order status inquiry?", "order status inquiry!", "order status check", "order status check?", "order status check!", "track order", "track order?", "track order!", "track my order", "track my order?", "track my order!", "check order", "check order?", "check order!", "check my order", "check my order?", "check my order!"];
 
-const casualGreetings = ["ayoo", "yo", "yo bro", "yo bro!", "what's up cuh", "yo! what's up cuh", "yo! what's up cuh!", "yo! what's up cuh?", "what's up", "yo whats up"];
+const casualGreetings = ["ayoo", "yo", "yo bro", "yo bro!", "what's up cuh", "yo! what's up cuh", "yo! what's up cuh!", "yo! what's up cuh?", "what's up", "yo whats up", "yo", "yo!", "yo?", "yo bro", "yo bro!", "yo bro?", "what's up cuh", "what's up cuh!", "what's up cuh?", "ayoo", "ayoo!", "ayoo?", "ayoo bro", "ayoo bro!", "ayoo bro?", "what's up", "what's up!", "what's up?"];
 
 const jokeQueries = ["tell me a joke", "joke", "say joke", "joke batao", "dark joke", "another one"];
+
+const bussinessQueries = ["business", "business inquiry", "business inquiry?", "business inquiry!","business deal", "business deal?", "business deal!", "business proposal", "business proposal?", "business proposal!", "business opportunity", "business opportunity?", "business opportunity!", "business meeting", "business meeting?", "business meeting!", "business call", "business call?", "business call!", "business chat", "business chat?", "business chat!", "business discussion", "business discussion?", "business discussion!", "business talk", "business talk?", "business talk!", "business plan", "business plan?", "business plan!", "business strategy", "business strategy?", "business strategy!", "business partnership", "business partnership?", "business partnership!", "bussiness inquiry"];
 
 const greetings = {
     namaste: "नमस्ते मैं आपकी क्या मदद कर सकता हूँ",
@@ -131,6 +133,8 @@ const greetings = {
     hey: "Hey bro what's up"
 };
 
+// Exporting all the data sets
+
 export {
     stateCityData,
     schoolHouseData,
@@ -140,6 +144,8 @@ export {
     casualGreetings,
     jokeQueries,
     greetings,
-    badWords
+    badWords,
+    bussinessQueries
 };
+
 

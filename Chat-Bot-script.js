@@ -7,7 +7,8 @@ import {
   orderQueries, 
   casualGreetings, 
   greetings, 
-  jokeQueries 
+  jokeQueries, 
+  bussinessQueries
   } from './data-sets.js';
  
   //========= DOMContentLoaded ==========
@@ -136,6 +137,9 @@ import {
       } else if (lowerMessage.includes("not working") || lowerMessage.includes("error")) {
         appendIncomingMessage("⚠️ If something is wrong, please fill out the feedback form. Our backend team will contact you soon.");
         ShowFeedbackOption();
+      } else if(bussinessQueries.some(q => clean(q) === clean(lowerMessage))) {
+        appendIncomingMessage("🔄 Click on the below button to proceed to the Bussiness page...");
+        showBussinessEnquiryOptions();
       } else {
         setTimeout(() => {
           appendIncomingMessage("🤖 Pardon.");
@@ -169,6 +173,13 @@ import {
       
       appendIncomingMessage(feedbackOptionHTML);
     }
+
+    function showBussinessEnquiryOptions() {
+      const bussinessQueriesHTML = `<div style="display: flex; flex-direction: column; gap: 8px;"><button onclick="handleBussiness()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Bussiness</button>
+      </div>`;
+
+      appendIncomingMessage(bussinessQueriesHTML);
+    }
     
     window.handleCallStore = function () {
       appendIncomingMessage("📞 You can call the store at: <strong>+91-790500198</strong>");
@@ -179,12 +190,18 @@ import {
     };
     
     window.handleFeedback = function () {
+      appendIncomingMessage("🔄 Click on the below button to proceed to the Feedback page...");
       window.location.href = "Feedback.html";
     };
     
     window.handleOrderStatus = function () {
+      appendIncomingMessage("🔄 Click on the below button to proceed to the Order Status page...");
       window.location.href = "order.html";
     };
+
+    window.handleBussiness = function () {
+      window.location.href = "Bussiness.html";
+    }
     
     if (sendBtn && chatBox && textarea) {
       sendBtn.addEventListener("click", sendMessage);

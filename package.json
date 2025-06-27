@@ -1,0 +1,24 @@
+{
+  "name": "my-website",
+  "version": "1.0.0",
+  "description": "This is an eCommerce website designed for selling school uniforms, accessories, and stationery items. The platform provides an easy shopping experience for students, parents, and schools looking for high-quality educational supplies. 🏫✨",
+  "main": "script.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "modules": "^0.4.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nileshpratapsingh/School-Essential-website-E-commerce.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nileshpratapsingh/School-Essential-website-E-commerce/issues"
+  },
+  "homepage": "https://github.com/nileshpratapsingh/School-Essential-website-E-commerce#readme"
+}
