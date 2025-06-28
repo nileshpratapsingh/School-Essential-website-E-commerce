@@ -21,7 +21,7 @@ import {
     const chatBox = document.querySelector(".chatbox");
     const textarea = document.querySelector(".chat-input textarea");
     
-    const clean = str => str.replace(/[^a-z]/gi, '').toLowerCase();
+    const clean = str => str.replace(/[^a-z]/gi, '').toLowerCase(); //regulare expression
     
     // Function to fetch a joke from the API
     
