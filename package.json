@@ -4,7 +4,8 @@
   "description": "This is an eCommerce website designed for selling school uniforms, accessories, and stationery items. The platform provides an easy shopping experience for students, parents, and schools looking for high-quality educational supplies. 🏫✨",
   "main": "script.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
