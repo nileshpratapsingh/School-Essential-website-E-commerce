@@ -1,6 +1,20 @@
+# Node
 node_modules/
 .env
-test.html
-template-page.html
+
+# Editor configs
 .vscode/
 .vs/
+
+# Build and logs (optional)
+dist/
+build/
+*.log
+
+# System
+.DS_Store
+Thumbs.db
+
+# Test & temp files
+test.html
+template-page.html
