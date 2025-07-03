@@ -34,7 +34,7 @@ const server = http.createServer((req, res) => {
     res.writeHead(403);
     return res.end("Access denied");
   }
-  
+
   const ext = path.extname(filePath);
   const contentType = mimeTypes[ext] || "application/octet-stream";
 
