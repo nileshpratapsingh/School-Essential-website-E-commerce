@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../../styles/style.css">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</head>
+<script src="../../scripts/script.js" defer type="module"></script>
+</head>
+
+<body>
+    <header class="header">
+        <span class="container" id="logo">
+            <a href="../index.html" class="logo">
+                <video autoplay loop muted playsinline width="120">
+                    <source src="../animation/logo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+        </span>
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for products">
+            <button class="search-button">
+                <span>Search</span>
+                <ion-icon name="search"></ion-icon>
+            </button>
+        </div>
+
+        <div class="nav-links">
+            <big><a href="../pages/contacts.html"><ion-icon name="Call"></ion-icon> Contacts</a>
+                <a href="../pages/order.html"><ion-icon name="Cube-outline"></ion-icon> Orders</a>
+                <a href="../pages/cart.html"><ion-icon name="cart-outline"></ion-icon> Cart</a>
+                <a href="../pages/account.html"> <ion-icon name="person-circle-outline"></ion-icon> Account</a>
+                <a href="../pages/ChatBot.html"><ion-icon name="help-circle-outline"></ion-icon> Help</a>
+                <a href="../pages/about.html"><ion-icon name="document-text"></ion-icon>About Us</a></big>
+        </div>
+
+        <div class="auth-buttons">
+            <a href="loginpage.html"><button class="login-btn">Login</button></a>
+            <a href="SignUp.html"><button class="signup-btn">Sign Up</button></a>
+        </div>
+
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <nav class="sidebar">
+        <button class="close-btn" onclick="toggleMenu()">&times;</button>
+        <h2 style="padding: 10px;">Menu</h2>
+        <ul>
+            <big>
+                <li><a href="../index.html"><ion-icon name="Home"></ion-icon> Home</a></li>
+                <li><a href="../pages/contacts.html"><ion-icon name="call"></ion-icon> Contact Us</a></li>
+                <li><a href="../pages/order.html"><ion-icon name="Cube-outline"></ion-icon> Orders</a></li>
+                <li><a href="../pages/cart.html"><ion-icon name="cart"></ion-icon> Cart</a></li>
+                <li><a href="../pages/account.html"><ion-icon name="person-circle-outline"></ion-icon> Account</a></li>
+                <li><a href="../pages/about.html"><ion-icon name="document-text"></ion-icon> About</a></li>
+            </big>
+        </ul>
+
+        <div class="bottom-links">
+            <ul>
+                <big>
+                    <li><a href="../pages/ChatBot.html"><ion-icon name="help-circle-outline"></ion-icon> Help</a></li>
+                </big>
+            </ul>
+        </div>
+
+        <div class="auth-buttons-sidebar">
+            <a href="loginpage.html"><button class="Auth-login-btn">Login</button></a>
+            <a href="SignUp.html"><button class="Auth-signup-btn">Sign Up</button></a>
+        </div>
+    </nav>
+    <main>
+        <section class="products">
+            <div class="container">
+                <div class="product">
+                    <img src="https://via.placeholder.com/200" alt="Product 1">
+                    <h3>Product 1</h3>
+                    <p>$19.99</p>
+                    <a href="../product.html"><button>Add to cart</button></a>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/200" alt="Product 2">
+                    <h3>Product 2</h3>
+                    <p>$29.99</p>
+                    <a href="../product.html"><button>Add to Cart</button></a>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/200" alt="Product 3">
+                    <h3>Product 3</h3>
+                    <p>$39.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/200" alt="Product 3">
+                    <h3>Product 3</h3>
+                    <p>$39.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/200" alt="Product 3">
+                    <h3>Product 3</h3>
+                    <p>$39.99</p>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product">
+                    <img src="https://via.placeholder.com/200" alt="Product 3">
+                    <h3>Product 3</h3>
+                    <p>$39.99</p>
+                    <button>Add to Cart</button>
+                </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Shree Namrata Dresses and Tailor Website. All rights reserved.</p>
+            <h2>Follow us On</h2>
+            <ul class="social-links">
+                <li><a href="https://www.facebook.com/profile.php?id=100025358221368"><ion-icon
+                            name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="https://www.instagram.com/shree_namrata_dresses?igsh=MTh2ZHU4M2Y0cTZhdA=="><ion-icon
+                            name="logo-instagram"></ion-icon></a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>

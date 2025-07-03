@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ChatBot</title>
+    <link rel="stylesheet" href="../../styles/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../../scripts/Chat-Bot-script.js" defer type="module"></script>
+</head>
+
+<body>
+    <header class="chat-header">
+        <div class="header-container">
+            <button class="back-button" onclick="history.back()">←</button>
+            <h2>Shree Namrata's Virtual Assistant</h2>
+        </div>
+    </header>
+    <main class="chatbot">
+        <ul class="chatbox">
+            <li class="chat-incoming">
+                <span class="material-symbols-outlined">smart_toy</span>
+                <p>Hi there!<br>How can I help you today?
+                    <br>Go back to <a href="../index.html">Home page</a>
+                </p>
+            </li>
+            <li class="chat-outgoing"></li>
+        </ul>
+        <div class="chat-input">
+            <textarea placeholder="Enter a message..."></textarea>
+            <span id="send-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px"
+                    fill="#2730e3">
+                    <path
+                        d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z" />
+                </svg>
+            </span>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Shree Namrata Dresses and Tailor Website. All rights reserved.</p>
+            <ul class="social-links">
+                <h2>Follow us on</h2>
+                <li><a href="https://www.facebook.com/profile.php?id=100025358221368" aria-label="Facebook"><ion-icon
+                            name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#" aria-label="Twitter"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="https://www.instagram.com/shree_namrata_dresses?igsh=MTh2ZHU4M2Y0cTZhdA=="
+                        aria-label="Instagram"><ion-icon name="logo-instagram"></ion-icon></a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>

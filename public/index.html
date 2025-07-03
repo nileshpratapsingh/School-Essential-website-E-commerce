@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="keywords" content="school uniforms, school bags, water bottles, tiffins, socks, school shoes, Kanpur">
+    <title>Online school uniform shopping site of Kanpur</title>
+    <link rel="stylesheet" href="../styles/style.css">
+    <link rel="shortcut icon" href="favicon.ico" type="Image/x-icon">
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="../scripts/script.js" type="module"></script>
+</head>
+
+<body>
+
+    <header class="header">
+        <span class="video-container" id="logo">
+            <a href="index.html" class="logo-link">
+                <video autoplay loop muted playsinline width="120">
+                    <source src="animation/logo.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </a>
+        </span>
+
+
+        <div class="search-container">
+            <input type="text" class="search-input" placeholder="Search for products...">
+            <button class="search-button">
+                <span>Search</span>
+                <ion-icon name="search"></ion-icon>
+            </button>
+
+        </div>
+
+        <div class="nav-links">
+            <big>
+                <a href="./pages/contacts.html"><ion-icon name="Call"></ion-icon> Contacts</a>
+                <a href="./pages/order.html"><ion-icon name="Cube-outline"></ion-icon> Orders</a>
+                <a href="./pages/cart.html"><ion-icon name="cart-outline"></ion-icon> Cart</a>
+                <a href="./pages/account.html"> <ion-icon name="person-circle-outline"></ion-icon> Account</a>
+                <a href="./pages/ChatBot.html"><ion-icon name="help-circle-outline"></ion-icon> Help</a>
+                <a href="./pages/about.html"><ion-icon name="document-text"></ion-icon>About Us</a>
+            </big>
+        </div>
+
+        <div class="auth-buttons">
+            <a href="./pages/loginpage.html"><button class="login-btn">Login</button></a>
+            <a href="./pages/SignUp.html"><button class="signup-btn">Sign Up</button></a>
+        </div>
+
+        <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    </header>
+
+    <aside class="sidebar">
+        <button class="close-btn" onclick="toggleMenu()">&times;</button>
+        <h2 class="animated-heading">Menu</h2>
+        <ul>
+            <big>
+                <li><a href="index.html"><ion-icon name="home"></ion-icon> Home</a></li>
+                <li><a href="./pages/contacts.html"><ion-icon name="call"></ion-icon> Contact Us</a></li>
+                <li><a href="./pages/order.html"><ion-icon name="cube-outline"></ion-icon> Orders</a></li>
+                <li><a href="./pages/cart.html"><ion-icon name="cart"></ion-icon> Cart</a></li>
+                <li><a href="./pages/account.html"><ion-icon name="person"></ion-icon> Account</a></li>
+                <li><a href="./pages/about.html"><ion-icon name="document"></ion-icon> About Us</a></li>
+            </big>
+        </ul>
+
+        <div class="bottom-links">
+            <ul>
+                <big>
+                    <li><a href="./pages/ChatBot.html"><ion-icon name="help-circle-outline"></ion-icon> Help</a></li>
+                </big>
+            </ul>
+        </div>
+
+        <div class="auth-buttons-sidebar">
+            <a href="./pages/loginpage.html"><button class="Auth-login-btn">Login</button></a>
+            <a href="./pages/SignUp.html"><button class="Auth-signup-btn">Sign Up</button></a>
+        </div>
+    </aside>
+
+    <main>
+        <section>
+            <div class="productContainer">
+                <h1 class="slide-down">We provide all types of school Essentials</h1>
+                <ul class="animated-list">
+                    <li><a href="./pages/School-Products/uniforms.html"><img loading="lazy" src="Images\uniform.png"
+                                width="200" alt="School Uniform">
+                            <p>Uniforms</p>
+                        </a></li>
+                    <li><a href="./pages/School-Products/bag.html"><img loading="lazy" src="Images\bag.png"
+                                alt="School Bags" width="95">
+                            <p>School Bags</p>
+                        </a></li>
+                    <li><a href="./pages/School-Products/bottles.html"><img loading="lazy" src="Images\bottel.png"
+                                alt="Water Bottles" width="95">
+                            <p>Water Bottles</p>
+                        </a></li>
+                    <li><a href="./pages/tiffin.html"><img loading="lazy" src="Images\lunch.png" alt="School Lunch Box"
+                                width="95">
+                            <p>School Lunch Box (Tiffin)</p>
+                        </a></li>
+                    <li><a href="./pages/socks.html"><img loading="lazy" src="Images\sockes.png" alt="Socks" width="95">
+                            <p>School Socks</p>
+                        </a></li>
+                    <li><a href="./pages/School Products/stationary.html"><img src="Images/Stationary.png"
+                                alt="Stationary" width="95">
+                            <p>Stationary</p>
+                        </a></li>
+                    <li><a href="./pages/shoes.html"><img loading="lazy" src="Images\BlackSchoolShoes.png" alt="Shoes"
+                                width="95">
+                            <p>School Shoes</p>
+                        </a></li>
+                    <li><a href=""><img loading="lazy" src="Images\uni-under.png" alt="">
+                            <p>Uniform Under Wears</p>
+                        </a></li>
+                    <li><a href=""><img loading="lazy" src="Images\men-and-women.png" alt="">
+                            <p>Genral under Garments</p>
+                        </a></li>
+                    <li><a href=""><img loading="lazy" src="Images\garment.png" alt="">
+                            <p>Men Garments</p>
+                        </a></li>
+                    <li><a href=""><img loading="lazy" src="Images\KidsSwimWears.png" alt="">
+                            <p>Kids Swim-Wear</p>
+                        </a></li>
+                </ul>
+            </div>
+        </section>
+
+        <section>
+            <div class="heading-container" id="heading2">
+                <h1 class="slide-down"> We also provide services for you purchased uniforms.</h1>
+            </div>
+            <div class="service-container" id="uniformservice">
+                <ul class="animated-list">
+                    <li><a href=""><img loading="lazy" src="Images\fitting.png" alt="">
+                            <p>Cloths and Uniform fitting</p>
+                        </a></li>
+                    <li><a href=""><img loading="lazy" src="Images\defect.png" alt="Defected Item">
+                            <p>Defected Items</p>
+                        </a></li>
+                    <li><a href=""><img loading="lazy" src="Images\incorrect-size.png" alt="">
+                            <p>Size Defect</p>
+                        </a></li>
+                    <li><a href=""><img loading="lazy" src="Images\exchange.png" alt="">
+                            <p>Exchange</p>
+                        </a></li>
+                    <li><a href="./pages/order.html"><img src="Images\order.png" alt="">
+                            <p>Some thing related to order</p>
+                        </a></li>
+                </ul>
+            </div>
+        </section>
+
+
+        <section>
+            <div class="heading-container">
+                <h1 class="slide-down"> We have some other services and features.</h1>
+            </div>
+            <div>
+                <nav class="other-service">
+                    <ul class="animated-list">
+                        <li><a href=""><img loading="lazy" src="Images\enquiry.png" alt="">
+                                <p>Bussiness Enquiry</p>
+                            </a></li>
+                        <li><a href="./pages/Feedback.html"><img loading="lazy" src="Images\feedback.png" alt="">
+                                <p>Customer Feedback</p>
+                            </a></li>
+                        <li><a href=""><img loading="lazy" src="Images\mobile-app.png" alt="">
+                                <p>Mobile App</p>
+                            </a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Shree Namrata Dresses and Tailor Website. All rights reserved.</p>
+            <ul class="social-links">
+                <h2>Follow us on</h2>
+                <li><a href="https://www.facebook.com/profile.php?id=100025358221368"><ion-icon
+                            name="logo-facebook"></ion-icon></a></li>
+                <li><a href="#"><ion-icon name="logo-twitter"></ion-icon></a></li>
+                <li><a href="https://www.instagram.com/shree_namrata_dresses?igsh=MTh2ZHU4M2Y0cTZhdA=="><ion-icon
+                            name="logo-instagram"></ion-icon></a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+
+</html>
