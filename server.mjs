@@ -4,62 +4,84 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const PORT = process.env.PORT || 3500;
-
-// __dirname workaround in ES modules
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+const publicDir = path.join(__dirname, "public");
 
 const mimeTypes = {
-  // Multipurpose Internet Mail Extensions Type
   ".html": "text/html",
   ".css": "text/css",
   ".js": "application/javascript",
+  ".json": "application/json",
   ".png": "image/png",
   ".jpg": "image/jpeg",
   ".jpeg": "image/jpeg",
   ".gif": "image/gif",
   ".ico": "image/x-icon",
   ".svg": "image/svg+xml",
-  ".json": "application/json",
   ".mp4": "video/mp4",
   ".webm": "video/webm",
   ".wav": "audio/wav",
 };
 
 const server = http.createServer((req, res) => {
-  let filePath = path.join(__dirname, req.url === "/" ? "index.html" : req.url);
+  let safePath = path.normalize(req.url).replace(/^(\.\.[\/\\])+/, "");
+  if (safePath === "/") safePath = "/index.html";
+  
 
-  // Prevent directory traversal
-  if (!filePath.startsWith(__dirname)) {
-    res.writeHead(403);
+  let filePath = path.join(publicDir, safePath);
+
+  // Check for path escaping public/
+  if (!filePath.startsWith(publicDir)) {
+    res.writeHead(403, { "Content-Type": "text/plain" });
     return res.end("Access denied");
   }
 
-  const ext = path.extname(filePath);
-  const contentType = mimeTypes[ext] || "application/octet-stream";
-
-  fs.readFile(filePath, (err, content) => {
+  // Check if the path is a directory, try to load index.html inside
+  fs.stat(filePath, (err, stats) => {
     if (err) {
-      if (err.code === "ENOENT") {
-        fs.readFile(path.join(__dirname, "404.html"), (error, notFoundPage) => {
-          res.writeHead(404, { "Content-Type": "text/html" });
-          res.end(notFoundPage || "<h1>404 Not Found</h1>", "utf-8");
-        });
-      } else {
-        res.writeHead(500);
-        res.end(`Server error: ${err.code}`);
-      }
-    } else {
-      res.writeHead(200, { "Content-Type": contentType });
-      res.end(content, "utf-8");
+      return serve404(res);
     }
+
+    if (stats.isDirectory()) {
+      filePath = path.join(filePath, "index.html");
+    }
+
+    fs.readFile(filePath, (readErr, content) => {
+      if (readErr) {
+        if (readErr.code === "ENOENT") {
+          return serve404(res);
+        } else {
+          res.writeHead(500, { "Content-Type": "text/plain" });
+          res.end(`Server error: ${readErr.code}`);
+          console.error("🛑 Server error:", readErr);
+        }
+      } else {
+        const ext = path.extname(filePath);
+        const contentType = mimeTypes[ext] || "application/octet-stream";
+        res.writeHead(200, {
+          "Content-Type": contentType,
+          "Cache-Control": "public, max-age=3600",
+        });
+        res.end(content, "utf-8");
+      }
+    });
   });
+
   console.clear();
   console.log("🔸 Request Method:", req.method);
   console.log("🔹 Request URL:", req.url);
   console.log("🧠 Request Headers:", req.headers);
 });
 
+function serve404(res) {
+  const notFoundPath = path.join(publicDir, "404.html");
+  fs.readFile(notFoundPath, (err, page) => {
+    res.writeHead(404, { "Content-Type": "text/html" });
+    res.end(page || "<h1>404 Not Found</h1>");
+  });
+}
+
 server.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`✅ Server running at http://localhost:${PORT}`);
 });
