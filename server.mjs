@@ -7,6 +7,7 @@ const PORT = process.env.PORT || 3500;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const publicDir = path.join(__dirname, "public");
+const styleDir = path.join(__dirname, "styles");
 
 const mimeTypes = {
   ".html": "text/html",
@@ -25,13 +26,14 @@ const mimeTypes = {
 };
 
 const server = http.createServer((req, res) => {
-  let safePath = path.normalize(req.url).replace(/^(\.\.[\/\\])+/, "");
-  if (safePath === "/") safePath = "/index.html";
-  
+  let safePath = path
+    .normalize(decodeURIComponent(req.url))
+    .replace(/^(\.\.[\/\\])+/, "");
+  if (safePath === "/" || safePath === "") safePath = "/index.html";
 
   let filePath = path.join(publicDir, safePath);
 
-  // Check for path escaping public/
+  // Prevent path traversal outside public/
   if (!filePath.startsWith(publicDir)) {
     res.writeHead(403, { "Content-Type": "text/plain" });
     return res.end("Access denied");
@@ -39,11 +41,7 @@ const server = http.createServer((req, res) => {
 
   // Check if the path is a directory, try to load index.html inside
   fs.stat(filePath, (err, stats) => {
-    if (err) {
-      return serve404(res);
-    }
-
-    if (stats.isDirectory()) {
+    if (!err && stats.isDirectory()) {
       filePath = path.join(filePath, "index.html");
     }
 
@@ -68,7 +66,7 @@ const server = http.createServer((req, res) => {
     });
   });
 
-  console.clear();
+  // Log request details
   console.log("🔸 Request Method:", req.method);
   console.log("🔹 Request URL:", req.url);
   console.log("🧠 Request Headers:", req.headers);
