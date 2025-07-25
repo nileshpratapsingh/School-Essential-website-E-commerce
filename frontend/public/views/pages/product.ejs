@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+            <%- include('../partials/sidebar') %>
+                <main>
+                    <section class="products">
+                        <div class="container">
+                            <% product.forEach(item=> { %>
+                                <div class="product">
+                                    <img src="<%= item.imageUrl %>" alt="<%= item.name %>">
+
+                                    <h3>
+                                        <%= item.name %>
+                                    </h3>
+                                    <p>
+                                        <%= item.price %>
+                                    </p>
+                                    <a href="pages/product-preview"><button>Add to cart</button></a>
+                                </div>
+                                <% }) %>
+
+                    </section>
+                </main>
+                <%- include('../partials/footer') %>
+    </body>
+
+</html>

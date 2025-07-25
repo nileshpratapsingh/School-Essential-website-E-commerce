@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+    <body>
+        <%- include('../partials/header') %>
+            <%- include('../partials/sidebar') %>
+                <div id="feedback-form-container">
+                    <form id="feedback-form" method="post" action="http://localhost:3500/feedback/feedback_form">
+                        <h2>Feedback Form</h2>
+                        <label for="name">Name:</label>
+                        <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+                        <label for="email">Email:</label>
+                        <input type="text" id="email" name="emailId" placeholder="Enter your email-id" required>
+
+                        <label for="rating">Rating:</label>
+                        <select id="rating" name="rating" required>
+                            <option value="" disabled selected>Select a rating</option>
+                            <option value="5">Excellent</option>
+                            <option value="4">Good</option>
+                            <option value="3">Average</option>
+                            <option value="2">Poor</option>
+                            <option value="1">Very Poor</option>
+                        </select>
+
+                        <label for="comments">Comments:</label>
+                        <textarea id="comments" name="comments" placeholder="Write your feedback here..." rows="5"
+                            required></textarea>
+
+                        <div class="form-buttons">
+                            <button id="submit-button" type="submit">Submit</button>
+                            <button id="reset-button" type="reset">Reset</button>
+                        </div>
+                    </form>
+                </div>
+                <%- include('../partials/footer') %>
+    </body>
+
+</html>

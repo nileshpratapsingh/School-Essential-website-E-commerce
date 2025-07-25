@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+            <%- include('../partials/sidebar') %>
+                <main id="formbody">
+                    <form id="form" class="loginform" action="http://localhost:3500/login/login_form" method="post">
+                        <label for="email">Enter your email</label>
+                        <input type="email" name="emailId" id="email" placeholder="Enter your email.." required>
+                        <br>
+                        <label for="password">Enter Password</label>
+                        <input type="password" name="password" id="password" placeholder="Enter your password.." required>
+                        <br>
+                        <div class="authentication-button">
+                            <button type="submit">Log In</button>
+                            OR
+                            <a href="signUp">
+                                <button type="submit">
+                                    Sign Up
+                                </button>
+                            </a>
+                        </div>
+                    </form>
+                </main>
+                <%- include('../partials/footer') %>
+    </body>
+
+</html>

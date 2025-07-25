@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/chatbot-head') %>
+
+    <body>
+        <%- include('../partials/chatbot-header') %>
+            <main class="chatbot">
+                <ul class="chatbox">
+                    <li class="chat-incoming">
+                        <span class="material-symbols-outlined">smart_toy</span>
+                        <p>Hi there!<br>How can I help you today?
+                            <br>Go back to <a href="index">Home page</a>
+                        </p>
+                    </li>
+                    <li class="chat-outgoing"></li>
+                </ul>
+                <div class="chat-input">
+                    <textarea placeholder="Enter a message..."></textarea>
+                    <span id="send-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" height="28px" viewBox="0 -960 960 960" width="28px"
+                            fill="#2730e3">
+                            <path
+                                d="M120-160v-640l760 320-760 320Zm80-120 474-200-474-200v140l240 60-240 60v140Zm0 0v-400 400Z" />
+                        </svg>
+                    </span>
+                </div>
+            </main>
+
+            <%- include('../partials/chatbot-footer') %>
+    </body>
+
+</html>

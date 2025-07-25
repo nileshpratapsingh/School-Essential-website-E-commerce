@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+            <%- include('../partials/sidebar') %>
+                <div class="container" id="contact-form-container">
+                    <form action="http://localhost:3500/contact/contact_form" method="post">
+                        <label for="name">Enter you name:</label>
+                        <input type="text" name="name" placeholder="Enter Your name...">
+                        <br>
+                        <label for="Number">Enter you Phone Number:</label>
+                        <input type="text" name="phoneNumber" placeholder="Enter Your Number...">
+                        <br>
+                        <label for="email-id">Enter you Email-id:</label>
+                        <input type="text" name="emailId" placeholder="Enter Your Email-id...">
+                        <br>
+                        <label for="gender">Gender:</label>
+                        <input type="radio" name="gender" value="male"> Male
+                        <input type="radio" name="gender" value="Female"> Female
+                        <br>
+                        <label for="Reason">Reason:</label>
+                        <br>
+                        <textarea name="reason" id="" placeholder="why are you contacting us.."></textarea>
+                        <br>
+                        <div class="form-buttons">
+                            <button id="submit-button" type="submit">Submitt</button>
+                            <button id="reset-button" type="reset">Reset</button>
+                        </div>
+                    </form>
+                </div>
+                <%- include('../partials/footer') %>
+    </body>
+
+</html>
