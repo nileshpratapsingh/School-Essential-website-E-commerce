@@ -6,15 +6,19 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.mjs",
-    "express" : "nodemon EXPRESS-VERSION.mjs"
+    "express": "nodemon EXPRESS-VERSION.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "modules": "^0.4.0"
+    "colors": "^1.4.0",
+    "cors": "^2.8.5",
+    "ejs": "^3.1.10",
+    "express": "^5.1.0",
+    "modules": "^0.4.0",
+    "nodemon": "^3.1.10"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/nileshpratapsingh/School-Essential-website-E-commerce.git"
