@@ -21,3 +21,12 @@ template-page.html
 
 #Testing js Scripts
 jQuery-Script.js
+
+# Other testing files
+testing.mjs
+
+#ref-framing directory
+frontend/public/pages
+
+#static pages
+*.html
