@@ -53,6 +53,7 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
    ```
 4. Then navigate to backend folder and install dependencies:
    ```sh
+   cd backend
    npm install
    ```
 5. Start the server:
@@ -84,8 +85,6 @@ my website
             ├───pages
             ├───partials
             └───school-components
-
-
 ```
 ### 📂 backend
 - `config/` – Configuration files like DB, environment setup.
