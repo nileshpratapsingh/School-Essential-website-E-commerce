@@ -31,9 +31,10 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: HTML, CSS, JavaScript , JQuery , ejs , Express.js , Node.js , mongoDB , Docker 
+- **Frontend**: HTML, CSS, JavaScript , JQuery , ejs 
 - **Backend**: Node.js, Express.js 
 - **Database**: MongoDB 
+- **DevOps**: Git,Github,Docker
 - **Icons**: Ionicons 
 - **Styling**: Poppins Font, Gradient Backgrounds 
 
