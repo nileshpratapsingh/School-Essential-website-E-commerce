@@ -15,10 +15,6 @@ build/
 .DS_Store
 Thumbs.db
 
-# Test & temp files
-test.html
-template-page.html
-
 #Testing js Scripts
 jQuery-Script.js
 

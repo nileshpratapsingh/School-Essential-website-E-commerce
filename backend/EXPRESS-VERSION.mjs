@@ -1,15 +1,17 @@
 import express from "express";
 import path from "path";
-import fs from "fs/promises";
 import { fileURLToPath } from "url";
 import dotenv from "dotenv";
 import colors from "colors"; // optional if you want colored logs (only for developers)
 import router from "./routes/views.mjs";
+import { connectDB } from "./config/database";
+import { config } from "./config/config.mjs";
 
+connectDB();
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT;
+const PORT = config.port;
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -48,7 +50,6 @@ app.set("views", path.join(__dirname, "../frontend/public/views"));
 // Static files with headers
 app.use(
   express.static(publicDir, {
-    extensions: ["html"],
     setHeaders: (res, filePath) => {
       const ext = path.extname(filePath);
       if (mimeTypes[ext]) {
@@ -58,6 +59,7 @@ app.use(
     },
   })
 );
+
 
 // GET routes
 app.use("/",router)

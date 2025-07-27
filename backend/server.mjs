@@ -7,7 +7,7 @@ const PORT = process.env.PORT || 3500;
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-// ✅ Adjusted path to reflect new structure
+//Adjusted path to reflect new structure
 
 const publicDir = path.join(__dirname, "../frontend/public");
 
@@ -68,9 +68,9 @@ const server = http.createServer((req, res) => {
   });
 
   // Request logging
-  console.log("🔸 Request Method:", req.method);
-  console.log("🔹 Request URL:", req.url);
-  console.log("🧠 Request Headers:", req.headers);
+  console.log("Request Method:", req.method);
+  console.log("Request URL:", req.url);
+  console.log("Request Headers:", req.headers);
 });
 
 function serve404(res) {

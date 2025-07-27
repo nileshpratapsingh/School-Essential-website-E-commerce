@@ -6,12 +6,12 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
 
 ## Preview
 
-![Shree Namrata Desktop preview](Images/front%201.png "Front view")
-![Shree Namrata Desktop preview](Images/front%202.png "Front view")
-![Shree Namrata Desktop preview](Images/front%203.png "Front view")
-![Shree Namrata Desktop preview](Images/product%20preview.png "Product view")
-![Shree Namrata Mobile preview](Images/mobile%20view.png "Mobile view")
-![Shree Namrata MObile sidebar preview](Images/sidebar.png "Mobile Sidebar view")
+![Shree Namrata Desktop preview](frontend/public/Images/front%201.png "Front view")
+![Shree Namrata Desktop preview](frontend/public/Images/front%202.png "Front view")
+![Shree Namrata Desktop preview](frontend/public/Images/front%203.png "Front view")
+![Shree Namrata Desktop preview](frontend/public/Images/product%20preview.png "Product view")
+![Shree Namrata Mobile preview](frontend/public/Images/mobile%20view.png "Mobile view")
+![Shree Namrata MObile sidebar preview](frontend/public/Images/sidebar.png "Mobile Sidebar view")
 
 ## ✨ Features
 
@@ -31,11 +31,11 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: HTML, CSS, JavaScript ⚡
-- **Backend**: Node.js, Express.js 🖥️
-- **Database**: MongoDB 🗄️
-- **Icons**: Ionicons 🎨
-- **Styling**: Poppins Font, Gradient Backgrounds 🌈
+- **Frontend**: HTML, CSS, JavaScript , JQuery , ejs , Express.js , Node.js , mongoDB , Docker 
+- **Backend**: Node.js, Express.js 
+- **Database**: MongoDB 
+- **Icons**: Ionicons 
+- **Styling**: Poppins Font, Gradient Backgrounds 
 
 ## 🚀 Installation
 
@@ -51,15 +51,60 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
    ```sh
    npm install
    ```
-4. Start the server:
+4. Then navigate to backend folder and install dependencies:
    ```sh
-   npm start
+   npm install
    ```
-5. or Run Alternate command:
+5. Start the server:
    ```sh
-   npx serve   
+   npm run express
    ```
-6. Open the `index.html` file in your browser. 🌐
+   or
+   ```
+   npm run start
+   ```
+## Project Structure
+```
+my website
+│       
+├───backend
+│   ├───config
+│   ├───controller
+│   ├───models
+│   ├───routes
+│   └───src
+└───frontend
+    └───public
+        ├───Animation
+        ├───Images
+        ├───scripts
+        ├───styles
+        └───views
+            ├───admin
+            ├───pages
+            ├───partials
+            └───school-components
+
+
+```
+### 📂 backend
+- `config/` – Configuration files like DB, environment setup.
+- `controller/` – Request handlers (business logic).
+- `models/` – MongoDB or Mongoose schemas.
+- `routes/` – API route definitions.
+- `src/` – App-level files (entry point, middleware, etc.)
+
+### 📂 frontend/public
+- `Animation/` – Lottie or SVG animation files.
+- `Images/` – Static images.
+- `scripts/` – JavaScript frontend logic.
+- `styles/` – CSS files.
+- `views/` – EJS Template
+  - `admin/` – Admin panel templates.
+  - `pages/` – Site pages (home, about, etc.).
+  - `partials/` – Reusable template components.
+  - `school-components/` – Custom components for school use.
+
 
 ## 🤝 Contributing
 
@@ -74,6 +119,6 @@ This project is open-source and available under the [MIT License](LICENSE). ✅
 For any queries or suggestions, feel free to reach out:
 
 - 📧 Email: nileshpratap190902@gmail.com
-- 🌐 Website: [www.ecommerce-school.com](#)
+- 🌐 Website: [www.ShreeNamrataDressesandTailors.com](#)
 - 📱 Social Media: [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/profile.php?id=100025358221368) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/ShriNamrata7951) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/nilesh_pratap_singh666?igsh=MTlwMHVqMmJlZ2puOA==)
 
