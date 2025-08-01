@@ -6,20 +6,23 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.mjs",
-    "express": "nodemon EXPRESS-VERSION.mjs"
+    "express": "nodemon express-server.mjs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
   "dependencies": {
-    "colors": "^1.4.0",
+    "bcryptjs": "^3.0.2",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "modules": "^0.4.0",
-    "mongoose": "^8.16.5",
+    "mongoose": "^8.16.5"
+  },
+  "devDependencies": {
+    "colors": "^1.4.0",
     "nodemon": "^3.1.10"
-  }
+  },
+  "description": ""
 }
