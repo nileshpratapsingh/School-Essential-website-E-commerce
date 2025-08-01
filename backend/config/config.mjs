@@ -1,3 +1,4 @@
+import colors from "colors"; // optional if you want colored logs (only for developers)
 import dotenv from 'dotenv';
 dotenv.config();
 
