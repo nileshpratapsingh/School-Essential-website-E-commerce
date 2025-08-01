@@ -15,6 +15,62 @@ document.addEventListener("DOMContentLoaded", function () {
   if (menuToggleButton) menuToggleButton.addEventListener("click", toggleMenu);
   if (closeButton) closeButton.addEventListener("click", toggleMenu);
 
+  //==========search history===========
+  const searchInput = document.getElementById("search-input");
+  const historyList = document.getElementById("search-history");
+  const searchButton = document.getElementsById("search-button");
+  let searchHistory = [];
+
+  function submitSearch() {
+    const term = searchInput.value.trim();
+    if (!term) return;
+
+    // Avoid duplicates
+    if (!searchHistory.includes(term)) {
+      searchHistory.unshift(term);
+      if (searchHistory.length > 7) searchHistory.pop(); // limit to 7 items
+    }
+
+    // send to backend
+    fetch("http://localhost:3500/search", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ searchBar: term }),
+    });
+
+    updateDropdown();
+    searchInput.value = "";
+  }
+
+  searchButton.addEventListener("click", submitSearch);
+
+  function updateDropdown() {
+    historyList.innerHTML = "";
+
+    searchHistory.forEach((item) => {
+      const li = document.createElement("li");
+      li.textContent = item;
+      li.onclick = () => {
+        searchInput.value = item;
+        historyList.style.display = "none";
+      };
+      historyList.appendChild(li);
+    });
+
+    historyList.style.display = searchHistory.length ? "block" : "none";
+  }
+
+  // Show dropdown on focus or input
+  searchInput.addEventListener("focus", updateDropdown);
+  searchInput.addEventListener("input", updateDropdown);
+
+  // Hide dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!e.target.closest(".search-container")) {
+      historyList.style.display = "none";
+    }
+  });
+
   //========= Sticky Header ==========
   let prevScrollPos = window.pageYOffset;
   window.onscroll = function () {
