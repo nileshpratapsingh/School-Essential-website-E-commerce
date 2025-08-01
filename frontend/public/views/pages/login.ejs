@@ -6,7 +6,7 @@
         <%- include('../partials/header') %>
             <%- include('../partials/sidebar') %>
                 <main id="formbody">
-                    <form id="form" class="loginform" action="http://localhost:3500/login/login_form" method="post">
+                    <form id="form" class="loginform" action="/login" method="post">
                         <label for="email">Enter your email</label>
                         <input type="email" name="emailId" id="email" placeholder="Enter your email.." required>
                         <br>
@@ -16,7 +16,7 @@
                         <div class="authentication-button">
                             <button type="submit">Log In</button>
                             OR
-                            <a href="signUp">
+                            <a href="/signUp">
                                 <button type="submit">
                                     Sign Up
                                 </button>

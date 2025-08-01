@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+<body>
+  <%- include('../partials/header') %>
+  <%- include('../partials/sidebar') %>
+
+  <main class="checkout-container">
+    <h2 class="checkout-title">Review Your Order</h2>
+
+    <div class="checkout-flex">
+      <!-- Left Panel -->
+      <div class="checkout-left">
+        <!-- Shipping Address -->
+        <div class="checkout-box">
+          <h3>Shipping Address</h3>
+          <p><%= user?.name %><br>
+            <%= user?.address %><br>
+            Phone: <%= user?.phone %>
+          </p>
+          <a href="#">Change</a>
+        </div>
+
+        <!-- Payment -->
+        <div class="checkout-box">
+          <h3>Payment Method</h3>
+          <p>Selected at next step</p>
+          <a href="#">Change</a>
+        </div>
+
+        <!-- Cart Items -->
+        <div class="checkout-box">
+          <h3>Order Items</h3>
+          <% if (cartItems && cartItems.length > 0) { %>
+            <ul class="item-list">
+              <% cartItems.forEach(item => { %>
+                <li>
+                  <strong><%= item.name %></strong><br>
+                  ₹<%= item.price %> × <%= item.quantity %> = <strong>₹<%= item.price * item.quantity %></strong>
+                </li>
+              <% }); %>
+            </ul>
+          <% } else { %>
+            <p>Your cart is empty.</p>
+          <% } %>
+        </div>
+
+        <!-- Order Form -->
+        <form action="/place-order" method="POST" class="checkout-box checkout-form">
+          <h3>Additional Info</h3>
+
+          <label for="deliveryDate">Preferred Delivery Date</label>
+          <input type="date" id="deliveryDate" name="deliveryDate" required>
+
+          <label for="payment">Payment Method</label>
+          <select id="payment" name="paymentMethod" required>
+            <option value="">Select</option>
+            <option value="cod">Cash on Delivery</option>
+            <option value="upi">UPI</option>
+            <option value="card">Credit/Debit Card</option>
+          </select>
+
+          <label for="notes">Order Notes</label>
+          <textarea id="notes" name="notes" placeholder="Any special instructions?"></textarea>
+
+          <button type="submit" class="place-order-btn">Place Your Order</button>
+        </form>
+      </div>
+
+      <!-- Right Panel -->
+      <div class="checkout-right">
+        <div class="checkout-box summary-box">
+          <h3>Order Summary</h3>
+          <p>Items: ₹<%= totalPrice %></p>
+          <p>Shipping: ₹0.00</p>
+          <p>Tax: ₹0.00</p>
+          <hr>
+          <p class="total-price">Order Total: ₹<%= totalPrice %></p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <%- include('../partials/footer') %>
+</body>
+</html>

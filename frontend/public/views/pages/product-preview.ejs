@@ -9,28 +9,29 @@
                     <div class="product-container">
                         <div class="product-page">
                             <div class="product-image">
-                                <img src="https://via.placeholder.com/500x500" alt="Product Image">
+                                <img src="<%= product.image %>" alt="Product Image">
                             </div>
+
                             <div class="product-details">
-                                <div class="product-title">Wireless Noise Cancelling Headphones</div>
-                                <div class="product-rating">⭐⭐⭐⭐☆ (4.5/5)</div>
-                                <div class="product-price">$149.99</div>
+                                <div class="product-title">
+                                    <%= product.title %>
+                                </div>
+                                <div class="product-rating">⭐⭐⭐⭐☆ (<%= product.rating %>/5)</div>
+                                <div class="product-price">$<%= product.price %>
+                                </div>
+
                                 <div class="product-description">
-                                    Experience world-class sound and advanced noise cancellation with our latest
-                                    wireless headphones. With up
-                                    to 30 hours of battery life, fast charging, and comfortable over-ear fit, these are
-                                    perfect for long
-                                    listening sessions.
+                                    <%= product.description %>
                                 </div>
 
                                 <div class="features">
                                     <h3>Key Features:</h3>
                                     <ul>
-                                        <li>Industry-leading noise cancellation</li>
-                                        <li>30-hour battery life</li>
-                                        <li>Touch controls</li>
-                                        <li>Bluetooth 5.0 connectivity</li>
-                                        <li>Built-in voice assistant</li>
+                                        <% product.features.forEach(feature=> { %>
+                                            <li>
+                                                <%= feature %>
+                                            </li>
+                                            <% }) %>
                                     </ul>
                                 </div>
 
@@ -44,43 +45,51 @@
 
                         <div class="shipping-info">
                             <h3>Shipping Information:</h3>
-                            <p>Ships in 1-2 business days. Free shipping on orders over $50. Expedited options available
-                                at checkout.</p>
+                            <p>
+                                <%= product.shipping %>
+                            </p>
                         </div>
 
                         <div class="specs">
                             <h3>Technical Specifications:</h3>
                             <ul>
-                                <li>Driver Size: 40mm</li>
-                                <li>Frequency Response: 20Hz - 20kHz</li>
-                                <li>Battery Life: 30 hours</li>
-                                <li>Charging Time: 1.5 hours</li>
-                                <li>Weight: 250g</li>
+                                <% for (let key in product.specs) { %>
+                                    <li><strong>
+                                            <%= key %>:
+                                        </strong>
+                                        <%= product.specs[key] %>
+                                    </li>
+                                    <% } %>
                             </ul>
                         </div>
 
                         <div class="reviews">
                             <h3>Customer Reviews:</h3>
                             <ul>
-                                <li><strong>Jane D.:</strong> Amazing sound quality and great battery life!</li>
-                                <li><strong>Mark T.:</strong> Love the comfort and noise cancellation.</li>
-                                <li><strong>Linda P.:</strong> Worth every penny, highly recommend!</li>
+                                <% product.reviews.forEach(review=> { %>
+                                    <li><strong>
+                                            <%= review.name %>:
+                                        </strong>
+                                        <%= review.comment %>
+                                    </li>
+                                    <% }) %>
                             </ul>
                         </div>
 
                         <div class="qa">
                             <h3>Q & A:</h3>
                             <ul>
-                                <li><strong>Q:</strong> Does it support fast charging?<br><strong>A:</strong> Yes, it
-                                    charges fully in about
-                                    1.5 hours.</li>
-                                <li><strong>Q:</strong> Can I use it with a wired connection?<br><strong>A:</strong>
-                                    Yes, it includes an
-                                    optional 3.5mm cable.</li>
+                                <% product.qa.forEach(item=> { %>
+                                    <li><strong>Q:</strong>
+                                        <%= item.question %><br><strong>A:</strong>
+                                            <%= item.answer %>
+                                    </li>
+                                    <% }) %>
                             </ul>
                         </div>
                     </div>
                 </main>
+
                 <%- include('../partials/footer') %>
     </body>
 

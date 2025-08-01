@@ -5,6 +5,89 @@
     <body>
         <%- include('../partials/header') %>
             <%- include('../partials/sidebar') %>
+                <main>
+                    <section class="formbody">
+                        <div class="signup-form" id="form">
+                            <form action="/signup" method="POST">
+                                <div class="input-Container">
+                                    <label for="name">First Name:</label>
+                                    <input type="name" name="firstName" id="name" required>
+                                    <span class="error" id="nameError"></span>
+                                    <br>
+                                    <label for="name">Middle Name:</label>
+                                    <input type="name" name="middelName" id="name">
+                                    <br>
+                                    <label for="name">Last Name:</label>
+                                    <input type="name" name="lastName" id="name" required>
+                                    <br>
+                                    <label for="image">Profile Image</label>
+                                    <div class="upload-container">
+                                        <input type="file" name="profileImage" id="fileInput" accept="image/*">
+                                        <img id="preview" src="" alt="Image Preview"
+                                            style="display:none; max-width:300px;">
+                                    </div>
+                                    <br>
+                                    <label for="phone-number">Phone No.:</label>
+                                    <input type="text" name="phoneNumber" id="">
+                                    <br>
+                                    <label for="number">Alternate Phone no.:</label>
+                                    <input type="text" name="alternatePhoneNumber" id="">
+                                    <br>
+                                    <label for="email">Email-Id:</label>
+                                    <input type="text" id="email" name="email">
+                                    <span class="error" id="emailError"></span>
+                                    <br>
+                                    <label for="email">Alternate Email-Id:</label>
+                                    <input type="text" id="email" name="alternateEmail">
+                                    <br>
+                                    <label for="date">Date of Birth:</label>
+                                    <input type="date" id="DateOfBirth" name="dateOfBirth" required>
+                                    <br>
+                                    <label for="name">Gender:</label>
+                                    <input type="radio" name="gender" value="Male">Male
+                                    <input type="radio" name="gender" value="Female">Female
+                                    <input type="radio" name="gender" value="Others">Others
+                                    <br><br>
+                                    <label for="address">Address</label>
+                                    <address>
+                                        <input type="text" id="address" placeholder="Address" name="address" required>
+                                        <span class="error" id="addressError"></span>
+
+                                        <select id="state" required>
+                                            <option value="">Select State</option>
+                                        </select>
+                                        <span class="error" id="stateError"></span>
+
+                                        <select id="city" required>
+                                            <option value="">Select City</option>
+                                        </select>
+                                        <span class="error" id="cityError"></span>
+
+                                        <input type="text" id="zip" placeholder="ZIP Code" required>
+                                        <span class="error" id="zipError"></span>
+                                    </address>
+                                    <br>
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" name="password" required>
+                                    <span class="error" id="passwordError"></span>
+                                    <br>
+                                    <label for="password">Confirm password.</label>
+                                    <input type="password" id="ConfirmPassword" name="password" required>
+                                    <span class="error" id="ConfirmPasswordError"></span>
+                                    <br>
+                                </div>
+                                <div class="signup-button-container">
+                                    <button type="submit" action="submit">Create Account</button>
+                                    OR
+                                    <button type="reset" action="reset">Reset</button>
+                                    <br><br>
+                                    <h2>Already have an account??</h2>
+                                    <a href="/login"><button type="login" action="login">Login</button></a>
+                                </div>
+                            </form>
+                        </div>
+                    </section>
+                </main>
                 <%- include('../partials/footer') %>
     </body>
 

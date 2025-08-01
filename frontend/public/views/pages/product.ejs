@@ -10,7 +10,7 @@
                         <div class="container">
                             <% product.forEach(item=> { %>
                                 <div class="product">
-                                    <img src="<%= item.imageUrl %>" alt="<%= item.name %>">
+                                    <img src="<%= item.imageUrl %>" alt="<%= item.name %>" loading="lazy">
 
                                     <h3>
                                         <%= item.name %>
@@ -18,7 +18,10 @@
                                     <p>
                                         <%= item.price %>
                                     </p>
-                                    <a href="pages/product-preview"><button>Add to cart</button></a>
+                                    <a href="product-preview/<%= item._id %>"><button>Add to cart</button></a>
+                                    <br>
+                                    <p>OR</p>
+                                    <button class="buy" onclick="buyNow()">Buy Now</button>
                                 </div>
                                 <% }) %>
 
