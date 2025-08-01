@@ -1,31 +1,21 @@
 import express from "express";
-import controllers from "../controller/views-controller.mjs";
+import viewsControllers from "../controller/views.controller.mjs";
 
 const router = express.Router();
 
 // GET routes
-router.route("/").get(controllers.indexRoute);
-router.route("/login").get(controllers.loginRoute);
-router.route("/signUp").get(controllers.SignUpRoute);
-router.route("/uniform").get(controllers.uniformRoute);
-router.route("/stationary").get(controllers.stationaryRoute);
-router.route("/product").get(controllers.productRoute);
-router.route("/feedback").get(controllers.feedbackRoute);
-router.route("/order-enquiry").get(controllers.orderEnquiryRoute);
-router.route("/business-enquiry").get(controllers.bussinessEnquiryRoute);
-router.route("/mobile-app").get(controllers.mobileAppRoute);
-router.route("/contact").get(controllers.contactRoute);
+router.route("/").get(viewsControllers.indexRoute);
+router.route("/uniform").get(viewsControllers.uniformRoute);
+router.route("/stationary").get(viewsControllers.stationaryRoute);
+router.route("/feedback").get(viewsControllers.feedbackRoute);
+router.route("/order-enquiry").get(viewsControllers.orderEnquiryRoute);
+router.route("/business-enquiry").get(viewsControllers.bussinessEnquiryRoute);
+router.route("/mobile-app").get(viewsControllers.mobileAppRoute);
+router.route("/contact").get(viewsControllers.contactRoute);
 
 // POST routes
-router.route("/login/login_form").post(controllers.loginProcedure);
-router.route("/signUp/signUp_form").post(controllers.SignUpProcedure);
-router.route("/feedback/feedback_form").post(controllers.feedbackMessage);
-router.route("/contact/contact_form").post(controllers.contactingMessage);
-
+router.route("/contact/contact_form").post(viewsControllers.contactingMessage);
 
 // PUT/DELETE routes here
-
-
-
 
 export default router;
