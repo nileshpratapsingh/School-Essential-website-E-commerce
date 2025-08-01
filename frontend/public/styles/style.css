@@ -69,6 +69,39 @@ body {
 
 }
 
+.search-history-list {
+    position: absolute;
+    top: 45px; /* below input */
+    left: 0;
+    width: 200px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    list-style: none;
+    margin: 5px 0 0 0;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.search-history-list li {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #eee;
+}
+
+.search-history-list li:last-child {
+    border-bottom: none;
+}
+
+.search-history-list li:hover {
+    background-color: #f6f6f6;
+}
+
 
 /* Header Navigation Links */
 
@@ -1830,6 +1863,95 @@ section h1 {
         margin: 0;
     }
 }
+
+
+/* Checkout Styles */
+
+.checkout-container {
+  padding: 20px;
+}
+
+.checkout-title {
+  margin-bottom: 20px;
+  font-size: 2rem;
+}
+
+.checkout-flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.checkout-left {
+  flex: 2;
+  min-width: 300px;
+}
+
+.checkout-right {
+  flex: 1;
+  min-width: 260px;
+}
+
+.checkout-box {
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.checkout-box h3 {
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
+
+.checkout-box a {
+  color: #007bff;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-top: 10px;
+}
+
+.item-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+.item-list li {
+  margin-bottom: 15px;
+}
+
+.checkout-form input,
+.checkout-form select,
+.checkout-form textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 15px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+.place-order-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: orange;
+  color: white;
+  border: none;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.place-order-btn:hover {
+  background-color: #e69500;
+}
+
+.summary-box .total-price {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #b12704;
+}
+
 
 
 /*About Page*/
