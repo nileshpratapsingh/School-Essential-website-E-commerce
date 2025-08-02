@@ -1,9 +1,9 @@
 import colors from "colors"; // optional if you want colored logs (only for developers)
-import dotenv from 'dotenv';
+import dotenv from "dotenv";
 dotenv.config();
 
 export const config = {
-  env: process.env.NODE_ENV || 'development',
+  env: process.env.NODE_ENV || "development",
   port: process.env.PORT || 4000,
   appUrl: process.env.APP_URL,
 
@@ -25,7 +25,7 @@ export const config = {
   // JWT / Auth
   jwt: {
     secret: process.env.JWT_SECRET,
-    expiresIn: process.env.JWT_EXPIRES_IN || '1d',
+    expiresIn: process.env.JWT_EXPIRES_IN || "1d",
   },
 
   // Email
@@ -54,13 +54,13 @@ export const config = {
   },
 
   // CORS
-  corsOrigin: process.env.CORS_ORIGIN?.split(',') || ['http://localhost:4000'],
+  corsOrigin: process.env.CORS_ORIGIN?.split(",") || ["http://localhost:4000"],
 
   // Redis
   redis: {
     host: process.env.REDIS_HOST,
     port: process.env.REDIS_PORT,
-    password: process.env.REDIS_PASSWORD || '',
+    password: process.env.REDIS_PASSWORD || "",
   },
 
   // NATS
@@ -77,5 +77,5 @@ export const config = {
   },
 
   // Session
-  sessionSecret: process.env.SESSION_SECRET || 'session_default_secret',
+  sessionSecret: process.env.SESSION_SECRET || "session_default_secret",
 };
