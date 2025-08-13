@@ -13,12 +13,16 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
     "cors": "^2.8.5",
     "dotenv": "^17.2.0",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "jsonwebtoken": "^9.0.2",
     "modules": "^0.4.0",
-    "mongoose": "^8.16.5"
+    "mongoose": "^8.16.5",
+    "uuidv4": "^6.2.13"
   },
   "devDependencies": {
     "colors": "^1.4.0",
