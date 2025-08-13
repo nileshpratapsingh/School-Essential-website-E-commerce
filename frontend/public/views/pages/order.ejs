@@ -5,6 +5,43 @@
     <body>
         <%- include('../partials/header') %>
             <%- include('../partials/sidebar') %>
+                <main>
+                    <section id="track-order">
+                        <h2>Track Your Order</h2>
+
+                        <!-- Tracking Form -->
+                        <form action="order/status/:id" method="POST" class="track-form">
+                            <label for="trackingId">Enter Tracking ID:</label>
+                            <input type="text" name="trackingId" id="trackingId" placeholder="NAM-xxxxxxx" required>
+                            <button type="submit">Check Status</button>
+                        </form>
+
+                        <!-- Order Result Display -->
+                        <% if(order) { %>
+                            <div class="order-result">
+                                <h3>Order Found ✅</h3>
+                                <p><strong>Tracking ID:</strong>
+                                    <%= order.trackingId %>
+                                </p>
+                                <p><strong>Status:</strong>
+                                    <%= order.orderStatus %>
+                                </p>
+                                <p><strong>Payment Method:</strong>
+                                    <%= order.paymentMethod %>
+                                </p>
+                                <p><strong>Delivery Type:</strong>
+                                    <%= order.isDelivered ? "Delivered" : "Pending Delivery" %>
+                                </p>
+                            </div>
+                            <% } else if (error) { %>
+                                <div class="order-error">
+                                    <p>
+                                        <%= error %>
+                                    </p>
+                                </div>
+                                <% } %>
+                    </section>
+                </main>
                 <%- include('../partials/footer') %>
     </body>
 
