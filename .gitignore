@@ -15,9 +15,6 @@ build/
 .DS_Store
 Thumbs.db
 
-#Testing js Scripts
-jQuery-Script.js
-
 # Other testing files
 testing.mjs
 

@@ -2,11 +2,10 @@
   "name": "my-website",
   "version": "1.0.0",
   "description": "This is an eCommerce website designed for selling school uniforms, accessories, and stationery items. The platform provides an easy shopping experience for students, parents, and schools looking for high-quality educational supplies. 🏫✨",
-  "main": "script.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon server.mjs",
-    "express": "nodemon EXPRESS-VERSION.mjs"
+    "express": "nodemon express-version.mjs"
   },
   "keywords": [],
   "author": "",
@@ -14,13 +13,16 @@
   "dependencies": {
     "bcryptjs": "^3.0.2",
     "colors": "^1.4.0",
+    "cookie-parser": "^1.4.7",
+    "cookies-parser": "^1.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
     "modules": "^0.4.0",
     "mongoose": "^8.17.0",
-    "nodemon": "^3.1.10"
+    "nodemon": "^3.1.10",
+    "uuidv4": "^6.2.13"
   },
   "repository": {
     "type": "git",
