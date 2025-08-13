@@ -6,6 +6,7 @@ import {
   identityQuestions,
   orderQueries,
   casualGreetings,
+  contactingMessage,
   greetings,
   jokeQueries,
   bussinessQueries,
@@ -112,6 +113,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (helpMessages.includes(lowerMessage)) {
       showHelpOptions();
+    } else if (
+        contactingMessage.some((q) => clean(q) === clean(lowerMessage))
+    ) {
+      appendIncomingMessage("Hi! How are you.\nHow may I help you today?");
 
       // Identity queries
     } else if (
@@ -124,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
       // Order status
     } else if (orderQueries.some((q) => clean(q) === clean(lowerMessage))) {
       appendIncomingMessage(
-        "📦 Your order is on the way! You can track it <a href='order.html'>here</a>."
+        "📦 Your order is on the way! You can track it <a href='/order'>here</a>."
       );
       ShowOrderOption();
 
@@ -199,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   window.handleCallStore = function () {
     appendIncomingMessage(
-      "📞 You can call the store at: <strong>+91-790500198</strong>"
+      "📞 You can call the store at: <strong>+91-790570198</strong>"
     );
   };
 
@@ -208,21 +213,15 @@ document.addEventListener("DOMContentLoaded", function () {
   };
 
   window.handleFeedback = function () {
-    appendIncomingMessage(
-      "🔄 Click on the below button to proceed to the Feedback page..."
-    );
-    window.location.href = "Feedback.html";
+    window.location.href = "/feedback";
   };
 
   window.handleOrderStatus = function () {
-    appendIncomingMessage(
-      "🔄 Click on the below button to proceed to the Order Status page..."
-    );
-    window.location.href = "order.html";
+    window.location.href = "/order";
   };
 
   window.handleBussiness = function () {
-    window.location.href = "Bussiness.html";
+    window.location.href = "/bussiness";
   };
 
   if (sendBtn && chatBox && textarea) {

@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function () {
   //==========search history===========
   const searchInput = document.getElementById("search-input");
   const historyList = document.getElementById("search-history");
-  const searchButton = document.getElementsById("search-button");
+  const searchButton = document.getElementById("search-button"); // Fixed typo
   let searchHistory = [];
 
   function submitSearch() {
@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
     searchInput.value = "";
   }
 
-  searchButton.addEventListener("click", submitSearch);
+  if (searchButton) searchButton.addEventListener("click", submitSearch);
 
   function updateDropdown() {
     historyList.innerHTML = "";
@@ -61,8 +61,10 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   // Show dropdown on focus or input
-  searchInput.addEventListener("focus", updateDropdown);
-  searchInput.addEventListener("input", updateDropdown);
+  if (searchInput) {
+    searchInput.addEventListener("focus", updateDropdown);
+    searchInput.addEventListener("input", updateDropdown);
+  }
 
   // Hide dropdown when clicking outside
   document.addEventListener("click", (e) => {
@@ -220,16 +222,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Function to show/hide summer/winter uniform
   function updateUniformDisplay() {
-    const gender = genderSelect.value;
-    const uniform = uniformSelect.value;
+    const gender = genderSelect ? genderSelect.value : "";
+    const uniform = uniformSelect ? uniformSelect.value : "";
 
-    summerSection.style.display = "none";
-    winterSection.style.display = "none";
+    if (summerSection) summerSection.style.display = "none";
+    if (winterSection) winterSection.style.display = "none";
 
-    if (gender && uniform === "Summer") {
+    if (gender && uniform === "Summer" && summerSection && summerTitle) {
       summerSection.style.display = "block";
       summerTitle.textContent = `${gender} Summer Uniform`;
-    } else if (gender && uniform === "Winter") {
+    } else if (gender && uniform === "Winter" && winterSection && winterTitle) {
       winterSection.style.display = "block";
       winterTitle.textContent = `${gender} Winter Uniform`;
     }
@@ -250,8 +252,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  genderSelect.addEventListener("change", updateUniformDisplay);
-  uniformSelect.addEventListener("change", updateUniformDisplay);
+  if (genderSelect) genderSelect.addEventListener("change", updateUniformDisplay);
+  if (uniformSelect) uniformSelect.addEventListener("change", updateUniformDisplay);
 
   // --- Add to Cart Button Logic ---
   function checkQuantities() {
@@ -274,7 +276,50 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 
   // Optional: Handle Add to Cart click
-  addToCartButton.addEventListener("click", () => {
-    alert("Items added to cart!");
-  });
+  if (addToCartButton) {
+    addToCartButton.addEventListener("click", () => {
+      alert("Items added to cart!");
+    });
+  }
 });
+
+//========= Loading Screen on Signup ==========
+const signupFormLoading = document.getElementById('signup-form'); // Use consistent ID
+const loadingScreen = document.getElementById('loadingScreen');
+const loadingMessage = document.getElementById('loadingMessage');
+
+const messages = [
+  "Creating your account...",
+  "Adding user to database...",
+  "Signing you in...",
+  "Almost done..."
+];
+
+if (signupFormLoading && loadingScreen && loadingMessage) {
+  signupFormLoading.addEventListener('submit', function(e) {
+    e.preventDefault(); // prevent normal form submission
+
+    // Show loading screen
+    loadingScreen.style.display = 'flex';
+
+    let index = 0;
+    const interval = setInterval(() => {
+      loadingMessage.textContent = messages[index];
+      index++;
+
+      if (index >= messages.length) {
+        clearInterval(interval);
+
+        // Simulate redirect after 4-5 seconds
+        setTimeout(() => {
+          loadingMessage.textContent = "Account Created Successfully ";
+
+          // Redirect to dashboard or login page
+          setTimeout(() => {
+            window.location.href = "/dashboard";
+          }, 2000);
+        }, 1000);
+      }
+    }, 1000); // change message every 1 second
+  });
+}

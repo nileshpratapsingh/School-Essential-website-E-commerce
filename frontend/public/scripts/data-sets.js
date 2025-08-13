@@ -1272,6 +1272,27 @@ const casualGreetings = [
   "what's up?",
 ];
 
+const contactingMessage = [
+  "hi",
+  "hii",
+  "hiii",
+  "heyy",
+  "hey there",
+  "greetings",
+  "good day",
+  "yo",
+  "hola",
+  "hi there!",
+  "howdy",
+  "sup",
+  "ello!",
+  "hiya",
+  "hey buddy",
+  "hello friend"
+];
+
+
+
 const jokeQueries = [
   "tell me a joke",
   "joke",
@@ -1345,6 +1366,7 @@ export {
   identityQuestions,
   orderQueries,
   casualGreetings,
+  contactingMessage,
   jokeQueries,
   greetings,
   badWords,
