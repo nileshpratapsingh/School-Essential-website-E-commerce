@@ -7,15 +7,16 @@ import path from "path";
 
 import router from "./routes/views.mjs";
 import authRouter from "./routes/auth.mjs";
-import productRouter from "./routes/product.mjs"
+import productRouter from "./routes/product.mjs";
+import orderRouter from "./routes/order.mjs";
+import adminRouter from "./routes/admin.mjs";
 
 //configuration
 
 import { fileURLToPath } from "url";
 import { connectDB } from "./config/database.mjs";
 import { config } from "./config/config.mjs";
-
-// await connectDB();
+import cookieParser from "cookie-parser";
 
 const app = express();
 const PORT = config.port;
@@ -41,20 +42,25 @@ const mimeTypes = {
 };
 
 // Logging middleware
+
 app.use((req, res, next) => {
-  console.log(`📥 ${req.method} ${req.url}`);
+  console.log(`${req.method} ${req.url}`);
   next();
 });
 
 // Middleware
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 
 // View engine
+
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../frontend/public/views"));
 
 // Static files with headers
+
 app.use(
   express.static(publicDir, {
     setHeaders: (res, filePath) => {
@@ -68,11 +74,15 @@ app.use(
 );
 
 // GET routes
+
 app.use("/", router);
 app.use("/", authRouter);
-app.use("/",productRouter)
+app.use("/", productRouter);
+app.use("/", orderRouter);
+app.use("/", adminRouter);
 
 // 404 fallback
+
 app.use((req, res) => {
   res.status(404).render("pages/404", {
     pageTitle: "Page Not Found",
@@ -80,18 +90,35 @@ app.use((req, res) => {
   });
 });
 
-// Start server
-try {
-  const server = app.listen(PORT, () => {
-    console.clear();
-    console.log(`🚀 Server running at http://localhost:${PORT}`.yellow);
-  });
+// Start the server only after DB connects
 
-  server.on("error", (error) => {
+const startServer = async () => {
+  try {
     console.clear();
-    console.error(`Server Error: ${error.message}`.red);
-  });
-} catch (error) {
-  console.clear();
-  console.error(`Unexpected Error: ${error.message}`.red);
-}
+    await connectDB();
+
+    const server = app.listen(PORT, () => {
+      console.log(`Server running at ${config.appUrl}`.yellow);
+    });
+
+    // Graceful shutdown handlers
+    const gracefulShutdown = async (signal) => {
+      console.log(`\nReceived ${signal}. Closing server...`);
+      server.close(async () => {
+        console.log("HTTP server closed");
+        await mongoose.disconnect();
+        console.log("MongoDB disconnected. Exiting...".green);
+        process.exit(0);
+      });
+    };
+
+    process.on("SIGINT", () => gracefulShutdown("SIGINT"));
+    process.on("SIGTERM", () => gracefulShutdown("SIGTERM"));
+  } catch (error) {
+    console.clear();
+    console.error(`Startup Error: ${error.message}`.red);
+    process.exit(1); // Exit if DB connection fails
+  }
+};
+startServer();
+console.clear();
