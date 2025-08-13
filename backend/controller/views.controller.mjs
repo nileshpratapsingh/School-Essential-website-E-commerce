@@ -1,63 +1,85 @@
+import { demoUsers } from "../config/data.mjs";
+
+//  Helper function to render pages with title
+function renderPage(res, page, title) {
+  res.render(`pages/${page}`, { pageTitle: title });
+}
+
+//  Routes
+function aboutRoute(req, res) {
+  renderPage(res, "about", "AboutUs");
+}
+
+function accountRoute(req,res){
+  renderPage(res,"account","Account");
+}
+
 function indexRoute(req, res) {
-  const siteName = "Shree Namrata Dresses and Tailor";
-  res.render("pages/index", { pageTitle: siteName });
+  renderPage(res, "index", "Shree Namrata Dresses and Tailor");
 }
 
 function uniformRoute(req, res) {
-  const siteName = "School Uniform";
-  res.render("pages/uniform", { pageTitle: siteName });
+  renderPage(res, "uniform", "School Uniform");
 }
 
 function feedbackRoute(req, res) {
-  res.render("pages/feedback", { pageTitle: "Feedback" });
+  renderPage(res, "feedback", "Feedback");
 }
-
+function usersList(req, res) {
+  res.render("admin/users-list", { demoUsers });
+}
 function feedbackMessage(req, res) {
   const { name, emailId, rating, comments } = req.body;
-  const msg = `Thank you ${name} for your feedback \n We will be connecting you soon...${emailId}${rating.value}${comments}`;
+  const msg = `Thank you ${name} for your feedback.\nWe will be connecting with you soon... Email: ${emailId}, Rating: ${rating}, Comments: ${comments}`;
   res.send(msg);
-  return name, emailId, rating.value, comments;
 }
 
 function orderEnquiryRoute(req, res) {
-  res.render("pages/order-enquiry", { pageTitle: "Order Enquiry" });
+  renderPage(res, "order-enquiry", "Order Enquiry");
 }
 
-function bussinessEnquiryRoute(req, res) {
-  res.render("pages/business-enquiry", { pageTitle: "Business Enquiry" });
+function businessEnquiryRoute(req, res) {
+  renderPage(res, "business-enquiry", "Business Enquiry");
 }
 
 function mobileAppRoute(req, res) {
-  res.render("pages/mobile-app", { pageTitle: "Mobile App" });
+  renderPage(res, "mobile-app", "Mobile App");
 }
 
 function contactRoute(req, res) {
-  res.render("pages/contact", { pageTitle: "Contact" });
+  renderPage(res, "contact", "Contact");
+}
+
+function chatbotRoute(req, res) {
+  renderPage(res, "chatbot", "Chatbot");
 }
 
 function contactingMessage(req, res) {
   const { name, phoneNumber, emailId, gender, reason } = req.body;
-  res.send(
-    `Thank you ${name} for contacting us\n We will be connecting you soon...`
-  );
-  return name, phoneNumber, emailId, gender, reason;
+  const msg = `Thank you ${name} for contacting us.\nWe will be connecting with you soon... Phone: ${phoneNumber}, Email: ${emailId}, Gender: ${gender}, Reason: ${reason}`;
+  res.send(msg);
 }
 
 function stationaryRoute(req, res) {
-  res.render("pages/stationary", { pageTitle: "Stationary" });
+  renderPage(res, "stationary", "Stationary");
 }
 
+//  Export controllers
 const viewsControllers = {
-  bussinessEnquiryRoute,
-  contactRoute,
-  contactingMessage,
+  aboutRoute,
+  accountRoute,
+  indexRoute,
+  uniformRoute,
+  usersList,
   feedbackRoute,
   feedbackMessage,
-  indexRoute,
-  mobileAppRoute,
   orderEnquiryRoute,
+  businessEnquiryRoute,
+  mobileAppRoute,
+  contactRoute,
+  contactingMessage,
+  chatbotRoute,
   stationaryRoute,
-  uniformRoute,
 };
 
 export default viewsControllers;
