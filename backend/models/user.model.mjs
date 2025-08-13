@@ -16,17 +16,24 @@ const signupSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+
+    // File upload field (will store file path or URL)
     profileImage: {
       type: String,
-    }, // store image URL or file path
+      default: null,
+    },
+
+    // Phone numbers as string to preserve leading 0s
     phoneNumber: {
       type: String,
       required: true,
-      unique: true,
+      trim: true,
     },
     alternatePhone: {
       type: String,
+      trim: true,
     },
+
     email: {
       type: String,
       required: true,
@@ -39,28 +46,43 @@ const signupSchema = new mongoose.Schema(
       lowercase: true,
       trim: true,
     },
+
     dateOfBirth: {
       type: Date,
       required: true,
     },
+
     gender: {
       type: String,
       enum: ["Male", "Female", "Others"],
       required: true,
     },
+
+    // Nested address to match form fields: address.street, address.city etc.
     address: {
       street: { type: String, required: true },
-      state: { type: String, required: true },
       city: { type: String, required: true },
+      state: { type: String, required: true },
       zip: { type: String, required: true },
     },
+
+    // Password will be hashed
     password: {
       type: String,
       required: true,
-      minlength: 6,
+    },
+    
+    role: {
+      type: String,
+      default: "customer",
+    },
+
+    createdAt: {
+      type: Date,
+      default: Date.now,
     },
   },
-  { timestamps: true }
+  { versionKey: false } // removes __v
 );
 
 // Login Schema simple login table
