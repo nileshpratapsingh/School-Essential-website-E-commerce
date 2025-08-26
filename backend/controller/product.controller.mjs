@@ -12,7 +12,7 @@ function productPreview(req, res) {
   if (!selectedProduct) {
     return res
       .status(404)
-      .render("pages/404", { pageTitle: "Product Not Found" });
+      .render("pages/error", { pageTitle: "Product Not Found" });
   }
 
   res.render("pages/product-preview", { product: selectedProduct });
