@@ -1,9 +1,11 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import { signup } from "../models/user.model.mjs";
+import { Login, signup } from "../models/user.model.mjs";
 import { connectDB } from "../config/database.mjs";
 import { config } from "../config/config.mjs";
+import { generateRefreshToken } from "../utility/refershToken.mjs";
 
+// Render login page
 function loginRoute(req, res) {
   res.render("pages/login", {
     pageTitle: "Login Page",
@@ -11,61 +13,113 @@ function loginRoute(req, res) {
   });
 }
 
+// Render signup page
 function SignUpRoute(req, res) {
   res.render("pages/signUp", { pageTitle: "SignUp Page" });
 }
 
+// Login procedure
 async function loginProcedure(req, res) {
   try {
     await connectDB();
 
     const { email, password } = req.body;
-
     const user = await signup.findOne({ email });
-    
+
     if (!user) {
-      return res.redirect("/login?error=User not found");
+      return res.redirect("/login?error=Invalid credential");
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res.redirect("/login?error=Invalid password");
+      return res.redirect("/login?error=Invalid credentials");
     }
 
-    const token = jwt.sign(
-      { userId: user._id, role: user.role },
-      config.jwt.secret,
-      { expiresIn: config.jwt.expiresIn }
-    );
+    const refreshToken = generateRefreshToken(user);
 
-    res.cookie("token", token, {
+    const newLogin = new Login({
+      email,
+      password,
+    });
+    await newLogin.save();
+
+    // Set cookie
+    res.cookie("refreshToken", refreshToken, {
       httpOnly: true,
       secure: config.env,
       sameSite: "strict",
     });
 
     console.log("You're Logged in !!!");
-    return res.redirect("/signUp");
+    return res.redirect("/account");
   } catch (error) {
     console.error(error);
     res.status(500).send("Server error");
   }
 }
 
-async function profilrRoute(res,req){
-  const user = user.findOne
+// Profile route
+async function profileRoute(req, res) {
+  try {
+    const token =
+      req.cookies.refreshToken || req.headers.authorization?.split(" ")[1];
+
+    if (!token) return res.status(401).send("No token provided");
+
+    let decoded;
+    try {
+      decoded = jwt.verify(token, config.jwt.refreshSecret); // try as refresh
+    } catch (err) {
+      decoded = jwt.verify(token, config.jwt.secret); // try as access
+    }
+
+    const user = await signup.findById(decoded.userId);
+    res.render("pages/profile", { user });
+  } catch (err) {
+    console.error("Profile route error:", err.message);
+    res.status(401).send("Invalid or expired token(Profile Route)");
+  }
 }
 
-function logoutRoute(req, res) {
-  res.clearCookie("token", {
-    httpOnly: true,
-    secure: process.env.NODE_ENV === "production",
-    sameSite: "strict",
-  });
-  console.log("User logged out!");
-  res.redirect("/login?message=Successfully Logged out");
+// Logout route
+async function logoutRoute(req, res) {
+  try {
+    let token =
+      req.cookies.refreshToken || req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res
+        .status(401)
+        .json({ message: "Not logged in (no token found)" });
+    }
+
+    if (typeof token === "string" && token.startsWith("Bearer ")) {
+      token = token.split(" ")[1];
+    }
+
+    const decoded = jwt.verify(token, config.jwt.refreshSecret);
+
+    const user = await Login.findOne({ email: decoded.userEmail });
+    if (user) {
+      await user.deleteOne();
+      console.log("User deleted:", user);
+    }
+
+    res.clearCookie("refreshToken", {
+      httpOnly: true,
+      secure: config.env,
+      sameSite: "strict",
+    });
+
+    console.log("User logged out (cookies cleared).");
+    return res.redirect("/?message=Successfully Logged out");
+  } catch (err) {
+    console.error("Error in logout:", err);
+    return res.status(500).json({ message: "Server error during logout" });
+  }
 }
 
+// Signup procedure
 async function SignUpProcedure(req, res) {
   try {
     const {
@@ -134,7 +188,7 @@ const authController = {
   loginRoute,
   loginProcedure,
   logoutRoute,
-  profilrRoute,
+  profileRoute,
   SignUpRoute,
   SignUpProcedure,
 };
