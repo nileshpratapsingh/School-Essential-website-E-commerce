@@ -1,7 +1,6 @@
 import express from "express";
 import viewsControllers from "../controller/views.controller.mjs";
 import { loginProtectedPath } from "../middleware/loginProtectedPath.mjs";
-import { adminProtectedPath } from "../middleware/adminProtectedPath.mjs";
 const router = express.Router();
 
 // GET routes
