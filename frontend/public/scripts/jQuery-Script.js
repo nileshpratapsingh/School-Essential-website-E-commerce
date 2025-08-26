@@ -46,8 +46,9 @@ $(function () {
 
   // ===== State-City Dropdown =====
   $.each(stateCityData, (state) =>
-    $("#state").append(`<option>${state}</option>`)
+    $("#state").append(`<option value="${state}">${state}</option>`)
   );
+
   $("#state").on("change", function () {
     const state = $(this).val(),
       cities = stateCityData[state] || [];
@@ -128,6 +129,7 @@ $(function () {
 
         setTimeout(() => {
           $("#loadingOverlay").fadeOut();
+          window.location.href = "/account";
         }, 2000);
       },
     });
@@ -144,7 +146,11 @@ $(function () {
       data: $(this).serialize(),
 
       success: function (res) {
-        $("#loadingOverlay p").text("Login successful");
+        $("#loadingOverlay p").text("Loggin in....");
+
+        setTimeout(() => {
+          $("#loadingOverlay").fadeOut();
+        }, 2000);
       },
       error: function () {
         $("#loadingOverlay p").text("Invalid email or password");
