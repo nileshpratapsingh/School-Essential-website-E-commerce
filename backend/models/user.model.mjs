@@ -10,6 +10,7 @@ const signupSchema = new mongoose.Schema(
     middleName: {
       type: String,
       trim: true,
+      default:null,
     },
     lastName: {
       type: String,
@@ -89,9 +90,8 @@ const signupSchema = new mongoose.Schema(
 
 const loginSchema = new mongoose.Schema(
   {
-    username: {
+    email: {
       type: String,
-      unique: true,
       lowercase: true,
       required: true,
     },

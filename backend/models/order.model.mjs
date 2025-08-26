@@ -10,7 +10,7 @@ const orderSchema = new mongoose.Schema(
     },
     trackingId: {
       type: String,
-      default: () => "NAM" + uuidv4().split("-")[0], // Example: ORD-a1b2c3
+      default: () => "NAM" + uuidv4().split("-")[0], // Example: NAM-a1b2c3
       unique: true,
     },
     orderItems: {
