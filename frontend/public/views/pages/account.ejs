@@ -6,15 +6,29 @@
         <%- include('../partials/header') %>
             <%- include('../partials/sidebar') %>
                 <main>
-                    <h1 class="slide-down">Account Setting</h1>
-                    <ul class="account-options">
-                        <li><a href="/profile"><p>Profile</p></a></li>
-                        <li><a href="/order-history"><p>Order History</p></a></li>
-                        <li><a href="/browsing-history"><p>Your Browsing History</p></a></li>
-                        <li><a href="/return-refund"><p>Return and Refund Status</p></a></li>
-                        <li><a href="/delete_account"><p>Delete Account</p></a></li>
-                        <li><a href="/logout"><p>Log Out</p></a></li>
-                    </ul>
+                    <div class="account-container">
+                        <ul class="account-options">
+                            <li><a href="/profile"><ion-icon name="person-circle-outline"></ion-icon>
+                                    <p>Profile</p>
+                                </a></li>
+                            <li><a href="/order-history"><ion-icon name="cube-outline"></ion-icon>
+                                    <p>Order History</p>
+                                </a></li>
+                            <li><a href="/browsing-history"><ion-icon name="time-outline"></ion-icon>
+                                    <p>Your Browsing History</p>
+                                </a></li>
+                            <li><a href="/return-refund"><ion-icon name="refresh-outline"></ion-icon>
+                                    <p>Return and Refund Status</p>
+                                </a></li>
+                            <li><a href="/delete_account"><ion-icon name="person-remove-outline"></ion-icon>
+                                    <p>Delete Account</p>
+                                </a></li>
+                            <li><a href="/logout"><ion-icon name="log-out-outline"></ion-icon>
+                                    <p>Log Out</p>
+                                </a></li>
+                        </ul>
+                    </div>
+
                 </main>
                 <%- include('../partials/footer') %>
     </body>
