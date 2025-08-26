@@ -17,6 +17,7 @@ export function restrictedAfterLogin(req, res, next) {
       return res.redirect("/account");
     } catch (err) {
       // Token invalid, let them continue to login page
+      console.log("login restricted middleware",err.message);
       return next();
     }
   }
