@@ -2,6 +2,7 @@
 
 import express from "express";
 import path from "path";
+import cors from "cors";
 
 //routers
 
@@ -14,9 +15,14 @@ import adminRouter from "./routes/admin.mjs";
 //configuration
 
 import { fileURLToPath } from "url";
-import { connectDB } from "./config/database.mjs";
+import { connectDB, disconnectDB } from "./config/database.mjs";
 import { config } from "./config/config.mjs";
 import cookieParser from "cookie-parser";
+
+//middlewares
+
+import { errorHandler } from "./middleware/errorHandler.mjs";
+import { notFoundHandler } from "./middleware/404notFoundhandler.mjs";
 
 const app = express();
 const PORT = config.port;
@@ -59,6 +65,15 @@ app.use(cookieParser());
 app.set("view engine", "ejs");
 app.set("views", path.join(__dirname, "../frontend/public/views"));
 
+// CORS (point to your final frontend domain; during testing you can keep it "*" and then tighten)
+
+app.use(
+  cors({
+    origin: config.corsOrigin || "*",
+    credentials: true,
+  })
+);
+
 // Static files with headers
 
 app.use(
@@ -73,6 +88,10 @@ app.use(
   })
 );
 
+// Health response
+
+app.get("/healthz", (req, res) => res.send("ok")); // hosting response
+
 // GET routes
 
 app.use("/", router);
@@ -81,14 +100,13 @@ app.use("/", productRouter);
 app.use("/", orderRouter);
 app.use("/", adminRouter);
 
-// 404 fallback
+// 404 fallback middleware
 
-app.use((req, res) => {
-  res.status(404).render("pages/404", {
-    pageTitle: "Page Not Found",
-    path: req.originalUrl, // optional: to show the missing path
-  });
-});
+app.use(notFoundHandler);
+
+// error and status-code handler
+
+app.use(errorHandler);
 
 // Start the server only after DB connects
 
@@ -104,10 +122,14 @@ const startServer = async () => {
     // Graceful shutdown handlers
     const gracefulShutdown = async (signal) => {
       console.log(`\nReceived ${signal}. Closing server...`);
+
       server.close(async () => {
         console.log("HTTP server closed");
-        await mongoose.disconnect();
+
+        await disconnectDB();
+
         console.log("MongoDB disconnected. Exiting...".green);
+
         process.exit(0);
       });
     };
