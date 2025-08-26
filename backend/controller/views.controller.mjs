@@ -1,4 +1,6 @@
-import { demoUsers } from "../config/data.mjs";
+import { generateAccessToken } from "../utility/refershToken.mjs";
+import { config } from "dotenv";
+import { signup } from "../models/user.model.mjs";
 
 //  Helper function to render pages with title
 function renderPage(res, page, title) {
@@ -10,8 +12,8 @@ function aboutRoute(req, res) {
   renderPage(res, "about", "AboutUs");
 }
 
-function accountRoute(req,res){
-  renderPage(res,"account","Account");
+function accountRoute(req, res) {
+  renderPage(res, "account", "Account");
 }
 
 function indexRoute(req, res) {
@@ -24,9 +26,6 @@ function uniformRoute(req, res) {
 
 function feedbackRoute(req, res) {
   renderPage(res, "feedback", "Feedback");
-}
-function usersList(req, res) {
-  res.render("admin/users-list", { demoUsers });
 }
 function feedbackMessage(req, res) {
   const { name, emailId, rating, comments } = req.body;
@@ -64,13 +63,30 @@ function stationaryRoute(req, res) {
   renderPage(res, "stationary", "Stationary");
 }
 
+function refreshTokenRoute(req, res) {
+  const refreshToken =
+    req.cookies.refreshToken || req.headers.authorization?.split(" ")[1];
+
+  if (!refreshToken)
+    return res.status(401).json({ message: "No refresh token" });
+
+  jwt.verify(refreshToken, config.jwt.refreshSecret, async (err, decoded) => {
+    if (err) return res.status(403).json({ message: "Invalid refresh token" });
+
+    const user = await signup.findById(decoded.userId);
+    F;
+    if (!user) return res.status(404).json({ message: "User not found" });
+
+    const newAccessToken = generateAccessToken(user);
+    res.json({ accessToken: newAccessToken });
+  });
+}
 //  Export controllers
 const viewsControllers = {
   aboutRoute,
   accountRoute,
   indexRoute,
   uniformRoute,
-  usersList,
   feedbackRoute,
   feedbackMessage,
   orderEnquiryRoute,
@@ -80,6 +96,7 @@ const viewsControllers = {
   contactingMessage,
   chatbotRoute,
   stationaryRoute,
+  refreshTokenRoute,
 };
 
 export default viewsControllers;
