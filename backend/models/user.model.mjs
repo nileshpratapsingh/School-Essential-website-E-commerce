@@ -18,7 +18,7 @@ const signupSchema = new mongoose.Schema(
       trim: true,
     },
 
-    // File upload field (will store file path or URL)
+    // File upload field  (will store file path or URL)
     profileImage: {
       type: String,
       default: null,
