@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= statusCode %> - <%= statusText %></title>
+  <style>
+    body {
+      background: #0f172a;
+      color: #f8fafc;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+    }
+
+    h1 {
+      font-size: 6rem;
+      margin: 0;
+      color: #f87171;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-top: 0.5rem;
+    }
+
+    p {
+      font-size: 1.2rem;
+      margin: 1rem 0;
+      max-width: 600px;
+    }
+
+    .details {
+      font-size: 0.9rem;
+      color: #94a3b8;
+      margin-top: 1rem;
+      background: #1e293b;
+      padding: 1rem;
+      border-radius: 8px;
+      word-break: break-word;
+    }
+
+    a {
+      margin-top: 2rem;
+      padding: 0.75rem 1.5rem;
+      background: #f87171;
+      color: #fff;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+    }
+
+    a:hover {
+      background: #ef4444;
+    }
+  </style>
+</head>
+<body>
+  <h1><%= statusCode %></h1>
+  <h2><%= statusText %></h2>
+  <p><%= message %></p>
+
+  <% if (errorDetails) { %>
+    <div class="details">
+      <strong>Error Details:</strong>
+      <pre><%= errorDetails %></pre>
+    </div>
+  <% } %>
+
+  <a href="/" onclick="event.preventDefault(); history.back();">Go Back</a>
+</body>
+</html>
