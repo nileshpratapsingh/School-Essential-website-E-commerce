@@ -18,11 +18,11 @@ authRouter
 
 authRouter
   .route("/logout")
-  .get(authController.logoutRoute);
+  .get(restrictedAfterLogin,authController.logoutRoute);
 
 authRouter
   .route("/profile")
-  .get(authController.profileRoute);
+  .get(restrictedAfterLogin,authController.profileRoute);
 
 authRouter
   .route("/admin-dashboard")
