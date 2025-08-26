@@ -7,20 +7,24 @@
         <%- include('../partials/header') %>
             <%- include('../partials/sidebar') %>
                 <main class="user-card-container">
-                    <% demoUsers.forEach(user=> { %>
+                    <% users.forEach(user=> { %>
                         <div class="user-card">
                             <div class="user-image">
                                 <% if (user.profileImage) { %>
                                     <img src="<%= user.profileImage %>" alt="<%= user.firstName %>">
                                     <% } else { %>
-                                        <img src="/images/default-user.png" alt="Default User">
+                                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Default User">
                                         <% } %>
                             </div>
                             <div class="user-details">
                                 <h2>
                                     <%= user.firstName %>
-                                        <%= user.lastName %>
+                                        <%= user.middleName %>
+                                            <%= user.lastName %>
                                 </h2>
+                                <p><strong>Role:</strong>
+                                    <%= user.role %>
+                                </p>
                                 <p><strong>Email:</strong>
                                     <%= user.email %>
                                 </p>
@@ -33,10 +37,12 @@
                                 <p><strong>Address:</strong>
                                     <%= user.address.street %>,
                                         <%= user.address.city %>,
-                                            <%= user.address.state %> - <%= user.address.zip %>
+                                            <%= user.address.state %> -
+                                                <strong>PinCode:</strong>
+                                                <%= user.address.zip %>
                                 </p>
                                 <p><strong>Joined:</strong>
-
+                                    <%= user.createdAt.toLocaleString() %>
                                 </p>
                             </div>
                         </div>
