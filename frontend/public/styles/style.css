@@ -672,127 +672,83 @@ h2 {
     }
 }
 
-/*login form*/
-
+/* login form */
 .loginform {
-    text-align: center;
-    padding: 50px 50px 50px 50px;
+    max-width: 600px;
+    margin: 0px auto;
+    padding: 40px 30px;
     background-color: #ffffff;
-    background-size: contain;
-    margin: 20px 300px 0px 300px;
-    border-radius: 6px;
-    color: #000000;
-    box-shadow: 0px 5px 20px -15px #000000;
-}
-
-#email {
-    border-radius: 3px;
-    border-color: #0000005c;
-}
-
-#password {
-    padding: 10px;
-    border-radius: 3px;
-    border-color: #00000067;
-}
-
-.loginform label {
-    display: block;
+    border-radius: 10px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-bottom: 8px;
-    font-weight: bold;
-    color: #000000;
-    padding: 10px;
-    background-color: #0057b300;
 }
 
-.loginform input[type="email"] {
+/* Inputs */
+#email,
+#password {
     width: 100%;
-    padding: 10px;
+    padding: 12px;
     margin-bottom: 15px;
-    border: 1px solid #000000;
-    box-sizing: border-box;
-
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-.loginform input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 15px;
-    border: 1px solid #000000;
-    border-radius: 5px;
-    box-sizing: border-box;
-
+#email:focus,
+#password:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
 }
 
-.authentication-button {
-    background-color: #0057b300;
-    padding: 50px 0 0 0;
+/* Labels */
+.loginform label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
 }
 
+/* Buttons */
 .loginform button {
-    width: 20%;
-    padding: 10px;
-    background-color: #f1ca4c;
-    color: rgb(0, 0, 0);
-    border: none;
-    border-radius: 4px;
-    font-size: 16px;
-    cursor: pointer;
-    box-shadow: 0px 1px 2px -1px rgb(96, 94, 94);
-}
-
-.loginform button[type="button"] {
-    background-color: #6c757d;
+    width: 100%;
+    padding: 12px;
     margin-top: 10px;
-    margin-bottom: 10px;
+    background-color: #f1ca4c;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .loginform button:hover {
     background-color: #0056b3;
-    color: #52f1e1;
+    color: #fff;
+}
+
+.loginform button[type="button"] {
+    background-color: #6c757d;
 }
 
 .loginform button[type="button"]:hover {
     background-color: #5a6268;
 }
 
-/*Responsive design for form */
-@media screen and (max-width: 990px) {
+/* Responsive */
+@media screen and (max-width: 600px) {
     .loginform {
-        text-align: center;
-        padding: 20px;
-        background-color: #ffffff;
-        background-size: contain;
-        margin: 20px 20px 20px 20px;
-        border-radius: 6px;
-        color: #000000;
-        box-shadow: 0px 5px 20px -15px #000000;
-
-    }
-
-    .loginform label {
-        display: flex;
-        text-align: center;
-        margin-bottom: 8px;
-        font-weight: bold;
-        color: #000000;
-        padding: 8px 8px 8px 0px;
-        background-color: #0057b300;
-    }
-
-    .authentication-button {
-        background-color: #0057b300;
-        padding: 50px 0 10px 0;
-        width: 100%;
+        margin: 20px;
+        padding: 25px 20px;
     }
 
     .loginform button {
-        font-size: clamp(15px, 3vw, 20px);
-        padding: 6px;
-        display: inline;
-        width: 86px;
-        text-decoration: solid;
+        font-size: 15px;
+        padding: 10px;
     }
 }
 
@@ -974,79 +930,246 @@ br {
     }
 }
 
+/*account page menu*/
 
-/*account profile
-
-.profile-container {
+.account-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 2rem;
+    min-height: 100vh;
+    padding: 20px;
 }
 
-.profile-card {
-    background: #fff;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    border-radius: 16px;
-    padding: 2rem;
-    max-width: 500px;
+
+.account-options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     width: 100%;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    font-family: "Segoe UI", sans-serif;
 }
 
-.profile-image {
+
+.account-options li {
+    border-bottom: 1px solid #eee;
+}
+
+.account-options li:last-child {
+    border-bottom: none;
+}
+
+
+.account-options li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.25s ease-in-out;
+}
+
+
+.account-options li a p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+.account-options li a ion-icon {
+    font-size: 22px;
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+
+.account-options li a:hover {
+    background: #f8f9fa;
+    color: #0073e6;
+    padding-left: 24px;
+}
+
+.account-options li a:hover ion-icon {
+    color: #0073e6;
+}
+
+
+@media (max-width: 500px) {
+    .account-options {
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .account-options li a {
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+}
+
+
+/*account profile*/
+
+/* Profile Container */
+.profile-container {
+    max-width: 650px;
+    margin: 40px auto;
+    padding: 2rem;
+    border-radius: 6px;
+    background: linear-gradient(135deg, #ffffff, #f8faff);
+    box-shadow: 0 6px 25px rgba(0, 0, 0, 0.1);
     text-align: center;
-    margin-bottom: 20px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.profile-image img {
-    width: 120px;
-    height: 120px;
+.profile-container:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* Profile Header */
+.profile-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.profile-img {
+    width: 130px;
+    height: 130px;
     border-radius: 50%;
     object-fit: cover;
+    border: 4px solid #4f46e5;
+    margin-bottom: 1rem;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+    transition: transform 0.3s ease;
 }
 
-.upload-label {
-    display: inline-block;
-    margin-top: 10px;
-    cursor: pointer;
-    color: #007bff;
-    text-decoration: underline;
-    font-size: 0.9rem;
+.profile-img:hover {
+    transform: scale(1.05);
 }
 
-.profile-details label {
+.profile-placeholder {
+    font-size: 130px;
+    color: #bbb;
+    margin-bottom: 1rem;
+}
+
+.profile-header h2 {
+    margin: 0;
+    font-size: 1.9rem;
     font-weight: bold;
-    display: block;
-    margin-top: 15px;
+    color: #1f2937;
 }
 
-.profile-details input,
-.profile-details textarea {
-    width: 100%;
-    padding: 10px;
-    margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
+.profile-header .role {
     font-size: 1rem;
+    color: #6b7280;
+    font-style: italic;
 }
 
-.update-btn {
-    margin-top: 20px;
-    width: 100%;
-    padding: 12px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 10px;
+/* Profile Info */
+.profile-info {
+    text-align: left;
+    margin-bottom: 2rem;
+    padding: 1rem;
+    background: #f9fafb;
+    border-radius: 12px;
+}
+
+.profile-info p {
     font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.3s;
+    margin: 0.6rem 0;
+    color: #374151;
 }
 
-.update-btn:hover {
-    background: #0056b3;
-}*/
+.profile-info strong {
+    color: #111827;
+}
 
+/* Edit Button */
+.profile-actions {
+    margin-top: 1.5rem;
+}
+
+.edit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #4f46e5, #3b82f6);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.9rem 1.8rem;
+    border-radius: 12px;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+}
+
+.edit-btn ion-icon {
+    font-size: 20px;
+}
+
+.edit-btn:hover {
+    background: linear-gradient(135deg, #4338ca, #2563eb);
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        margin: 20px;
+        padding: 1.5rem;
+    }
+
+    .profile-img {
+        width: 100px;
+        height: 100px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.5rem;
+    }
+
+    .profile-info {
+        font-size: 0.95rem;
+        padding: 0.8rem;
+    }
+
+    .edit-btn {
+        padding: 0.7rem 1.4rem;
+        font-size: 0.9rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 1rem;
+        border-radius: 12px;
+    }
+
+    .profile-header h2 {
+        font-size: 1.3rem;
+    }
+
+    .profile-info {
+        font-size: 0.85rem;
+    }
+
+    .edit-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.85rem;
+    }
+}
 
 /*order form style*/
 
@@ -1480,7 +1603,8 @@ section h1 {
 /* Product Page Container */
 .products {
     padding: 2rem 1rem;
-    background-color: #f9fafb; /* light gray background */
+    background-color: #f9fafb;
+    /* light gray background */
 }
 
 .products .container {
@@ -1499,7 +1623,7 @@ section h1 {
     text-align: center;
     padding: 1rem;
     margin: 0;
-    width: calc(25% - 1.5rem); /* 4 per row on large screens */
+    width: calc(25% - 1.5rem);
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s ease;
     display: flex;
@@ -1525,13 +1649,13 @@ section h1 {
 .product h3 {
     font-size: 1.2rem;
     margin: 0.5rem 0;
-    color: #1f2937; /* dark gray */
+    color: #1f2937;
 }
 
 /* Product Description */
 .product p {
     font-size: 0.95rem;
-    color: #6b7280; /* medium gray */
+    color: #6b7280;
     margin-bottom: 1rem;
 }
 
@@ -1563,19 +1687,22 @@ section h1 {
 /* Responsive Layouts */
 @media (max-width: 1024px) {
     .product {
-        width: calc(33.333% - 1.5rem); /* 3 per row */
+        width: calc(33.333% - 1.5rem);
+        /* 3 per row */
     }
 }
 
 @media (max-width: 768px) {
     .product {
-        width: calc(50% - 1.5rem); /* 2 per row */
+        width: calc(50% - 1.5rem);
+        /* 2 per row */
     }
 }
 
 @media (max-width: 480px) {
     .product {
-        width: 100%; /* 1 per row */
+        width: 100%;
+        /* 1 per row */
     }
 }
 
@@ -1591,7 +1718,7 @@ section h1 {
     color: #ff0000;
 }
 
-/* Uniform Tile Container Styling - Responsive */
+/* Uniform Tile Container */
 
 .tile-container {
     display: grid;
@@ -1601,7 +1728,7 @@ section h1 {
     justify-content: center;
 }
 
-/* Individual Tile Styling */
+
 .tile {
     background: #f8f9fa;
     border-radius: 4px;
