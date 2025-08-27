@@ -2,7 +2,7 @@
 
 ## 📌 Overview
 
-This is an eCommerce website designed for selling school uniforms, accessories, and stationery items. The platform provides an easy shopping experience for students, parents, and schools looking for high-quality educational supplies. 🏫✨
+This is an eCommerce website designed for selling school uniforms, accessories, and stationery items. The platform provides an easy shopping experience for students, parents, and schools looking for high-quality educational supplies. 
 
 ## Preview
 
@@ -38,7 +38,7 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
 - **Icons**: Ionicons 
 - **Styling**: Poppins Font, Gradient Backgrounds 
 
-## 🚀 Installation
+##  Installation
 
 1. Clone the repository:
    ```sh
@@ -108,11 +108,11 @@ my website
 
 ## 🤝 Contributing
 
-We welcome contributions! Feel free to submit pull requests for improvements. 💡🤩
+We welcome contributions! Feel free to submit pull requests for improvements. 
 
 ## 📜 License
 
-This project is open-source and available under the [MIT License](LICENSE). ✅
+This project is open-source and available under the [MIT License](LICENSE). 
 
 ## 🌟 Contact
 
