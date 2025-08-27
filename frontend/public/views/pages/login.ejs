@@ -5,26 +5,28 @@
     <body>
         <%- include('../partials/header') %>
             <%- include('../partials/sidebar') %>
+                <main>
 
-                <main id="formbody">
-                    <form id="form" class="loginform" action="/login" method="post">
-                        <label for="email">Enter your email</label>
-                        <input type="email" name="email" id="email" placeholder="Enter your email.." required>
-                        <br>
+                    <main id="formbody">
+                        <form id="form" class="loginform" action="/login" method="post">
+                            <label for="email">Enter your email</label>
+                            <input type="email" name="email" id="email" placeholder="Enter your email.." required>
+                            <br>
 
-                        <label for="password">Enter Password</label>
-                        <input type="password" name="password" id="password" placeholder="Enter your password.."
-                            required>
-                        <br>
+                            <label for="password">Enter Password</label>
+                            <input type="password" name="password" id="password" placeholder="Enter your password.."
+                                required>
+                            <br>
 
-                        <div class="authentication-button">
-                            <button type="submit">Log In</button>
-                            OR
-                            <a href="/signup">
-                                <button type="button">Sign Up</button>
-                            </a>
-                        </div>
-                    </form>
+                            <div class="authentication-button">
+                                <button type="submit">Log In</button>
+                                OR
+                                <a href="/signup">
+                                    <button type="button">Sign Up</button>
+                                </a>
+                            </div>
+                        </form>
+                    </main>
                 </main>
 
                 <%- include('../partials/loading-screen') %>
