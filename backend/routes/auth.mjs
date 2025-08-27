@@ -3,12 +3,13 @@ import authController from "../controller/auth.controller.mjs";
 import adminController from "../controller/admin.controller.mjs";
 import { adminProtectedPath } from "../middleware/adminProtectedPath.mjs";
 import { restrictedAfterLogin } from "../middleware/loginRestriction.mjs";
+import { loginProtectedPath } from "../middleware/loginProtectedPath.mjs";
 
 const authRouter = express.Router();
 
 authRouter
   .route("/signup")
-  .get(authController.SignUpRoute)
+  .get(restrictedAfterLogin,authController.SignUpRoute)
   .post(authController.SignUpProcedure);
 
 authRouter
@@ -18,11 +19,11 @@ authRouter
 
 authRouter
   .route("/logout")
-  .get(restrictedAfterLogin,authController.logoutRoute);
+  .get(loginProtectedPath,authController.logoutRoute);
 
 authRouter
   .route("/profile")
-  .get(restrictedAfterLogin,authController.profileRoute);
+  .get(loginProtectedPath,authController.profileRoute);
 
 authRouter
   .route("/admin-dashboard")
