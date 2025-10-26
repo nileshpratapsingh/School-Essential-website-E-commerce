@@ -11,7 +11,7 @@ export function generateAccessToken(user) {
 // Create refresh token (7 days) created to store the user data for auto login
 export function generateRefreshToken(user) {
   return jwt.sign(
-    { userId: user._id, userEmail: user.email },
+    { userId: user._id, userEmail: user.email, userRole: user.role },
     config.jwt.refreshSecret,
     { expiresIn: "7d" }
   );
