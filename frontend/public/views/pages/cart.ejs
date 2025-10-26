@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+            <%- include('../partials/sidebar') %>
+                <main>
+
+                    <div class="cart-container">
+                        <div class="cart-items">
+                            <% if (!cart || cart.length===0) { %>
+                                <p>Your cart is empty!</p>
+                                <% } else { %>
+                                    <% cart.forEach(item=> { %>
+                                        <div class="cart-item">
+                                            <img src="<%= item.image %>" width="50" />
+                                            <div class="item-details">
+                                                <h4>
+                                                    <%= item.name %>
+                                                </h4>
+                                                <p>Price: ₹<%= item.price %>
+                                                </p>
+                                                <p>Quantity: <%= item.quantity %>
+                                                        <input type="number" name="quantity-change"
+                                                            id="quantity-change-btn" onclick="alterQuantity()">
+                                                </p>
+                                                <!-- Optional: remove button here -->
+                                                <button id="cart-delete-btn"
+                                                    onclick="deleteItem('<%= item.name%>','<%= item.id %>','<%= userId%>',)">Remove</button>
+                                            </div>
+                                        </div>
+                                        <% }) %>
+                                            <% } %>
+                        </div>
+
+                        <div class="cart-summary">
+                            <h2>Order Summary</h2>
+                            <p id="cart-total">Total: ₹<%= total || 0 %>
+                            </p>
+                           <a href="/checkout">
+                               <button class="checkout-btn">Proceed to Checkout</button>
+                            </a>
+                        </div>
+                    </div>
+
+                </main>
+
+                <%- include('../partials/footer') %>
+    </body>
+
+</html>
