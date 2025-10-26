@@ -38,7 +38,7 @@
                             <%= user.phoneNumber %>
                         </p>
                         <p><strong>Date of Birth:</strong>
-                            <%= new Date(user.dateOfBirth).toDateString() %>
+                            <%= new Date(user.dateOfBirth).toDateString("en-GB") %>
                         </p>
                         <p><strong>Gender:</strong>
                             <%= user.gender %>
@@ -49,7 +49,7 @@
                                 ${user.address.zip}` : "Not Provided" %>
                         </p>
                         <p><strong>Created At:</strong>
-                            <%= new Date(user.createdAt).toLocaleString() %>
+                            <%= new Date(user.createdAt).toLocaleString("en-GB") %>
                         </p>
                     </div>
 
