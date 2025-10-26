@@ -1,5 +1,5 @@
 import { generateAccessToken } from "../utility/refershToken.mjs";
-import { config } from "dotenv";
+import { config } from "../config/config.mjs";
 import { signup } from "../models/user.model.mjs";
 
 //  Helper function to render pages with title
@@ -9,7 +9,11 @@ function renderPage(res, page, title) {
 
 //  Routes
 function aboutRoute(req, res) {
-  renderPage(res, "about", "AboutUs");
+  renderPage(res, "about", "About Us");
+}
+
+function configAPIUrl(req, res) {
+  res.json({ appUrl: config.url });
 }
 
 function accountRoute(req, res) {
@@ -85,6 +89,7 @@ function refreshTokenRoute(req, res) {
 const viewsControllers = {
   aboutRoute,
   accountRoute,
+  configAPIUrl,
   indexRoute,
   uniformRoute,
   feedbackRoute,
