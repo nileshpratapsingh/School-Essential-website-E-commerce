@@ -4,9 +4,7 @@ import { signup } from "../models/user.model.mjs";
 
 export async function loginProtectedPath(req, res, next) {
   try {
-    let token =
-      req.cookies?.refreshToken ||
-      req.headers["authorization"];
+    let token = req.cookies?.refreshToken || req.headers["authorization"];
 
     if (!token) {
       return next({
@@ -14,6 +12,7 @@ export async function loginProtectedPath(req, res, next) {
         statusText: "Unauthorized",
         message: "You must be logged in to access this page.",
         errorDetails: "Token missing or invalid.",
+        loginButton: true,
       });
     }
 
@@ -30,6 +29,7 @@ export async function loginProtectedPath(req, res, next) {
         statusText: "Unauthorized",
         message: "You must be logged in to access this page.",
         errorDetails: "User missing or invalid user.",
+        loginButton: true,
       });
     }
 
