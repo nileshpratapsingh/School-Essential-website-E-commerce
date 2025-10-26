@@ -1,5 +1,6 @@
 import colors from "colors"; // optional if you want colored logs (only for developers)
 import dotenv from "dotenv";
+import session from "express-session";
 import path from "path";
 import { fileURLToPath } from "url";
 
@@ -31,8 +32,8 @@ export const config = {
   // JWT / Auth
   jwt: {
     secret: process.env.JWT_SECRET,
-    refreshSecret:process.env.JWT_REFRESH_SECRET,
-    expiresIn: process.env.JWT_EXPIRES_IN ,
+    refreshSecret: process.env.JWT_REFRESH_SECRET,
+    expiresIn: process.env.JWT_EXPIRES_IN,
   },
 
   // Email
@@ -45,6 +46,7 @@ export const config = {
 
   // Third-party APIs
   googleApiKey: process.env.GOOGLE_API_KEY,
+
   stripe: {
     secretKey: process.env.STRIPE_SECRET_KEY,
     publicKey: process.env.STRIPE_PUBLIC_KEY,
@@ -78,11 +80,30 @@ export const config = {
 
   // File Upload (Cloudinary)
   cloudinary: {
-    cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-    apiKey: process.env.CLOUDINARY_API_KEY,
-    apiSecret: process.env.CLOUDINARY_API_SECRET,
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+    api_key: process.env.CLOUDINARY_API_KEY,
+    api_secret: process.env.CLOUDINARY_API_SECRET,
+  },
+
+  // Cloudinary Params
+  cloudinaryParams: {
+    folder: "profile_images", // Cloudinary folder
+    allowed_formats: ["jpg", "png", "jpeg"],
   },
 
   // Session
-  sessionSecret: process.env.SESSION_SECRET || "session_default_secret",
+  session: {
+    secret: process.env.SESSION_SECRET || "session_default_secret",
+    secure: process.env.SESSION_COOKIE_SECURE ,
+    maxAge: process.env.SESSION_COOKIE_MAXAGE || 1000 * 60 * 60 * 24 * 7,
+  },
 };
+
+export function parseBoolean(value) {
+  if (typeof value === "boolean") return value;
+  if (typeof value === "string") {
+    return value.toLowerCase() === "true";
+  }
+  console.log("The value is:",value)
+  return Boolean(value);
+}
