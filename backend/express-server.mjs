@@ -8,7 +8,7 @@ import favicon from "serve-favicon";
 
 //security Modules
 
-import xss from "xss-clean";
+// import xss from "xss-clean";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import rateLimit from "express-rate-limit";
@@ -227,22 +227,22 @@ function getCPUUsage() {
   });
 }
 
-setInterval(() => {
-  // system info
-  const currentOS = {
-    OS: os.type(),
-    Release: os.release(),
-    TotalMemory: (os.totalmem() / 1024 ** 3).toFixed(3) + " GB",
-    FreeMemory: (os.freemem() / 1024 ** 3).toFixed(3) + " GB",
-  };
+// setInterval(() => {
+//   // system info
+//   const currentOS = {
+//     OS: os.type(),
+//     Release: os.release(),
+//     TotalMemory: (os.totalmem() / 1024 ** 3).toFixed(3) + " GB",
+//     FreeMemory: (os.freemem() / 1024 ** 3).toFixed(3) + " GB",
+//   };
 
-  console.clear();
+//   console.clear();
 
-  console.log("System Info:");
-  console.table([currentOS]); // wrap in array so it's a row
+//   console.log("System Info:");
+//   console.table([currentOS]); // wrap in array so it's a row
 
-  console.log("CPU Usage Per Core:");
-  console.table(getCPUUsage()); // show each core separately
+//   console.log("CPU Usage Per Core:");
+//   console.table(getCPUUsage()); // show each core separately
 
-  console.log(`Server running at ${config.appUrl}\n`.yellow);
-}, 3000);
+//   console.log(`Server running at ${config.appUrl}\n`.yellow);
+// }, 3000);
