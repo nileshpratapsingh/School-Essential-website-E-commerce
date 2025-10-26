@@ -15,6 +15,7 @@ router.route("/chatbot").get(loginProtectedPath,viewsControllers.chatbotRoute);
 router.route("/about").get(viewsControllers.aboutRoute);
 router.route("/account").get(loginProtectedPath,viewsControllers.accountRoute);
 router.route("/refresh-token").get(viewsControllers.refreshTokenRoute)
+router.route("/api").get(viewsControllers.configAPIUrl);
 // POST routes
 router.route("/contact/contact_form").post(viewsControllers.contactingMessage);
 
