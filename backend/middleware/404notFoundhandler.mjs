@@ -4,5 +4,6 @@ export function notFoundHandler(req, res, next) {
     statusText: "Not Found",
     message: "The page you are looking for does not exist.",
     errorDetails: "May be underconstruction...",
+    loginButton: false,
   });
 }
