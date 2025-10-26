@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (containsBadWords(lowerMessage)) {
       setTimeout(() => {
         appendIncomingMessage(
-          "⚠️ Teri Maa Chod dalunga Betichod\nTameez me bol kar\nRandi ke"
+          "⚠️ Teri Maiya Chod dalunga Betichod ke\nTameez me bola kar\nRandi ke\nHatt Bhadwa sala\nTeri maa ko choda 4 baar..."
         );
       }, 1000);
       return;
