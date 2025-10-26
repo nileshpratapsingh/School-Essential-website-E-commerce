@@ -104,19 +104,19 @@ app.use(
 
 //sessions
 
-app.use(
-  session({
-    secret: config.session.secret,
-    resave: false,
-    saveUninitialized: true,
-    cookie: {
-      secure: false,
-      sameSite: "lax",
-      httpOnly: true,
-      maxAge: Number(config.session.maxAge),
-    },
-  })
-);
+// app.use(
+//   session({
+//     secret: config.session.secret,
+//     resave: false,
+//     saveUninitialized: true,
+//     cookie: {
+//       secure: false,
+//       sameSite: "lax",
+//       httpOnly: true,
+//       maxAge: Number(config.session.maxAge),
+//     },
+//   })
+// );
 
 // Prevent Directory Traversal
 
