@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+            <%- include('../partials/sidebar') %>
+                <form action="/add-product" method="POST" id="productForm" enctype="multipart/form-data">
+                    <h2>Add New Product</h2>
+
+                    <label>Title:</label>
+                    <input type="text" name="title" required><br>
+                    <label>Category:</label>
+                    <div id="category-container">
+                        <input type="text" name="category" placeholder="(e.g stationary or uniform)">
+                    </div>
+                    <button type="button" id="addCategory">➕ Add Category</button>
+                    <br>
+                    <label>Sub-Category:</label>
+                    <div id="sub-category-container">
+                        <input type="text" name="subCategory" placeholder="e.g pencil or shirt" required>
+                    </div>
+                    <button type="button" id="addSubCategory">➕ Add Sub-Category</button>
+                    <br>
+
+                    <label>Rating:</label>
+                    <input type="number" name="rating" min="0" max="5" required><br>
+
+                    <label>Price:</label>
+                    <input type="number" name="price" min="0" required><br>
+
+                    <label for="image">Product Image</label>
+                    <div class="upload-container">
+                        <input type="file" name="productImage" id="fileInput" accept="image/*">
+                        <img id="preview" src="" alt="Image Preview" style="display:none; max-width:300px;">
+                    </div>
+
+                    <label>Description:</label>
+                    <textarea name="description"></textarea><br>
+
+                    <h3>Features</h3>
+                    <div id="featuresContainer">
+                        <input type="text" name="features[]" placeholder="Feature">
+                    </div>
+                    <button type="button" id="addFeature">➕ Add Feature</button>
+
+                    <h3>Specifications</h3>
+                    <div id="specsContainer">
+                        <div class="spec">
+                            <input type="text" name="specKeys[]" placeholder="Key (e.g., color)">
+                            <input type="text" name="specValues[]" placeholder="Value (e.g., White)">
+                        </div>
+                    </div>
+                    <button type="button" id="addSpec">➕ Add Spec</button>
+
+                    <br><br>
+                    <button type="submit">Submit Product</button>
+                    <button type="reset">Reset</button>
+                </form>
+                <%- include('../partials/footer') %>
+    </body>
+
+</html>
