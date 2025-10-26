@@ -1,17 +1,18 @@
-# 🛍️ Ecommerce Website - School Essentials 🎒📚
+-# 🛍️ Ecommerce Website - School Essentials 🎒📚
 
 ## 📌 Overview
 
-This is an eCommerce website designed for selling school uniforms, accessories, and stationery items. The platform provides an easy shopping experience for students, parents, and schools looking for high-quality educational supplies. 
+This is an eCommerce website designed for selling school uniforms, accessories, and stationery items. The platform provides an easy shopping experience for students, parents, and schools looking for high-quality educational supplies.
 
 ## Preview
 
-![Shree Namrata Desktop preview](frontend/public/Images/front%201.png "Front view")
-![Shree Namrata Desktop preview](frontend/public/Images/front%202.png "Front view")
-![Shree Namrata Desktop preview](frontend/public/Images/front%203.png "Front view")
-![Shree Namrata Desktop preview](frontend/public/Images/product%20preview.png "Product view")
-![Shree Namrata Mobile preview](frontend/public/Images/mobile%20view.png "Mobile view")
-![Shree Namrata MObile sidebar preview](frontend/public/Images/sidebar.png "Mobile Sidebar view")
+![Shree Namrata Desktop preview](https://res.cloudinary.com/de4cxdtfv/image/upload/v1761470724/front_1_ztjuch.png "Front view")
+![Shree Namrata Desktop preview](https://res.cloudinary.com/de4cxdtfv/image/upload/v1761470724/front_2_x9xe0r.png "Front view")
+![Shree Namrata Desktop preview](https://res.cloudinary.com/de4cxdtfv/image/upload/v1761470729/front_3_tykh53.png "Front view")
+![Shree Namrata Desktop preview](https://res.cloudinary.com/de4cxdtfv/image/upload/v1761470742/product_preview_dl9sn5.png "Product view")
+![Shree Namrata Error-page preview](https://res.cloudinary.com/de4cxdtfv/image/upload/v1761494580/Screenshot_2025-10-26_212744_m1ybwv.png "Error Dyanmic Page")
+![Shree Namrata Mobile preview](https://res.cloudinary.com/de4cxdtfv/image/upload/v1761470735/mobile_view_ypgldz.png "Mobile view")
+![Shree Namrata Mobile sidebar preview](https://res.cloudinary.com/de4cxdtfv/image/upload/v1761470746/sidebar_phvqts.png "Mobile Sidebar view")
 
 ## ✨ Features
 
@@ -31,14 +32,14 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
 
 ## 🛠️ Technologies Used
 
-- **Frontend**: HTML, CSS, JavaScript , JQuery , ejs 
-- **Backend**: Node.js, Express.js 
-- **Database**: MongoDB 
+- **Frontend**: HTML, CSS, JavaScript , JQuery , EJS
+- **Backend**: Node.js, Express.js
+- **Database**: MongoDB,Cloudinary
 - **DevOps**: Git,Github,Docker
-- **Icons**: Ionicons 
-- **Styling**: Poppins Font, Gradient Backgrounds 
+- **Icons**: Ionicons
+- **Styling**: Poppins Font, Gradient Backgrounds
 
-##  Installation
+## Installation
 
 1. Clone the repository:
    ```sh
@@ -65,16 +66,19 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
    ```
    npm run start
    ```
+
 ## Project Structure
+
 ```
 my website
-│       
+│
 ├───backend
 │   ├───config
 │   ├───controller
+│   ├───middleware
 │   ├───models
 │   ├───routes
-│   └───src
+│   └───utility
 └───frontend
     └───public
         ├───Animation
@@ -87,14 +91,18 @@ my website
             ├───partials
             └───school-components
 ```
+
 ### 📂 backend
+
 - `config/` – Configuration files like DB, environment setup.
 - `controller/` – Request handlers (business logic).
+- `middleware/` – Protected,admin protected routes etc, definitions.
 - `models/` – MongoDB or Mongoose schemas.
 - `routes/` – API route definitions.
-- `src/` – App-level files (entry point, middleware, etc.)
+- `utility/` – Utility functions files (genrate token, genrate access token etc.)
 
 ### 📂 frontend/public
+
 - `Animation/` – Lottie or SVG animation files.
 - `Images/` – Static images.
 - `scripts/` – JavaScript frontend logic.
@@ -105,14 +113,13 @@ my website
   - `partials/` – Reusable template components.
   - `school-components/` – Custom components for school use.
 
-
 ## 🤝 Contributing
 
-We welcome contributions! Feel free to submit pull requests for improvements. 
+We welcome contributions! Feel free to submit pull requests for improvements.
 
 ## 📜 License
 
-This project is open-source and available under the [MIT License](LICENSE). 
+This project is open-source and available under the [MIT License](LICENSE).
 
 ## 🌟 Contact
 
@@ -121,4 +128,3 @@ For any queries or suggestions, feel free to reach out:
 - 📧 Email: nileshpratap190902@gmail.com
 - 🌐 Website: [www.ShreeNamrataDressesandTailors.com](#)
 - 📱 Social Media: [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/profile.php?id=100025358221368) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/ShriNamrata7951) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/nilesh_pratap_singh666?igsh=MTlwMHVqMmJlZ2puOA==)
-
