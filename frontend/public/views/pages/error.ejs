@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title><%= statusCode %> - <%= statusText %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>
+    <%= statusCode %> - <%= statusText %>
+  </title>
   <style>
     body {
-      background: #0f172a;
+      background: #000000;
       color: #f8fafc;
       font-family: 'Segoe UI', sans-serif;
       display: flex;
@@ -21,7 +24,7 @@
     h1 {
       font-size: 6rem;
       margin: 0;
-      color: #f87171;
+      color: #ef0e0e;
     }
 
     h2 {
@@ -37,41 +40,100 @@
 
     .details {
       font-size: 0.9rem;
-      color: #94a3b8;
+      color: #e5e8ed;
       margin-top: 1rem;
-      background: #1e293b;
+      background: #464647;
       padding: 1rem;
       border-radius: 8px;
       word-break: break-word;
     }
 
-    a {
+    #middleware-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      gap: 1rem;
       margin-top: 2rem;
+    }
+
+    #middleware-buttons a {
       padding: 0.75rem 1.5rem;
-      background: #f87171;
+      background: #f41818;
       color: #fff;
       border-radius: 8px;
       text-decoration: none;
       transition: background 0.3s ease;
     }
 
-    a:hover {
+    #middleware-buttons a:hover {
       background: #ef4444;
+    }
+
+    .image-text {
+      display: flex;
+      flex-direction: row
+    }
+
+    .image-text img {
+      width: 600px;
+      height: 400px;
+    }
+
+    .info-conatainer {
+      display: block;
+    }
+
+    body {
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+    }
+
+    @media (max-width: 1000px) {
+      .image-text img {
+        display: none;
+      }
     }
   </style>
 </head>
+
 <body>
-  <h1><%= statusCode %></h1>
-  <h2><%= statusText %></h2>
-  <p><%= message %></p>
+  <div class="image-text">
+    <% if(statusCode===401){ %>
+      <img src="https://res.cloudinary.com/de4cxdtfv/image/upload/v1761480985/Screenshot_2025-10-26_172521_j56dnv.png"
+        alt="">
+      <% }else{ %>
+        <img
+          src="https://res.cloudinary.com/de4cxdtfv/image/upload/v1761477118/Gemini_Generated_Image_hw53h2hw53h2hw53_1_bgaoef.png"
+          width="900" height="400" alt="">
+        <% } %>
+  </div>
+  <div class="info-conatainer">
+    <h1>
+      <%= statusCode %>
+    </h1>
+    <h2>
+      <%= statusText %>
+    </h2>
+    <p>
+      <%= message %>
+    </p>
 
-  <% if (errorDetails) { %>
-    <div class="details">
-      <strong>Error Details:</strong>
-      <pre><%= errorDetails %></pre>
-    </div>
-  <% } %>
+    <% if (errorDetails) { %>
+      <div class="details">
+        <strong>Error Details:</strong>
+        <pre><%= errorDetails %></pre>
+      </div>
+      <% } %>
+        <div id="middleware-buttons">
 
-  <a href="/" onclick="event.preventDefault(); history.back();">Go Back</a>
+          <a href="/" onclick="event.preventDefault(); history.back();">Go Back</a>
+          <% if (loginButton) { %>
+
+            <a href="/login">Login</a>
+            <% } %>
+        </div>
+  </div>
 </body>
+
 </html>
