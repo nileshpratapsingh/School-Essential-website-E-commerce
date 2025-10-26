@@ -19,9 +19,13 @@ $(async function () {
             <a href="/admin-dashboard"><ion-icon name="speedometer"></ion-icon> Dashboard</a>
           </li>
         `);
+        $(".nav-links big").append(`
+            <a href="/admin-dashboard"><ion-icon name="speedometer"></ion-icon> Dashboard</a>
+          `);
       }
     } else {
       $(".sidebar-main-li .dashboard-item").remove();
+      $(".nav-links .dashboard-item").remove();
     }
   } catch (err) {
     console.error("Error fetching admin data:", err);
@@ -247,7 +251,7 @@ $(async function () {
         <button type="button" class="remove-sub-category">✖</button>
       </div>`);
   });
-  
+
   // Remove Spec
   $(document).on(
     "click",
@@ -256,5 +260,4 @@ $(async function () {
       $(this).parent().remove();
     }
   );
-  
 });
