@@ -9,61 +9,72 @@
                     <div class="product-container">
                         <div class="product-page">
                             <div class="product-image">
-                                <img src="<%= product.image %>" alt="Product Image">
+                                <img src="<%= product.productImage %>" alt="Product Image">
                             </div>
 
                             <div class="product-details">
                                 <div class="product-title">
                                     <%= product.title %>
                                 </div>
-                                <div class="product-rating">⭐⭐⭐⭐☆ (<%= product.rating %>/5)</div>
-                                <div class="product-price">$<%= product.price %>
-                                </div>
+                                <% if(product.rating===5){ %>
+                                    <div class="product-rating">⭐⭐⭐⭐⭐ (<%= product.rating %>/5)</div>
+                                    <% }else if(product.rating===4){ %>
+                                        <div class="product-rating">⭐⭐⭐⭐☆ (<%= product.rating %>/5)</div>
+                                        <% }else if(product.rating===3){ %>
+                                            <div class="product-rating">⭐⭐⭐☆☆ (<%= product.rating %>/5)</div>
+                                            <% }else if(product.rating===2){ %>
+                                                <div class="product-rating">⭐⭐☆☆☆ (<%= product.rating %>/5)</div>
+                                                <% }else if(product.rating===1){ %>
+                                                    <div class="product-rating">⭐☆☆☆☆ (<%= product.rating %>/5)</div>
+                                                    <% }else if(product.rating==0){ %>
+                                                        <div class="product-rating">☆☆☆☆☆ (<%= product.rating %>/5)
+                                                        </div>
+                                                        <% }%>
+                                                            <div class="product-price">₹<%= product.price %>
+                                                            </div>
 
-                                <div class="product-description">
-                                    <%= product.description %>
-                                </div>
+                                                            <div class="product-description">
+                                                                <%= product.description %>
+                                                            </div>
 
-                                <div class="features">
-                                    <h3>Key Features:</h3>
-                                    <ul>
-                                        <% product.features.forEach(feature=> { %>
-                                            <li>
-                                                <%= feature %>
-                                            </li>
-                                            <% }) %>
-                                    </ul>
-                                </div>
+                                                            <div class="features">
+                                                                <h2>Key Features:</h2>
+                                                                <ul>
+                                                                    <% product.features.forEach(feature=> { %>
+                                                                        <li>
+                                                                            <%= feature %>
+                                                                        </li>
+                                                                        <% }) %>
+                                                                </ul>
+                                                            </div>
 
-                                <div class="product-buy">
-                                    <button onclick="addToCart()">Add to Cart</button>
-                                    <button onclick="buyNow()"
-                                        style="background-color: #ffa41c; border: 1px solid #f89808;">Buy Now</button>
-                                </div>
+                                                            <div class="product-buy">
+                                                                <button
+                                                                    onclick="addToCart('<%= product._id %>','<%= product.title%>')">Add
+                                                                    to Cart</button>
+                                                                <a href="/checkout/<%= product._id %>"><button style="background-color: #ffa41c; border: 1px solid #f89808;">Buy Now</button></a>
+                                                            </div>
                             </div>
                         </div>
 
-                        <div class="shipping-info">
-                            <h3>Shipping Information:</h3>
-                            <p>
-                                <%= product.shipping %>
-                            </p>
-                        </div>
-
                         <div class="specs">
-                            <h3>Technical Specifications:</h3>
+                            <h2>Technical Specifications:</h2>
                             <ul>
-                                <% for (let key in product.specs) { %>
+                                <% Object.entries(product.specs).forEach(([key, value])=> { %>
                                     <li><strong>
                                             <%= key %>:
                                         </strong>
-                                        <%= product.specs[key] %>
+                                        <%= value %>
                                     </li>
-                                    <% } %>
+                                    <% }) %>
                             </ul>
                         </div>
 
                         <div class="reviews">
+                            <h3>Write Youe Review on this product</h3>
+                            <input type="text" name="customer-review" id="">
+                            <button type="submit">Add</button>
+                            <br>
                             <h3>Customer Reviews:</h3>
                             <ul>
                                 <% product.reviews.forEach(review=> { %>
