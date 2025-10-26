@@ -6,26 +6,64 @@
         <%- include('../partials/header') %>
             <%- include('../partials/sidebar') %>
                 <main>
-                    <section class="products">
-                        <div class="container">
-                            <% product.forEach(item=> { %>
-                                <div class="product">
-                                    <img src="<%= item.imageUrl %>" alt="<%= item.name %>" loading="lazy">
+                    <% if(!findNoProduct){ %>
+                        <section class="products">
+                            <div class="container">
+                                <% displayProduct.forEach(item=> { %>
+                                    <div class="product">
+                                        <a href="product-preview/<%= item._id %>">
+                                            <img src="<%= item.productImage||item.image %>" alt="<%= item.title %>"
+                                                loading="lazy">
 
-                                    <h3>
-                                        <%= item.name %>
-                                    </h3>
-                                    <p>
-                                        <%= item.price %>
-                                    </p>
-                                    <a href="product-preview/<%= item._id %>"><button>Add to cart</button></a>
-                                    <br>
-                                    <p>OR</p>
-                                    <button class="buy" onclick="buyNow()">Buy Now</button>
+                                            <h3>
+                                                <%= item.title %>
+                                            </h3>
+                                            <p id="product-price-font">
+                                                ₹<%= item.price %>/-
+                                            </p>
+                                            <div id="product-cart-button-container">
+                                                <button id="product-buy-btn">Buy
+                                                    Now</button>
+                                        </a>
+                                        <p>OR</p>
+                                        <button id="product-add-to-cart-btn"
+                                            onclick="addToCart('<%= item._id %>','<%= item.title%>')">add to<ion-icon
+                                                name="cart-outline"></ion-icon></button>
+                                    </div>
+                            </div>
+                            <% }) %>
+                        </section>
+                        <div class="pagination">
+                            <% if (currentPage> 1) { %>
+                                <a href="/product?page=<%= currentPage - 1 %>" class="page-btn">Prev</a>
+                                <% } %>
+
+                                    <% for (let i=1; i <=totalPages; i++) { %>
+                                        <% if (i===currentPage) { %>
+                                            <span class="page-btn active">
+                                                <%= i %>
+                                            </span>
+                                            <% } else { %>
+                                                <a href="/product?page=<%= i %>" class="page-btn">
+                                                    <%= i %>
+                                                </a>
+                                                <% } %>
+                                                    <% } %>
+
+                                                        <% if (currentPage < totalPages) { %>
+                                                            <a href="/product?page=<%= currentPage + 1 %>"
+                                                                class="page-btn">Next</a>
+                                                            <% } %>
+                        </div>
+                        <% } %>
+                            <% if(findNoProduct){ %>
+                                <div id="not-found-product-container">
+                                    <img src="https://res.cloudinary.com/de4cxdtfv/image/upload/v1761477118/Gemini_Generated_Image_hw53h2hw53h2hw53_1_bgaoef.png"
+                                        alt="Product-Not-Found-Image">
+                                        <p>Sorry! <br>Your Product "<%= productName||null %>" was not found or may be you spelled it wrong</p>
                                 </div>
-                                <% }) %>
+                                <% } %>
 
-                    </section>
                 </main>
                 <%- include('../partials/footer') %>
     </body>
