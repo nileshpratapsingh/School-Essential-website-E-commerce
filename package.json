@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "bcryptjs": "^3.0.2",
+    "cloudinary": "^1.41.3",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.7",
     "cookies-parser": "^1.2.0",
@@ -19,10 +20,17 @@
     "dotenv": "^17.2.1",
     "ejs": "^3.1.10",
     "express": "^5.1.0",
+    "express-mongo-sanitize": "^2.2.0",
+    "express-rate-limit": "^8.1.0",
+    "helmet": "^8.1.0",
     "modules": "^0.4.0",
     "mongoose": "^8.17.0",
+    "multer": "^2.0.2",
+    "multer-storage-cloudinary": "^4.0.0",
     "nodemon": "^3.1.10",
-    "uuidv4": "^6.2.13"
+    "serve-favicon": "^2.5.1",
+    "uuidv4": "^6.2.13",
+    "xss-clean": "^0.1.4"
   },
   "repository": {
     "type": "git",

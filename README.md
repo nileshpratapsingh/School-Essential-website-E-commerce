@@ -126,5 +126,5 @@ This project is open-source and available under the [MIT License](LICENSE).
 For any queries or suggestions, feel free to reach out:
 
 - 📧 Email: nileshpratap190902@gmail.com
-- 🌐 Website: [www.ShreeNamrataDressesandTailors.com](#)
+- 🌐 Website: [www.ShreeNamrataDressesandTailors.com](https://school-essential-website-e-commerce.onrender.com/)
 - 📱 Social Media: [![Facebook](https://img.shields.io/badge/Facebook-%231877F2.svg?style=for-the-badge&logo=facebook&logoColor=white)](https://www.facebook.com/profile.php?id=100025358221368) [![Twitter](https://img.shields.io/badge/Twitter-%231DA1F2.svg?style=for-the-badge&logo=twitter&logoColor=white)](https://x.com/ShriNamrata7951) [![Instagram](https://img.shields.io/badge/Instagram-%23E4405F.svg?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/nilesh_pratap_singh666?igsh=MTlwMHVqMmJlZ2puOA==)
