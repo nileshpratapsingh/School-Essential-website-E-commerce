@@ -2,15 +2,15 @@
     <span class="container" id="logo">
         <a href="/" class="logo-link">
             <video autoplay loop muted playsinline width="120">
-                <source src="/animation/logo.mp4" type="video/mp4">
-                Your browser does not support the video tag.
+                <source src="https://res.cloudinary.com/de4cxdtfv/video/upload/v1760556090/Tailor_Shop_ey66zn.mp4" type="video/mp4">
+                Your browser does not support the video.
             </video>
         </a>
     </span>
 
     <div class="search-container">
-        <input type="text" class="search-input" placeholder="Search for products..." name="searchBar">
-        <button class="search-button" onclick="submitSearch()">
+        <input type="text" class="search-input" placeholder="Search for products..." name="searchBar" id="searchBar">
+        <button class="search-button" onclick="submitSearch()" id="searchButton">
             <span>Search</span>
             <ion-icon name="search"></ion-icon>
         </button>
@@ -19,19 +19,20 @@
 
     <div class="nav-links">
         <big>
-            <a href="../contact"><ion-icon name="call"></ion-icon> Contacts</a>
-            <a href="../order"><ion-icon name="cube-outline"></ion-icon> Orders</a>
-            <a href="../cart"><ion-icon name="cart-outline"></ion-icon> Cart</a>
-            <a href="../account"> <ion-icon name="person-circle-outline"></ion-icon> Account</a>
-            <a href="../chatbot"><ion-icon name="help-circle-outline"></ion-icon> Help</a>
-            <a href="../about"><ion-icon name="document-text"></ion-icon>About Us</a>
+            <a href="/contact"><ion-icon name="call"></ion-icon> Contacts</a>
+            <a href="/order"><ion-icon name="cube-outline"></ion-icon> Orders</a>
+            <a href="/cart"><ion-icon name="cart-outline"></ion-icon> Cart</a>
+            <a href="/account"> <ion-icon name="person-circle-outline"></ion-icon> Account</a>
+            <a href="/chatbot"><ion-icon name="help-circle-outline"></ion-icon> Help</a>
+            <a href="/about"><ion-icon name="document-text"></ion-icon>About Us</a>
         </big>
     </div>
 
     <div class="auth-buttons">
-        <a href="../login"><button class="login-btn">Login</button></a>
-        <a href="../signUp"><button class="signup-btn">Sign Up</button></a>
+        <a href="/login"><button class="login-btn">Login</button></a>
+        <a href="/signUp"><button class="signup-btn">Sign Up</button></a>
+        <a href="/logout"><button class="logout-btn">Logout</button></a>
     </div>
 
-    <button class="menu-toggle" onclick="toggleMenu()">☰</button>
+    <button class="menu-toggle">☰</button>
 </header>
