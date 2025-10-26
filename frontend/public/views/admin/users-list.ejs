@@ -6,6 +6,7 @@
     <body>
         <%- include('../partials/header') %>
             <%- include('../partials/sidebar') %>
+            <h1 class="slide-down">Total users:<%= totalUsers %></h1>
                 <main class="user-card-container">
                     <% users.forEach(user=> { %>
                         <div class="user-card">
@@ -44,6 +45,17 @@
                                 <p><strong>Joined:</strong>
                                     <%= user.createdAt.toLocaleString() %>
                                 </p>
+                                <p>
+                                    <strong>Status:</strong>
+                                    <% const isOnline=userStatus.some(u=> u.email === user.email);
+                                        %>
+                                        <% if (isOnline) { %>
+                                            <strong style="color: green;">Online</strong>
+                                            <% } else { %>
+                                                <strong style="color: red;">Offline</strong>
+                                                <% } %>
+                                </p>
+
                             </div>
                         </div>
                         <% }) %>
