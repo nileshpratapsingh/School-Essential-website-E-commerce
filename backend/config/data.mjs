@@ -387,10 +387,7 @@ const cartItems = [
   { name: "Navy Trousers", price: 400, quantity: 1 },
 ];
 
-const totalPrice = cartItems.reduce(
-  (sum, item) => sum + item.price * item.quantity,
-  0
-);
+
 
 const user = {
   name: "Nilesh Pratap Singh",
@@ -590,5 +587,62 @@ const demoUsers = [
     password: "hashedpassword10",
   },
 ];
-
-export { previewData, cartItems, totalPrice, user, demoUsers };
+const cartItem =[
+  {
+    id: '68bad06112e6f24bd07933df',
+    title: 'School Bag',
+    price: ' 500',
+    image: 'https://res.cloudinary.com/de4cxdtfv/image/upload/v1757073504/profile_images/tnowvscc00stw827v9q4.png',
+    quantity: 11
+  },
+  {
+    id: '68b8489906fd7eed1eae3791',
+    title: 'Apsara Pencil',
+    price: ' 5',
+    image: 'https://res.cloudinary.com/de4cxdtfv/image/upload/v1756907675/profile_images/i6rh9elhvepew31tllde.jpg',
+    quantity: 8
+  },
+  {
+    id: '68bbfb7fa6340dfbdf69b7e9',
+    title: 'TIFFIN BOX',
+    price: ' 250',
+    image: 'https://res.cloudinary.com/de4cxdtfv/image/upload/v1757150078/profile_images/bg9gygh2toujl4ogfclq.png',
+    quantity: 3
+  },
+  {
+    id: '68b72e295616c1921fa48387',
+    title: 'Luxury Wood-Finish Headphones',
+    price: ' 349.99',
+    image: '',
+    quantity: 3
+  },
+  {
+    id: '68b72e295616c1921fa48385',
+    title: 'Studio Reference Monitors',
+    price: ' 249.99',
+    image: '',
+    quantity: 2
+  },
+  {
+    id: '68b72e295616c1921fa48384',
+    title: 'Open-Ear Bone Conduction Headphones',
+    price: ' 74.99',
+    image: '',
+    quantity: 2
+  },
+  {
+    id: '68b72e295616c1921fa48386',
+    title: 'Budget Wired Earphones',
+    price: ' 9.99',
+    image: '',
+    quantity: 2
+  },
+  {
+    id: '68b72e295616c1921fa48382',
+    title: 'Gaming Headset with Mic',
+    price: ' 89.99',
+    image: '',
+    quantity: 1
+  }
+]
+export { cartItem, previewData, cartItems, user, demoUsers };
