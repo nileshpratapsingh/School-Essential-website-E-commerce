@@ -13,15 +13,12 @@ export function restrictedAfterLogin(req, res, next) {
   if (token) {
     try {
       jwt.verify(token, config.jwt.refreshSecret);
-      // If JWT is valid, block access to login page
       return res.redirect("/account");
     } catch (err) {
-      // Token invalid, let them continue to login page
       console.log("login restricted middleware",err.message);
       return next();
     }
   }
 
-  // No token → allow to proceed (still not logged in)
   return next();
 }
