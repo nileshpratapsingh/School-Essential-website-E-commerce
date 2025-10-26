@@ -1,11 +1,41 @@
+// Import modules
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+
+// Import models
+
 import { Login, signup } from "../models/user.model.mjs";
+
+// Import configurations
+
 import { connectDB } from "../config/database.mjs";
 import { config } from "../config/config.mjs";
+
+// Import Utility
+
 import { generateRefreshToken } from "../utility/refershToken.mjs";
 
+//Frontend API response
+
+async function authButtonToggle(req, res) {
+  try {
+    const token =
+      req.cookies.refreshToken || req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      console.log("No token for auth button");
+      return res.send(false);
+    }
+
+    return res.send(true);
+  } catch (error) {
+    console.log("Check auth controller in authButtonToggle", error.message);
+    return res.status(500).send(error.message);
+  }
+}
+
 // Render login page
+
 function loginRoute(req, res) {
   res.render("pages/login", {
     pageTitle: "Login Page",
@@ -14,11 +44,13 @@ function loginRoute(req, res) {
 }
 
 // Render signup page
+
 function SignUpRoute(req, res) {
   res.render("pages/signUp", { pageTitle: "SignUp Page" });
 }
 
 // Login procedure
+
 async function loginProcedure(req, res) {
   try {
     await connectDB();
@@ -40,8 +72,11 @@ async function loginProcedure(req, res) {
     const newLogin = new Login({
       email,
       password,
+      role: user.role,
     });
+
     await newLogin.save();
+    console.log(user.role);
 
     // Set cookie
     res.cookie("refreshToken", refreshToken, {
@@ -51,14 +86,15 @@ async function loginProcedure(req, res) {
     });
 
     console.log("You're Logged in !!!");
-    return res.redirect("/account");
+    return res.redirect(req.url);
   } catch (error) {
-    console.error(error);
+    console.error("Check login procedure", error.message);
     res.status(500).send("Server error");
   }
 }
 
 // Profile route
+
 async function profileRoute(req, res) {
   try {
     const token =
@@ -74,14 +110,45 @@ async function profileRoute(req, res) {
     }
 
     const user = await signup.findById(decoded.userId);
-    res.render("pages/profile", { user });
+    res.render("pages/profile", { pageTitle: "User Profile", user });
   } catch (err) {
     console.error("Profile route error:", err.message);
     res.status(401).send("Invalid or expired token(Profile Route)");
   }
 }
 
+//edit profile
+
+async function editProfile(req,res){
+  try {
+    let profileId = req.params.id
+    let token =
+      req.cookies.refreshToken || req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res
+        .status(401)
+        .json({ message: "Not logged in (no token found)" });
+    }
+
+    if (typeof token === "string" && token.startsWith("Bearer ")) {
+      token = token.split(" ")[1];
+    }
+
+    const decoded = jwt.verify(token, config.jwt.refreshSecret);
+
+    const user = await signup.findOne(profileId);
+
+    res.render("pages/edit-profile")
+  } catch (error) {
+    console.error("Profile edit route error:", err.message);
+    res.status(401).send(error.name);
+    
+  }
+}
+
 // Logout route
+
 async function logoutRoute(req, res) {
   try {
     let token =
@@ -120,6 +187,7 @@ async function logoutRoute(req, res) {
 }
 
 // Signup procedure
+
 async function SignUpProcedure(req, res) {
   try {
     const {
@@ -154,13 +222,22 @@ async function SignUpProcedure(req, res) {
     }
 
     const hashedPassword = await bcrypt.hash(String(password), 10);
-    const profileImage = req.file ? `/uploads/${req.file.filename}` : null;
+
+    console.log("Uploading image to Cloudinary...".blue);
+
+    if (req.file) {
+      console.log("Cloudinary upload success!".green);
+      console.log("Cloudinary File Info:", req.file); // full response from Cloudinary
+      console.log("Image URL:", req.file.path); // actual image URL
+    } else {
+      console.log("No image uploaded!".red);
+    }
 
     const newUser = new signup({
       firstName,
       middleName,
       lastName,
-      profileImage,
+      profileImage: req.file?.path || null, // Cloudinary URL
       phoneNumber,
       alternatePhone,
       email,
@@ -180,11 +257,14 @@ async function SignUpProcedure(req, res) {
     res.redirect("/login?message=Signup successful! Please login.");
   } catch (error) {
     console.error("Signup error:", error.message);
+    console.log("check signup procedure");
     res.status(500).send("Server Error!");
   }
 }
 
 const authController = {
+  authButtonToggle,
+  editProfile,
   loginRoute,
   loginProcedure,
   logoutRoute,
