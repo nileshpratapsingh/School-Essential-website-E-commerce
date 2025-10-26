@@ -1,9 +1,13 @@
 //========= Importing Data Sets ==========
+
 import { stateCityData, schoolHouseData } from "./data-sets.js";
 
 //========= DOMContentLoaded ==========
-document.addEventListener("DOMContentLoaded", function () {
+
+document.addEventListener("DOMContentLoaded", async function () {
+  
   //========= Sidebar Toggle ==========
+
   const sidebar = document.querySelector(".sidebar");
   const menuToggleButton = document.querySelector(".menu-toggle");
   const closeButton = document.querySelector(".close-btn");
@@ -15,32 +19,63 @@ document.addEventListener("DOMContentLoaded", function () {
   if (menuToggleButton) menuToggleButton.addEventListener("click", toggleMenu);
   if (closeButton) closeButton.addEventListener("click", toggleMenu);
 
+  //==========Admin Control Triggers============
+  
+  try {
+    const getAdminData = await apiCall.adminData; // apiCall
+
+    if (getAdminData === true) {
+      if (!document.querySelector(".sidebar-main-li .dashboard-item")) {
+        document.querySelector(".sidebar-main-li big").insertAdjacentHTML(
+          "beforeend",
+          `
+          <li class="dashboard-item">
+            <a href="/admin-dashboard"><ion-icon name="speedometer"></ion-icon> Dashboard</a>
+          </li>
+        `
+        );
+      }
+    } else {
+      const dashboardItem = document.querySelector(
+        ".sidebar-main-li .dashboard-item"
+      );
+      if (dashboardItem) dashboardItem.remove();
+    }
+  } catch (err) {
+    console.error("Error fetching admin data:", err);
+  }
+
+  //==========Auth Button Triggers============
+  try {
+    const isLoggedIn = await apiCall.buttonData;
+
+    if (isLoggedIn) {
+      document
+        .querySelectorAll(
+          ".Auth-login-btn, .Auth-signup-btn, .login-btn, .signup-btn"
+        )
+        .forEach((el) => (el.closest("a").style.display = "none"));
+      document
+        .querySelectorAll(".Auth-logout-btn, .logout-btn")
+        .forEach((el) => (el.closest("a").style.display = "inline-block"));
+    } else {
+      document
+        .querySelectorAll(
+          ".Auth-login-btn, .Auth-signup-btn, .signup-btn, .login-btn"
+        )
+        .forEach((el) => (el.closest("a").style.display = "inline-block"));
+      document
+        .querySelectorAll(".Auth-logout-btn, .logout-btn")
+        .forEach((el) => (el.closest("a").style.display = "none"));
+    }
+  } catch (err) {
+    console.error("Auth toggle error:", err);
+  }
   //==========search history===========
   const searchInput = document.getElementById("search-input");
   const historyList = document.getElementById("search-history");
   const searchButton = document.getElementById("search-button"); // Fixed typo
   let searchHistory = [];
-
-  function submitSearch() {
-    const term = searchInput.value.trim();
-    if (!term) return;
-
-    // Avoid duplicates
-    if (!searchHistory.includes(term)) {
-      searchHistory.unshift(term);
-      if (searchHistory.length > 7) searchHistory.pop(); // limit to 7 items
-    }
-
-    // send to backend
-    fetch("http://localhost:3500/search", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ searchBar: term }),
-    });
-
-    updateDropdown();
-    searchInput.value = "";
-  }
 
   if (searchButton) searchButton.addEventListener("click", submitSearch);
 
@@ -111,6 +146,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   //========= Form Validation ==========
+  
   const form = document.getElementById("signup-form");
   if (form) {
     form.addEventListener("submit", function (event) {
@@ -252,8 +288,10 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  if (genderSelect) genderSelect.addEventListener("change", updateUniformDisplay);
-  if (uniformSelect) uniformSelect.addEventListener("change", updateUniformDisplay);
+  if (genderSelect)
+    genderSelect.addEventListener("change", updateUniformDisplay);
+  if (uniformSelect)
+    uniformSelect.addEventListener("change", updateUniformDisplay);
 
   // --- Add to Cart Button Logic ---
   function checkQuantities() {
@@ -284,23 +322,23 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 //========= Loading Screen on Signup ==========
-const signupFormLoading = document.getElementById('signup-form'); // Use consistent ID
-const loadingScreen = document.getElementById('loadingScreen');
-const loadingMessage = document.getElementById('loadingMessage');
+const signupFormLoading = document.getElementById("signup-form"); // Use consistent ID
+const loadingScreen = document.getElementById("loadingScreen");
+const loadingMessage = document.getElementById("loadingMessage");
 
 const messages = [
   "Creating your account...",
   "Adding user to database...",
   "Signing you in...",
-  "Almost done..."
+  "Almost done...",
 ];
 
 if (signupFormLoading && loadingScreen && loadingMessage) {
-  signupFormLoading.addEventListener('submit', function(e) {
+  signupFormLoading.addEventListener("submit", function (e) {
     e.preventDefault(); // prevent normal form submission
 
     // Show loading screen
-    loadingScreen.style.display = 'flex';
+    loadingScreen.style.display = "flex";
 
     let index = 0;
     const interval = setInterval(() => {
