@@ -1,10 +1,51 @@
 import { stateCityData, schoolHouseData } from "./data-sets.js";
 
-$(function () {
+import apiCall from "./api.js";
+
+$(async function () {
   // ===== Sidebar Toggle =====
   $(".menu-toggle, .close-btn").on("click", () =>
     $(".sidebar").toggleClass("active")
   );
+
+  //==========Admin Controll Triggers============
+  try {
+    const getAdminData = await apiCall.adminData;
+
+    if (getAdminData === true) {
+      if ($(".sidebar-main-li .dashboard-item").length === 0) {
+        $(".sidebar-main-li big").append(`
+          <li class="dashboard-item">
+            <a href="/admin-dashboard"><ion-icon name="speedometer"></ion-icon> Dashboard</a>
+          </li>
+        `);
+      }
+    } else {
+      $(".sidebar-main-li .dashboard-item").remove();
+    }
+  } catch (err) {
+    console.error("Error fetching admin data:", err);
+  }
+
+  //==========Auth Button Triggers============
+
+  try {
+    const isLoggedIn = await apiCall.buttonData;
+
+    if (isLoggedIn) {
+      $(".Auth-login-btn, .Auth-signup-btn, .login-btn, .signup-btn")
+        .closest("a")
+        .hide();
+      $(".Auth-logout-btn, .logout-btn").closest("a").show();
+    } else {
+      $(".Auth-login-btn, .Auth-signup-btn, .signup-btn, .login-btn")
+        .closest("a")
+        .show();
+      $(".Auth-logout-btn, .logout-btn").closest("a").hide();
+    }
+  } catch (err) {
+    console.error("Auth toggle error:", err);
+  }
 
   // ===== Sticky Header =====
   let prevScroll = window.pageYOffset;
@@ -111,25 +152,31 @@ $(function () {
     e.preventDefault();
     $("#loadingOverlay").css("display", "flex");
 
+    const formData = new FormData(this); // includes text + file inputs
+
     $.ajax({
       url: "/signup",
       method: "POST",
-      data: $(this).serialize(),
+      data: formData,
+      contentType: false,
+      processData: false,
 
       success: function (res) {
-        $("#loadingOverlay p").text("Account created successfully");
-
+        $("#loadingOverlay p").text(
+          res.message || "Account created successfully"
+        );
         setTimeout(() => {
           window.location.href = "/login";
         }, 1500);
       },
 
-      error: function () {
-        $("#loadingOverlay p").text("Something went wrong");
-
+      error: function (xhr) {
+        console.error("Signup AJAX Error:", xhr.responseText);
+        $("#loadingOverlay p").text(
+          "Something went wrong: " + xhr.responseText
+        );
         setTimeout(() => {
           $("#loadingOverlay").fadeOut();
-          window.location.href = "/account";
         }, 2000);
       },
     });
@@ -146,19 +193,68 @@ $(function () {
       data: $(this).serialize(),
 
       success: function (res) {
-        $("#loadingOverlay p").text("Loggin in....");
+        $("#loadingOverlay p").text("Loggin in...." + res.responseText);
 
+        window.location.href = "/account";
         setTimeout(() => {
           $("#loadingOverlay").fadeOut();
-        }, 2000);
+        }, 2500);
       },
-      error: function () {
-        $("#loadingOverlay p").text("Invalid email or password");
-
+      error: function (xhr) {
+        console.error("Login AJAX Error:", xhr.responseText);
+        $("#loadingOverlay p").text(
+          "Something went wrong: " + xhr.responseText
+        );
         setTimeout(() => {
           $("#loadingOverlay").fadeOut();
-        }, 2000);
+        }, 2500);
       },
     });
   });
+
+  // Add Feature
+  $("#addFeature").click(function () {
+    $("#featuresContainer").append(
+      '<input type="text" name="features[]" placeholder="Feature">'
+    );
+  });
+
+  // Add Spec
+  $("#addSpec").click(function () {
+    $("#specsContainer").append(`
+      <div class="spec">
+        <input type="text" name="specKeys[]" placeholder="Key (e.g., size)">
+        <input type="text" name="specValues[]" placeholder="Value (e.g., M)">
+        <button type="button" class="removeSpec">✖</button>
+      </div>
+    `);
+  });
+
+  // add category
+  $("#addCategory").click(function () {
+    $("#category-container").append(`  
+      <div class="spec">
+        <input type="text" name="category-values[]" placeholder="Value (e.g., stationary,bags,..etc)">
+        <button type="button" class="remove-category">✖</button>
+      </div>`);
+  });
+
+  // add sub-category
+  $("#addSubCategory").click(function () {
+    $("#sub-category-container").append(`  
+      <div class="spec">
+        <input type="text" name="sub-category-values[]" placeholder="Value (e.g., girls bag, pencil,black pencil,..etc)">
+        <button type="button" class="remove-sub-category">✖</button>
+      </div>`);
+  });
+  
+  // Remove Spec
+  $(document).on(
+    "click",
+    ".removeSpec,.remove-sub-category,.remove-category",
+    function () {
+      $(this).parent().remove();
+    }
+  );
+  
 });
