@@ -58,8 +58,8 @@ async function loginProcedure(req, res) {
     const { email, password } = req.body;
     const user = await signup.findOne({ email });
 
-    if (!user) {
-      return res.redirect("/login?error=Invalid credential");
+    if (!user || user.deprecated === true) {
+      return res.redirect("/login?message=Invalid credential");
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
@@ -119,9 +119,9 @@ async function profileRoute(req, res) {
 
 //edit profile
 
-async function editProfile(req,res){
+async function editProfile(req, res) {
   try {
-    let profileId = req.params.id
+    let profileId = req.params.id;
     let token =
       req.cookies.refreshToken || req.headers.authorization?.split(" ")[1];
 
@@ -139,11 +139,10 @@ async function editProfile(req,res){
 
     const user = await signup.findOne(profileId);
 
-    res.render("pages/edit-profile")
+    res.render("pages/edit-profile");
   } catch (error) {
     console.error("Profile edit route error:", err.message);
     res.status(401).send(error.name);
-    
   }
 }
 
@@ -167,9 +166,10 @@ async function logoutRoute(req, res) {
     const decoded = jwt.verify(token, config.jwt.refreshSecret);
 
     const user = await Login.findOne({ email: decoded.userEmail });
+    
     if (user) {
-      await user.deleteOne();
-      console.log("User deleted:", user);
+      await Login.deleteMany({ email: decoded.userEmail });
+      console.log("All users with that email deleted.");
     }
 
     res.clearCookie("refreshToken", {
@@ -183,6 +183,37 @@ async function logoutRoute(req, res) {
   } catch (err) {
     console.error("Error in logout:", err);
     return res.status(500).json({ message: "Server error during logout" });
+  }
+}
+
+// Delete Profile
+
+async function deleteProfile(req, res) {
+  try {
+    let token =
+      req.cookies.refreshToken || req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res
+        .status(401)
+        .json({ message: "Not logged in (no token found)" });
+    }
+
+    if (typeof token === "string" && token.startsWith("Bearer ")) {
+      token = token.split(" ")[1];
+    }
+
+    const decoded = jwt.verify(token, config.jwt.refreshSecret);
+    const updatedUser = await signup.findOneAndUpdate(
+      { email: decoded.userEmail }, // find by email
+      { $set: { deprecated: true } }, // set deprecated true
+      { new: true } // return updated document
+    );
+    console.log(updatedUser);
+    res.redirect("/logout?message=profile deleted succesfully");
+  } catch (error) {
+    console.log(error.message);
+    console.log("Check Delete profile controller");
   }
 }
 
@@ -264,6 +295,7 @@ async function SignUpProcedure(req, res) {
 
 const authController = {
   authButtonToggle,
+  deleteProfile,
   editProfile,
   loginRoute,
   loginProcedure,
