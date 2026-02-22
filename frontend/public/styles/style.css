@@ -18,7 +18,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #14140f;
+    background: linear-gradient(180deg,rgba(20, 20, 15, 1) 89%, rgba(20, 20, 15, 0) 100%);
     color: white;
     margin-bottom: 20px;
 }
@@ -159,6 +159,7 @@ body {
 }
 
 .signup-btn {
+    padding: 5px;
     background-color: #febd69;
     color: black;
 }
@@ -933,19 +934,19 @@ h2 {
 
 /*Signup form*/
 
-.signup-form {
+form#signup-form {
     background-color: rgb(255, 255, 255);
-    border-radius: 6px;
+    border-radius: 25px;
     padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin: 0 300px 0 300px;
+    border: 1px solid rgba(130, 128, 128, 0.482);
+    margin: 0 50px 0 50px;
 }
 
 main {
     padding: 10px;
 }
 
-.signup-form input[type="name"] {
+form#signup-form input[type="name"] {
     display: block;
     border: 0.5px solid rgba(0, 0, 0, 0.334);
     border-radius: 4px;
@@ -955,7 +956,7 @@ main {
     background: transparent;
 }
 
-.signup-form input[type="password"] {
+form#signup-form input[type="password"] {
     display: block;
     border: 0.5px solid rgba(0, 0, 0, 0.334);
     border-radius: 4px;
@@ -965,7 +966,7 @@ main {
     background: transparent;
 }
 
-.signup-form input[type="date"] {
+form#signup-form input[type="date"] {
     display: block;
     border: 0.5px solid rgba(0, 0, 0, 0.334);
     border-radius: 4px;
@@ -975,7 +976,7 @@ main {
     background: transparent;
 }
 
-.signup-form input[type="text"] {
+form#signup-form input[type="text"] {
     display: block;
     border: 0.5px solid #00000057;
     border-radius: 4px;
@@ -985,7 +986,7 @@ main {
     background: transparent;
 }
 
-.signup-form select {
+form#signup-form select {
     display: block;
     border: 0.5px solid #00000057;
     border-radius: 4px;
@@ -1023,13 +1024,28 @@ img {
 }
 
 .signup-button-container button {
-    background-color: rgba(186, 223, 38, 0.811);
-    padding: 10px;
-    border-radius: 4px;
+    background-color: rgba(255, 204, 0, 0.811);
+    padding: 6px 8px;
+    border-radius: 40px;
     font-size: clamp(13px, 3vw, 18px);
-    border: none;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 1px solid rgba(0, 0, 0, 0.266);
     cursor: pointer;
+}
+
+#signup-reset {
+    background-color: rgba(255, 0, 0, 0.811);
+    padding: 6px 8px;
+    border-radius: 40px;
+    font-size: clamp(13px, 3vw, 18px);
+    border: 1px solid rgba(0, 0, 0, 0.266);
+    cursor: pointer;
+    width: auto;
+    color: white;
+    margin-left: 20px;
+}
+
+#signup-reset:hover {
+    background-color: rgb(170, 1, 1);
 }
 
 .signup-button-container button:hover {
@@ -1037,12 +1053,12 @@ img {
 }
 
 @media screen and (max-width: 990px) {
-    .signup-form {
+    form#signup-form {
         background-color: rgb(255, 255, 255);
-        border-radius: 6px;
+        border-radius: 25px;
         padding: 20px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        margin: 20px;
+        margin: auto;
+        border: 1px solid rgba(130, 128, 128, 0.482);
     }
 }
 
@@ -1408,14 +1424,15 @@ form#productForm button[type="submit"]:hover, button[type="reset"]:hover {
 
 /* Profile Info */
 .profile-info {
-    text-align: left;
     margin-bottom: 2rem;
     padding: 1rem;
     background: #f9fafb;
     border-radius: 12px;
 }
 
+
 .profile-info p {
+    text-align: left;
     font-size: 1rem;
     margin: 0.6rem 0;
     color: #374151;
@@ -1998,7 +2015,22 @@ section h1 {
     justify-content: space-between;
     gap: 10px;
     width: 100%;
+    text-align: center;
+    align-items: center;
 }
+
+#product-status-text p {
+    width: auto;
+    text-align: center;
+}
+
+#product-status-text p {
+    font-size: xx-large;
+    font-weight: 700;
+    color: red;
+    font-family: cursive;
+}
+
 
 #product-add-to-cart-btn,
 #product-buy-btn {
@@ -2036,6 +2068,72 @@ p {
     text-align: center;
 }
 
+#product-control-button-container {
+    width: auto;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    text-align: center;
+    align-items: center;
+}
+
+#product-edit-btn {
+    width: auto;
+    padding: 5px 7px;
+    border-radius: 100px;
+    background-color: #0984ff;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+#product-remove-btn {
+    width: auto;
+    padding: 6px;
+    border-radius: 100px;
+    background-color: red;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+#in-stock-btn {
+    width: auto;
+    padding: 5px;
+    border-radius: 100px;
+    background-color: green;
+    color: white;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1em;
+}
+
+#out-stock-btn {
+    width: auto;
+    padding: 5px;
+    border-radius: 100px;
+    background-color: #d5c812;
+    color: black;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1em;
+    border: 1px solid #4a5a6a;
+}
+
+#product-status-text {
+    width: auto;
+    padding: 10px;
+}
+
+#product-edit-btn:hover {
+    background-color: #025ab8;
+}
+
+#out-stock-btn:hover {
+    background-color: #e69500;
+}
 
 @media (max-width: 1024px) {
     .product {
@@ -2115,6 +2213,7 @@ p {
 
 #not-found-product-container p {
     font-size: 2rem;
+    font-family: cursive;
     font-weight: 600;
 }
 
@@ -2697,12 +2796,20 @@ p {
     text-align: center;
 }
 
+.user-image {
+    text-align: left;
+}
+
 .user-image img {
     width: 120px;
     height: 120px;
-    border-radius: 50%;
+    border-radius: 7%;
     object-fit: cover;
-    border: 3px solid #56def0;
+    border: 2px solid #56def0;
+}
+
+.user-details h2 {
+    text-align: left;
 }
 
 .user-details h2 {
@@ -2716,6 +2823,21 @@ p {
     color: #555;
 }
 
+.role-switch-button button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #ff0000;
+    color: white;
+    border: solid 1px #880000;
+    border-radius: 80px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+.role-switch-button button:hover {
+    background-color: #b30000;
+}
 
 /*About Page*/
 
@@ -2736,8 +2858,8 @@ p {
 .about-text {
     background: #fff2cf;
     padding: 2.5rem;
-    border-radius: 18px;
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+    border-radius: 20px;
+    border: solid 1px rgba(0, 0, 0, 0.213);
     line-height: 1.8;
     font-size: 1.05rem;
     transition: all 0.3s ease;
@@ -2851,11 +2973,10 @@ footer {
     color: #fff;
     padding: 10px;
     text-align: center;
-    border-radius: 8px 8px 0 0;
     margin-top: auto;
-    background-color: #14140f;
+    background: #14140F;
+    background: linear-gradient(360deg,rgba(20, 20, 15, 1) 85%, rgba(20, 20, 15, 0) 100%);
 }
-
 footer p {
     margin-bottom: 10px;
     font-size: 0.9rem;
