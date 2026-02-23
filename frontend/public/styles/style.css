@@ -605,6 +605,16 @@ h2 {
     padding: 20px;
     gap: 20px;
     flex-wrap: wrap;
+    text-align:center;
+}
+
+.cart-container img {
+    width: 400px;
+    height: auto;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease;
 }
 
 
@@ -1841,7 +1851,8 @@ section h1 {
 
 .animated-list {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(150px, 250px));
+    justify-content: center;
     gap: 20px;
     list-style: none;
     padding: 0;
@@ -2939,33 +2950,31 @@ p {
     font-size: 1.5em;
     color: #444;
 }
-
-.loading-spinner {
-    border: 8px solid #eee;
-    border-top: 8px solid #ff6f00;
-    /* E-commerce orange */
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    animation: spin 1s linear infinite;
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid #0000;
+  border-right-color: #2654de97;
+  position: relative;
+  animation: l24 1s infinite linear;
 }
-
-#loadingOverlay p {
-    margin-top: 15px;
-    font-size: 1.2em;
-    color: #222;
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: inherit;
+  animation: inherit;
+  animation-duration: 2s;
 }
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
+.loader:after {
+  animation-duration: 4s;
 }
-
+@keyframes l24 {
+  100% {transform: rotate(1turn)}
+}
 
 /* Footer */
 footer {
