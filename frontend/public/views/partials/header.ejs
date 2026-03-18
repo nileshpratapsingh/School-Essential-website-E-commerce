@@ -1,4 +1,5 @@
 <header class="header">
+<%- include('../partials/loading-screen') %>
     <span class="container" id="logo">
         <a href="/" class="logo-link">
             <video autoplay loop muted playsinline width="120">
@@ -29,9 +30,9 @@
     </div>
 
     <div class="auth-buttons">
-        <a href="/login"><button class="login-btn">Login</button></a>
+        <a href="/login"onclick ="loginResponse()"><button class="login-btn">Login</button></a>
         <a href="/signUp"><button class="signup-btn">Sign Up</button></a>
-        <a href="/logout"><button class="logout-btn">Logout</button></a>
+        <a href="/logout"onclick ="logoutResponse()"><button class="logout-btn" >Logout</button></a>
     </div>
 
     <button class="menu-toggle">☰</button>
