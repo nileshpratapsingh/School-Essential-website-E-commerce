@@ -1,43 +1,91 @@
 import express from "express";
-import authController from "../controller/auth.controller.mjs";
-import adminController from "../controller/admin.controller.mjs";
 import cloudinaryUpload from "../middleware/cloudinaryUpload.mjs";
-import { adminProtectedPath } from "../middleware/adminProtectedPath.mjs";
-import { restrictedAfterLogin } from "../middleware/loginRestriction.mjs";
+import { AuthController } from "../controller/auth.controller.mjs";
 import { loginProtectedPath } from "../middleware/loginProtectedPath.mjs";
+import { restrictedAfterLogin } from "../middleware/loginRestriction.mjs";
 
-const authRouter = express.Router();
+const AC = new AuthController();
 
-authRouter
-  .route("/signup")
-  .get(restrictedAfterLogin, authController.SignUpRoute)
-  .post(
-    cloudinaryUpload.single("profileImage"),
-    authController.SignUpProcedure
-  );
+class AuthRouter {
+    /*
+     * Route and their methods as private member of class
+     * Better for maintainance and adding more routes & methods in future
+     */
+    // Open GET routes
 
-authRouter
-  .route("/login")
-  .get(restrictedAfterLogin, authController.loginRoute)
-  .post(authController.loginProcedure);
+    #openGetRoutesAndMethods = {
+        "/auth": AC.authButtonToggle,
+    };
 
-authRouter
-  .route("/logout")
-  .get(loginProtectedPath, authController.logoutRoute);
+    // Restricted after login GET routes
+    #restrictedAfterLoginGetRoutesAndMethods = {
+        "/signup": AC.SignUpRoute,
+        "/login": AC.loginRoute,
+    };
 
-authRouter
-  .route("/profile")
-  .get(loginProtectedPath, authController.profileRoute);
+    // Login protected GET routes
+    #loginProtectedGetRoutesAndMethods = {
+        "/logout": AC.logoutRoute,
+        "/delete-profile": AC.deleteProfile,
+        "/profile": AC.profileRoute,
+        "/edit-profile/:id": AC.editProfile,
+    };
 
-authRouter
-  .route("/edit-profile/:id")
-  .get(loginProtectedPath, authController.editProfile);
-authRouter
-  .route("/admin-dashboard")
-  .get(adminProtectedPath, adminController.dashboardRoute);
+    // Open POST routes
+    #openPostRoutesAndMethods = {
+        "/login": AC.loginProcedure,
+    };
 
-authRouter
-  .route("/auth")
-  .get(authController.authButtonToggle);
+    // Special POST route with upload middleware
+    #signupPostRoutesAndMethods = {
+        "/signup": [
+            cloudinaryUpload.single("profileImage"),
+            AC.SignUpProcedure,
+        ],
+    };
 
-export default authRouter;
+    constructor() {
+        this.router = express.Router();
+        this.initializeRoutes();
+    }
+
+    initializeRoutes() {
+
+        // Open GET
+        Object.entries(this.#openGetRoutesAndMethods).forEach(([path, handler]) => {
+            this.router
+                .route(path)
+                .get(handler);
+        });
+
+        // Restricted After Login GET
+        Object.entries(this.#restrictedAfterLoginGetRoutesAndMethods).forEach(([path, handler]) => {
+            this.router
+                .route(path)
+                .get(restrictedAfterLogin, handler);
+        });
+
+        // Login Protected GET
+        Object.entries(this.#loginProtectedGetRoutesAndMethods).forEach(([path, handler]) => {
+            this.router
+                .route(path)
+                .get(loginProtectedPath, handler);
+        });
+
+        // Open POST
+        Object.entries(this.#openPostRoutesAndMethods).forEach(([path, handler]) => {
+            this.router
+                .route(path)
+                .post(handler);
+        });
+
+        // Signup POST (with upload middleware)
+        Object.entries(this.#signupPostRoutesAndMethods).forEach(([path, handlers]) => {
+            this.router
+                .route(path)
+                .post(...handlers);
+        });
+    }
+}
+
+export default new AuthRouter().router;
