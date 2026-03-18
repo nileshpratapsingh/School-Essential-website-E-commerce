@@ -73,7 +73,7 @@ async function isSure(userName, userId){
         throw new Error(err);
     }
 }
-function hideUserCard(userid){
+function hideUserCard(userId){
     if(!userId) alert("User Not found!!")
 
 }
