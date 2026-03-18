@@ -1,194 +1,152 @@
-import colors from "colors";
-import { config } from "../config/config.mjs";
+// import models
+
 import Cart from "../models/cart.model.mjs";
 import { signup } from "../models/user.model.mjs";
-import jwt from "jsonwebtoken";
 
-async function saveCart(req, res) {
-  try {
-    const { productId, quantity } = req.body;
-    const token =
-      req.cookies.refreshToken || req.headers.authorization?.split(" ")[1];
+// import utility
 
-    if (!token) return res.status(401).send("No token provided");
+import { TokenUtility } from "../utility/tokenUtility.mjs";
 
-    let decoded;
-    try {
-      decoded = jwt.verify(token, config.jwt.refreshSecret);
-    } catch (err) {
-      decoded = jwt.verify(token, config.jwt.secret);
+export class CartController {
+    static async getUserFromToken(req) {
+        const token = TokenUtility.getToken(req);
+        if (!token) throw new Error("No token provided");
+
+        const decoded = TokenUtility.verifyToken(token);
+
+        const user = decoded.userId
+            ? await signup.findById(decoded.userId)
+            : await signup.findOne({ email: decoded.userEmail });
+
+        if (!user) throw new Error("User not found");
+
+        return user;
     }
 
-    const user = await signup.findById(decoded.userId);
-    // console.log(req.body);
-    // console.log(token);
-    // console.log("the decode email is :", decoded.userEmail);
-    // console.log(user);
-    if (!user)
-      return res
-        .status(404)
-        .json({ error: "User not found:save cart controller" });
+    async saveCart(req, res) {
+        try {
+            const { productId, quantity } = req.body;
+            if (!productId || quantity <= 0)
+                return res.status(400).json({ error: "Invalid product or quantity" });
 
-    let cart = await Cart.findOne({ userId: user._id });
+            const user = await CartController.getUserFromToken(req);
 
-    if (!cart) {
-      cart = new Cart({ userId: user._id, items: [] });
+            const cart =
+                (await Cart.findOne({ userId: user._id })) ||
+                new Cart({ userId: user._id, items: [] });
+
+            const item = cart.items.find((i) => i.productId.equals(productId));
+
+            if (item) {
+                item.quantity += quantity;
+            } else {
+                cart.items.push({ productId, quantity });
+            }
+
+            cart.updatedAt = Date.now();
+            await cart.save();
+
+            res.json({ message: "Cart saved successfully", cart });
+        } catch (error) {
+            console.error("saveCart error:", error);
+            res.status(401).json({ error: error.message });
+        }
     }
 
-    const existingItem = cart.items.find((item) =>
-      item.productId.equals(productId)
-    );
+    async cartRoute(req, res) {
+        try {
+            const user = await CartController.getUserFromToken(req);
 
-    if (existingItem) {
-      existingItem.quantity += quantity;
-    } else {
-      cart.items.push({ productId, quantity });
+            const cart = await Cart.findOne({ userId: user.id }).populate(
+                "items.productId",
+            );
+
+            if (!cart || cart.items.length === 0) {
+                return res.render("pages/cart", {
+                    userId: user._id,
+                    cart: [],
+                    total: 0,
+                    pageTitle: "Cart",
+                });
+            }
+
+            const validatedCart = cart.items.map((item) => ({
+                id: item.productId._id,
+                name: item.productId.title,
+                price: item.productId.price,
+                quantity: item.quantity,
+                image: item.productId.productImage || "",
+            }));
+
+            const total = validatedCart.reduce(
+                (sum, item) => sum + item.price * item.quantity,
+                0,
+            );
+
+            res.render("pages/cart", {
+                userId: user._id,
+                cart: validatedCart,
+                total: total.toFixed(2),
+                pageTitle: "Cart",
+            });
+        } catch (error) {
+            console.error("cartRoute error:", error);
+            res.status(500).render("pages/error", {
+                message: "Failed to load cart",
+                pageTitle: "Error",
+            });
+        }
     }
 
-    cart.updatedAt = Date.now();
-    await cart.save();
+    async deleteItem(req, res, next) {
+        try {
+            const { id: productId, user: userId } = req.body;
 
-    res.json({ message: "Cart saved successfully", cart });
-  } catch (error) {
-    console.error("Unexpected error in saveCart:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-}
+            console.log("Product:", productId.yellow);
+            console.log("User:", userId.yellow);
 
-async function cartRoute(req, res) {
-  try {
-    const token =
-      req.cookies?.refreshToken || req.headers.authorization?.split(" ")[1];
+            const cart = await Cart.findOne({ userId });
+            if (!cart) throw new Error("Cart not found");
 
-    const decoded = jwt.verify(token, config.jwt.refreshSecret);
+            cart.items = cart.items.filter(
+                (item) => item.productId.toString() !== productId,
+            );
 
-    const user = await signup.findOne({ email: decoded.userEmail });
+            await cart.save();
 
-    const cart = await Cart.findOne({ userId: user.id }).populate(
-      "items.productId"
-    );
-
-    if (!cart || cart.items.length === 0) {
-      return res.render("pages/cart", {
-        userId: user.id,
-        cart: [],
-        total: 0,
-        pageTitle: "Cart",
-      });
-    } // else {                    //// uncomment only for debugging
-    //   cart.items.forEach((item) => {
-    //     const product = item.productId; // now it's the actual Product object
-    //     console.log("Name:", product.title);
-    //     console.log("Price:", product.price);
-    //     console.log("Image:", product.productImage);
-    //     console.log("Quantity:", item.quantity);
-    //   });
-    // }
-
-    const validatedCart = cart.items.map((item) => ({
-      id: item.productId._id,
-      name: item.productId.title,
-      price: item.productId.price,
-      quantity: item.quantity,
-      image: item.productId.productImage || "",
-    }));
-
-    console.log(validatedCart);
-
-    const total = validatedCart.reduce(
-      (sum, item) => sum + item.price * item.quantity,
-      0
-    );
-
-    res.render("pages/cart", {
-      userId: user.id,
-      cart: validatedCart,
-      total: total.toFixed(2),
-      pageTitle: "Cart",
-    });
-  } catch (error) {
-    console.error("Error in cartRoute:", error);
-    res.status(500).render("pages/error", {
-      message: "Failed to load cart",
-      pageTitle: "Error",
-    });
-  }
-}
-async function deleteItem(req, res, next) {
-  try {
-    const productId = req.body.id;
-    const userId = req.body.user;
-
-    console.log("This is productId", productId.yellow);
-    console.log("This is userId", userId.yellow);
-
-    const cart = await Cart.findOne({ userId }).populate("items.productId");
-
-    cart.items = cart.items.filter((item) => {
-      return item.productId._id.toString() !== productId;
-    });
-
-    console.log(cart);
-
-    await cart.save();
-
-    console.log("Success");
-
-    res.render("pages/cart", { cart });
-  } catch (error) {
-    // console.log("This is the error name", error.name);
-    // console.log(error.message)
-    // console.log(error)
-    return next({
-      statusCode: 500,
-      statusText: "Item not found",
-      message: "check delete route",
-      errorDetails: "This is the error message" + error.message,
-    });
-  }
-}
-async function alterQuantity(req, res) {
-  try {
-    const productId = req.body.id;
-    const userId = req.body.user;
-    const quantity = req.body.quantity;
-  
-    console.log(productId.yellow);
-    console.log(userId.yellow);
-
-    const cart = await Cart.findOne({ userId }).populate("items.productId");
-
-    cart.items = cart.items.map((item) => {
-      if (item.productId._id.toString() === productId) {
-        item.quantity = quantity;
-      }
-      return item;
-    });
-    
-    await cart.save();
-    
-    if (await cart.save()) {
-      res.redirect("pages/cart", { cart });
+            res.send(true);
+        } catch (error) {
+            console.error("deleteItem error:", error);
+            next({
+                statusCode: 500,
+                message: error.message,
+            });
+        }
     }
-  
-  } catch (error) {
-  
-    console.log("This is the error name", error.name);
 
-    return next({
-      status: 500,
-      statusText: "Item not found",
-      message: "check delete route",
-      errorDetails: "This is the error message" + error.message,
-    });
-  }
+    async alterQuantity(req, res, next) {
+        try {
+            const { id: productId, user: userId, quantity } = req.body;
+
+            if (quantity <= 0) return res.status(400).send("Invalid quantity");
+
+            const cart = await Cart.findOne({ userId });
+            if (!cart) throw new Error("Cart not found");
+
+            const item = cart.items.find((i) => i.productId.toString() === productId);
+
+            if (!item) throw new Error("Item not found");
+
+            item.quantity = quantity;
+            await cart.save();
+            // console.log("Updated quantity for product", productId.yellow, "to", quantity.toString().yellow);
+            res.send(item.quantity);
+        } catch (error) {
+            console.error("alterQuantity error:", error);
+            next({
+                statusCode: 500,
+                message: error.message,
+            });
+        }
+    }
 }
-
-const cartController = {
-  alterQuantity,
-  cartRoute,
-  deleteItem,
-  saveCart,
-};
-
-export default cartController;
