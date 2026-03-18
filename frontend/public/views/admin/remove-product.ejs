@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+            <%- include('../partials/sidebar') %>
+                <main>
+                    <% if(!findNoProduct){ %>
+                        <section class="products">
+                            <div class="container">
+                                <% displayProduct.forEach(item=> { %>
+                                    <div class="product">
+                                        <% if(item.outOfStock){ %>
+                                            <p>
+                                                Out of Stock!!!
+                                            </p>
+                                            <% } %>
+                                                <a href="product-preview/<%= item._id %>">
+                                                    <img src="<%= item.productImage||item.image %>"
+                                                        alt="<%= item.title %>" loading="lazy">
+
+                                                    <h3>
+                                                        <%= item.title %>
+                                                    </h3>
+                                                    <p id="product-price-font">
+                                                        ₹<%= item.price %>/-
+                                                    </p>
+                                                    <div id="product-control-button-container">
+                                                        <a href="/edit-product/<%= item._id %>"><button
+                                                                id="product-edit-btn">Edit</button></a>
+                                                </a>
+                                                <button id="product-remove-btn"
+                                                    onclick="removeProduct('<%= item._id %>','<%= item.title%>')">Remove</button>
+                                                <a href="/outOfStock/<%= item._id %>">
+                                                    <% if(item.outOfStock) {%>
+                                                        <button id="in-stock-btn">In Stock</button>
+                                                        <% }else{ %>
+                                                            <button id="out-stock-btn">Out of Stock</button>
+                                                            <% } %>
+                                                </a>
+                                    </div>
+                            </div>
+                            <% }) %>
+                        </section>
+                        <div class="pagination">
+                            <% if (currentPage> 1) { %>
+                                <a href="/remove-product?page=<%= currentPage - 1 %>" class="page-btn">Prev</a>
+                                <% } %>
+
+                                    <% for (let i=1; i <=totalPages; i++) { %>
+                                        <% if (i===currentPage) { %>
+                                            <span class="page-btn active">
+                                                <%= i %>
+                                            </span>
+                                            <% } else { %>
+                                                <a href="/remove-product?page=<%= i %>" class="page-btn">
+                                                    <%= i %>
+                                                </a>
+                                                <% } %>
+                                                    <% } %>
+
+                                                        <% if (currentPage < totalPages) { %>
+                                                            <a href="/remove-product?page=<%= currentPage + 1 %>"
+                                                                class="page-btn">Next</a>
+                                                            <% } %>
+                        </div>
+                        <% } %>
+                            <% if(findNoProduct){ %>
+                                <div id="not-found-product-container">
+                                    <img src="https://res.cloudinary.com/de4cxdtfv/image/upload/v1761477118/Gemini_Generated_Image_hw53h2hw53h2hw53_1_bgaoef.png"
+                                        alt="Product-Not-Found-Image">
+                                    <p>Sorry! <br>Your Product "<%= productName||null %>" was not found or may be you
+                                            spelled it wrong</p>
+                                </div>
+                                <% } %>
+
+                </main>
+                <%- include('../partials/footer') %>
+    </body>
+
+</html>
