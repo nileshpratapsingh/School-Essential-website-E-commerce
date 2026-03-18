@@ -1,4 +1,4 @@
-import order from "../models/order.model.mjs"; // Make sure model is exported as 'Order'
+import Order from "../models/order.model.mjs"; // Make sure model is exported as 'Order'
 
 function orderRoute(req, res) {
   res.render("pages/order", {
@@ -14,7 +14,7 @@ async function orderStatus(req, res) {
     const { id } = req.params; // e.g., /orders/status/ORDER_ID
 
     // Find order by tracking ID
-    const order = await order.findOne({ trackingId: id });
+    const order = await Order.findOne({ trackingId: id });
 
     if (!order) {
       return res.status(404).json({
