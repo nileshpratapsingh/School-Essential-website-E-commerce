@@ -111,7 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }else if(counter == 3){
                 return "Last warning you better don't use it";
             }else if(counter <= 4){
-                return "⚠️ Teri Maiya Chod dalunga Betichod ke\nTameez me bola kar\nRandi ke\nHatt Bhadwa sala\nTeri maa ko choda 4 baar...";
+                return "⚠️ Teri Maa ka chut Bhosadike ke\nTameez me bola kar\nRandi ke pille\nHatt Bhadwa sala\nTeri maa ko choda 4 baar...";
             }else{
                 return `<iframe width="315" height="560" src="https://www.youtube.com/embed/d3XfKYymamQ?start=242&end=259&autoplay=1&loop=1&playlist=d3XfKYymamQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen> </iframe>` 
             }
