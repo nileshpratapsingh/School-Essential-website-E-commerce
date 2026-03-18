@@ -22,13 +22,19 @@
                                                 ₹<%= item.price %>/-
                                             </p>
                                             <div id="product-cart-button-container">
-                                                <button id="product-buy-btn">Buy
-                                                    Now</button>
+                                                <% if(!item.outOfStock){ %>
+                                                    <button id="product-buy-btn">Buy
+                                                        Now</button>
                                         </a>
                                         <p>OR</p>
                                         <button id="product-add-to-cart-btn"
                                             onclick="addToCart('<%= item._id %>','<%= item.title%>')">add to<ion-icon
                                                 name="cart-outline"></ion-icon></button>
+                                        <% }else{ %>
+                                            <div id="product-status-text">
+                                                <p>Out Of Stock!!</p>
+                                            </div>
+                                            <% } %>
                                     </div>
                             </div>
                             <% }) %>
@@ -60,7 +66,8 @@
                                 <div id="not-found-product-container">
                                     <img src="https://res.cloudinary.com/de4cxdtfv/image/upload/v1761477118/Gemini_Generated_Image_hw53h2hw53h2hw53_1_bgaoef.png"
                                         alt="Product-Not-Found-Image">
-                                        <p>Sorry! <br>Your Product "<%= productName||null %>" was not found or may be you spelled it wrong</p>
+                                    <p>Sorry! <br>Your Product "<%= productName||null %>" was not found or may be you
+                                            spelled it wrong</p>
                                 </div>
                                 <% } %>
 
