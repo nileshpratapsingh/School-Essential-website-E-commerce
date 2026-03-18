@@ -3,8 +3,8 @@
   "version": "1.0.0",
   "description": "This is an eCommerce website designed for selling school uniforms, accessories, and stationery items. The platform provides an easy shopping experience for students, parents, and schools looking for high-quality educational supplies. 🏫✨",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon server.mjs",
+    "dev": "node express-version.mjs --watch",
+    "start": "node express-server.mjs",
     "express": "nodemon express-version.mjs"
   },
   "keywords": [],
@@ -15,7 +15,6 @@
     "cloudinary": "^1.41.3",
     "colors": "^1.4.0",
     "cookie-parser": "^1.4.7",
-    "cookies-parser": "^1.2.0",
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "ejs": "^3.1.10",
@@ -27,7 +26,7 @@
     "mongoose": "^8.17.0",
     "multer": "^2.0.2",
     "multer-storage-cloudinary": "^4.0.0",
-    "nodemon": "^3.1.10",
+    "nodemon": "^3.1.14",
     "serve-favicon": "^2.5.1",
     "uuidv4": "^6.2.13",
     "xss-clean": "^0.1.4"

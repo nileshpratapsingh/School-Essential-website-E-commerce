@@ -1,37 +1,40 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "server.mjs",
-  "type": "module",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node express-server.mjs",
-    "express": "nodemon express-server.mjs"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "bcryptjs": "^3.0.2",
-    "cloudinary": "^1.41.3",
-    "colors": "^1.4.0",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^17.2.0",
-    "ejs": "^3.1.10",
-    "express": "^5.1.0",
-    "express-session": "^1.18.2",
-    "jsonwebtoken": "^9.0.2",
-    "modules": "^0.4.0",
-    "mongoose": "^8.16.5",
-    "multer": "^2.0.2",
-    "multer-storage-cloudinary": "^4.0.0",
-    "os": "^0.1.2",
-    "serve-favicon": "^2.5.1",
-    "uuidv4": "^6.2.13"
-  },
-  "devDependencies": {
-    "nodemon": "^3.1.10"
-  },
-  "description": ""
+    "name": "backend",
+    "version": "1.0.0",
+    "main": "server.mjs",
+    "type": "module",
+    "scripts": {
+        "dev": "node express-server.mjs --watch",
+        "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+        "start": "node express-server.mjs",
+        "express": "nodemon express-server.mjs"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "bcryptjs": "^3.0.3",
+        "cloudinary": "^2.9.0",
+        "colors": "^1.4.0",
+        "cookie-parser": "^1.4.7",
+        "cors": "^2.8.6",
+        "dotenv": "^17.3.1",
+        "ejs": "^5.0.1",
+        "express": "^5.2.1",
+        "express-session": "^1.19.0",
+        "jest": "^30.3.0",
+        "jsonwebtoken": "^9.0.3",
+        "modules": "^0.4.0",
+        "mongoose": "^9.3.1",
+        "multer": "^2.0.2",
+        "os": "^0.1.2",
+        "pg": "^8.20.0",
+        "razorpay": "^2.9.6",
+        "serve-favicon": "^2.5.1",
+        "uuidv4": "^6.2.13"
+    },
+    "devDependencies": {
+        "nodemon": "^3.1.14"
+    },
+    "description": ""
 }
