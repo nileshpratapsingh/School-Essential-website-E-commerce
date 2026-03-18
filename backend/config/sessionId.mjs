@@ -1,1 +1,0 @@
-const sessionIdToUserMap = new Map();
