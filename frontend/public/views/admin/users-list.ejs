@@ -1,67 +1,73 @@
 <!-- views/users-list.ejs -->
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %>
+    <%- include('../partials/head') %>
 
     <body>
         <%- include('../partials/header') %>
-            <%- include('../partials/sidebar') %>
-            <h1 class="slide-down">Total users:<%= totalUsers %></h1>
-                <main class="user-card-container">
-                    <% users.forEach(user=> { %>
-                        <div class="user-card">
-                            <div class="user-image">
-                                <% if (user.profileImage) { %>
-                                    <img src="<%= user.profileImage %>" alt="<%= user.firstName %>">
-                                    <% } else { %>
-                                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="Default User">
-                                        <% } %>
-                            </div>
-                            <div class="user-details">
-                                <h2>
-                                    <%= user.firstName %>
-                                        <%= user.middleName %>
-                                            <%= user.lastName %>
-                                </h2>
-                                <p><strong>Role:</strong>
-                                    <%= user.role %>
-                                </p>
-                                <p><strong>Email:</strong>
-                                    <%= user.email %>
-                                </p>
-                                <p><strong>Phone:</strong>
-                                    <%= user.phoneNumber %>
-                                </p>
-                                <p><strong>Gender:</strong>
-                                    <%= user.gender %>
-                                </p>
-                                <p><strong>Address:</strong>
-                                    <%= user.address.street %>,
-                                        <%= user.address.city %>,
-                                            <%= user.address.state %> -
-                                                <strong>PinCode:</strong>
-                                                <%= user.address.zip %>
-                                </p>
-                                <p><strong>Joined:</strong>
-                                    <%= user.createdAt.toLocaleString() %>
-                                </p>
-                                <p>
-                                    <strong>Status:</strong>
-                                    <% const isOnline=userStatus.some(u=> u.email === user.email);
-                                        %>
-                                        <% if (isOnline) { %>
-                                            <strong style="color: green;">Online</strong>
-                                            <% } else { %>
-                                                <strong style="color: red;">Offline</strong>
-                                                <% } %>
-                                </p>
+        <%- include('../partials/sidebar') %>
+        <h1 class="slide-down">Total users:<%= totalUsers %>
+        </h1>
+        <main class="user-card-container">
+            <% users.forEach(user=> { %>
+            <div class="user-card">
+                <% if(user.deprecated){ %>
+                <h1> User Deleted !!!</h1>
+                <% } %>
+                <div class="user-image">
+                    <% if (user.profileImage) { %>
+                    <img src="<%= user.profileImage %>" alt="<%= user.firstName %>">
+                    <% } else { %>
+                    <img src="https://randomuser.me/api/portraits/men/1.jpg"
+                         alt="Default User">
+                    <% } %>
+                </div>
+                <div class="user-details">
+                    <h2>
+                        <%= user.firstName %>
+                        <%= user.middleName %>
+                        <%= user.lastName %>
+                    </h2>
+                    <p><strong>Role:</strong>
+                    <%= user.role %>
+                    </p>
+                    <p><strong>Email:</strong>
+                    <%= user.email %>
+                    </p>
+                    <p><strong>Phone:</strong>
+                    <%= user.phoneNumber %>
+                    </p>
+                    <p><strong>Gender:</strong>
+                    <%= user.gender %>
+                    </p>
+                    <p><strong>Address:</strong>
+                    <%= user.address.street %>,
+                    <%= user.address.city %>,
+                    <%= user.address.state %> -
+                    <strong>PinCode:</strong>
+                    <%= user.address.zip %>
+                    </p>
+                    <p><strong>Joined:</strong>
+                    <%= user.createdAt.toLocaleString() %>
+                    </p>
+                    <p>
+                    <strong>Status:</strong>
+                    <% const isOnline=userStatus.some(u=> u.email === user.email);
+                    %>
+                    <% if (isOnline) { %>
+                    <strong style="color: green;">Online</strong>
+                    <% } else { %>
+                    <strong style="color: red;">Offline</strong>
+                    <% } %>
+                    </p>
+                    <button id ='remove-button' onClick= "isSure('<%= user.firstName %>','<%= user._id %>');">Remove</button>
 
-                            </div>
-                        </div>
-                        <% }) %>
-                </main>
+                </div>
+            </div>
+            <% }) %>
+        </main>
 
-                <%- include('../partials/footer') %>
+        <%- include('../partials/footer') %>
     </body>
 
 </html>
