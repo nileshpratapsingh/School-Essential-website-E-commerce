@@ -4,7 +4,7 @@
 
 // Security Modules
 
-import xss from "xss-clean";
+// import xss from "xss-clean";
 import helmet from "helmet";
 import mongoSanitize from "express-mongo-sanitize";
 import rateLimit from "express-rate-limit";
@@ -18,7 +18,7 @@ const limiter = rateLimit({
 export default function securityMiddleWares(app) {
     // Security middlewares
     app.use([
-        xss(),
+        // xss(),
         helmet(),
         mongoSanitize(),
         limiter,
