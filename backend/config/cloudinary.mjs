@@ -1,11 +1,6 @@
-// middleware/cloudinary.mjs
 import { v2 as cloudinary } from "cloudinary";
-import { config } from "../config/config.mjs";
+import { config } from "./config.mjs";
 
-cloudinary.config({
-  cloud_name: config.cloudinary.cloud_name,
-  api_key: config.cloudinary.api_key,
-  api_secret: config.cloudinary.api_secret,
-});
+cloudinary.config(config.cloudinary);
 
 export default cloudinary;
