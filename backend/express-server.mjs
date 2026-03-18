@@ -18,7 +18,7 @@ import { errorHandler } from "./middleware/errorHandler.mjs";
 import { notFoundHandler } from "./middleware/404notFoundhandler.mjs";
 import { showDatabase } from "./pgsqlModels/baseModel.js";
 import { registerMiddlewares } from "./utility/registerMiddleware.mjs";
-import securityMiddleWares from "./utility/registerSecurityMiddleware.mjs"
+// import securityMiddleWares from "./utility/registerSecurityMiddleware.mjs"
 
 const app = express();
 const PORT = config.port;
