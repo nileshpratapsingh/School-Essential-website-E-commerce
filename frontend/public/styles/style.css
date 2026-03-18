@@ -2850,6 +2850,32 @@ p {
     background-color: #b30000;
 }
 
+/* Users-list remove button*/
+
+#remove-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: solid 1px black;
+}
+
+#remove-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+#remove-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
 /*About Page*/
 
 .about body {
@@ -2951,29 +2977,29 @@ p {
     color: #444;
 }
 .loader {
-  width: 50px;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  border: 8px solid #0000;
-  border-right-color: #2654de97;
-  position: relative;
-  animation: l24 1s infinite linear;
+    width: 50px;
+    aspect-ratio: 1;
+    border-radius: 50%;
+    border: 8px solid #0000;
+    border-right-color: #2654de97;
+    position: relative;
+    animation: l24 1s infinite linear;
 }
 .loader:before,
 .loader:after {
-  content: "";
-  position: absolute;
-  inset: -8px;
-  border-radius: 50%;
-  border: inherit;
-  animation: inherit;
-  animation-duration: 2s;
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 50%;
+    border: inherit;
+    animation: inherit;
+    animation-duration: 2s;
 }
 .loader:after {
-  animation-duration: 4s;
+    animation-duration: 4s;
 }
 @keyframes l24 {
-  100% {transform: rotate(1turn)}
+    100% {transform: rotate(1turn)}
 }
 
 /* Footer */
