@@ -47,7 +47,7 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
    ```
 2. Navigate to the project folder:
    ```sh
-   cd My-Website
+   cd <clone-directory-name>
    ```
 3. Install dependencies:
    ```sh
@@ -70,26 +70,150 @@ This is an eCommerce website designed for selling school uniforms, accessories, 
 ## Project Structure
 
 ```
-my website
+School-Essential-Ecommerce-Website:.
+│   │
+│   ├───.gitignore
+│   ├───Dockerfile
+│   ├───favicon.ico
+│   ├───git-logs.txt
+│   ├───LICENSE
+│   ├───package-lock.json
+│   ├───package.json
+│   ├───structure.txt
+│   ├───website logg.txt
+│   └───README.md
 │
 ├───backend
+│   │
+│   ├───.env
+│   ├───debug.log
+│   ├───express-server.mjs
+│   ├───package-lock.json
+│   ├───package.json
+│   ├───server.mjs
+│   ├───testing.mjs
+│   │
 │   ├───config
+│   │   ├───cloudinary.mjs
+│   │   ├───config.mjs
+│   │   ├───data.mjs
+│   │   ├───database.mjs
+│   │   ├───passport.mjs
+│   │   ├───pgsql.mjs
+│   │   ├───razorpay.mjs
+│   │   ├───redis.mjs
+│   │   └───sessionId.mjs
+│   │
 │   ├───controller
+│   │   ├───admin.controller.mjs
+│   │   ├───auth.controller.mjs
+│   │   ├───cart.controller.mjs
+│   │   ├───message.controller.mjs
+│   │   ├───order.controller.mjs
+│   │   ├───payment.controller.mjs
+│   │   ├───product.controller.mjs
+│   │   └───views.controller.mjs
+│   │
 │   ├───middleware
+│   │   ├───404notFoundhandler.mjs
+│   │   ├───adminProtectedPath.mjs
+│   │   ├───cloudinaryUpload.mjs
+│   │   ├───errorHandler.mjs
+│   │   ├───loginProtectedPath.mjs
+│   │   └───loginRestriction.mjs
+│   │
 │   ├───models
+│   │   ├───cart.model.mjs
+│   │   ├───message.model.mjs
+│   │   ├───order.model.mjs
+│   │   ├───product.model.mjs
+│   │   └───user.model.mjs
+│   │
+│   ├───pgsqlModels
+│   │   ├───baseModel.js
+│   │   ├───cartModel.js
+│   │   ├───order.model.js
+│   │   ├───productModel.js
+│   │   └───userModel.js
+│   │
 │   ├───routes
+│   │   ├───admin.mjs
+│   │   ├───auth.mjs
+│   │   ├───cart.mjs
+│   │   ├───order.mjs
+│   │   ├───product.mjs
+│   │   └───views.mjs
+│   │
 │   └───utility
-└───frontend
-    └───public
-        ├───Animation
-        ├───Images
-        ├───scripts
-        ├───styles
-        └───views
-            ├───admin
-            ├───pages
-            ├───partials
-            └───school-components
+│       ├───registerMiddleware.mjs
+│       ├───registerRouter.mjs
+│       └───tokenUtility.mjs
+│
+└───Frontend
+    │
+    ├───scripts
+    │   ├───adminData.js
+    │   ├───api.js
+    │   ├───cart.js
+    │   ├───Chat-Bot-script.js
+    │   ├───data-sets.js
+    │   ├───jQuery-Script.js
+    │   ├───payment-processing.js
+    │   ├───refreshdata.js
+    │   ├───script.js
+    │   └───searchBar.js
+    │
+    ├───styles
+    │   └───style.css
+    │
+    └───views
+        ├───admin
+        │   ├───add-admin.ejs
+        │   ├───add-product.ejs
+        │   ├───admin-dashboard.ejs
+        │   ├───edit-product.ejs
+        │   ├───message.ejs
+        │   ├───remove-product.ejs
+        │   └───users-list.ejs
+        │
+        ├───pages
+        │   ├───about.ejs
+        │   ├───account.ejs
+        │   ├───cart.ejs
+        │   ├───chatbot.ejs
+        │   ├───checkout.ejs
+        │   ├───contact.ejs
+        │   ├───edit-profile.ejs
+        │   ├───error.ejs
+        │   ├───feedback.ejs
+        │   ├───index.ejs
+        │   ├───login.ejs
+        │   ├───order.ejs
+        │   ├───product-preview.ejs
+        │   ├───product.ejs
+        │   ├───profile.ejs
+        │   ├───signUp.ejs
+        │   ├───stationary.ejs
+        │   ├───uniform-ui.ejs
+        │   └───uniform.ejs
+        │
+        ├───partials
+        │   ├───chatbot-footer.ejs
+        │   ├───chatbot-head.ejs
+        │   ├───chatbot-header.ejs
+        │   ├───footer.ejs
+        │   ├───head.ejs
+        │   ├───header.ejs
+        │   ├───loading-screen.ejs
+        │   ├───other-service-list.ejs
+        │   ├───product-list.ejs
+        │   ├───service-list.ejs
+        │   └───sidebar.ejs
+        │
+        └───school-components
+            ├───school-list.ejs
+            ├───school-selection.ejs
+            └───uniform-selection.ejs
 ```
 
 ### 📂 backend
