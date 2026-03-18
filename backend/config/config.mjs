@@ -22,6 +22,7 @@ export const config = {
 
     // PostgreSQL
     postgres: {
+        url: process.env.DATABASE_URL,
         user: process.env.PG_USER,
         host: process.env.PG_HOST,
         database: process.env.PG_DATABASE,
