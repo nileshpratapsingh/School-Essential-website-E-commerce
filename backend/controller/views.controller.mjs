@@ -1,107 +1,122 @@
-import { generateAccessToken } from "../utility/refershToken.mjs";
 import { config } from "../config/config.mjs";
 import { signup } from "../models/user.model.mjs";
+import { TokenUtility } from "../utility/tokenUtility.mjs";
 
-//  Helper function to render pages with title
-function renderPage(res, page, title) {
-  res.render(`pages/${page}`, { pageTitle: title });
+export class ViewsController {
+
+    static renderPage(res, page, title) {
+        res.render(`pages/${page}`, { pageTitle: title });
+    }
+    //  Routes
+    aboutRoute(_, res) {
+        ViewsController.renderPage(res, "about", "About Us");
+    }
+
+    configAPIUrl(_, res) {
+        res.json({ appUrl: config.url });
+    }
+
+    accountRoute(_, res) {
+        ViewsController.renderPage(res, "account", "Account");
+    }
+
+    indexRoute(_, res) {
+        ViewsController.renderPage(
+            res,
+            "index",
+            "Shree Namrata Dresses and Tailor",
+        );
+    }
+
+    uniformRoute(_, res) {
+        ViewsController.renderPage(res, "uniform", "School Uniform");
+    }
+
+    feedbackRoute(_, res) {
+        ViewsController.renderPage(res, "feedback", "Feedback");
+    }
+    feedbackMessage(req, res) {
+        const { name, emailId, rating, comments } = req.body;
+        const msg = `Thank you ${name} for your feedback.\nWe will be connecting with you soon... Email: ${emailId}, Rating: ${rating}, Comments: ${comments}`;
+        res.send(msg);
+    }
+
+    orderEnquiryRoute(_, res) {
+        ViewsController.renderPage(res, "order-enquiry", "Order Enquiry");
+    }
+
+    businessEnquiryRoute(_, res) {
+        ViewsController.renderPage(res, "business-enquiry", "Business Enquiry");
+    }
+
+    mobileAppRoute(_, res) {
+        ViewsController.renderPage(res, "mobile-app", "Mobile App");
+    }
+
+    contactRoute(_, res) {
+        ViewsController.renderPage(res, "contact", "Contact");
+    }
+
+    chatbotRoute(_, res) {
+        ViewsController.renderPage(res, "chatbot", "Chatbot");
+    }
+
+    contactingMessage(req, res) {
+        const { name, phoneNumber, emailId, gender, reason } = req.body;
+        const msg = `Thank you ${name} for contacting us.\nWe will be connecting with you soon... Phone: ${phoneNumber}, Email: ${emailId}, Gender: ${gender}, Reason: ${reason}`;
+        res.send(msg);
+    }
+
+    stationaryRoute(_, res) {
+        ViewsController.renderPage(res, "stationary", "Stationary");
+    }
+
+
+    async refreshTokenRoute(req, res) {
+        try {
+            // console.log("working")
+
+            const type = "access";
+            const accessToken = TokenUtility.getToken(req,type);
+
+            // console.log("accessToken:", accessToken);
+
+            if (!accessToken) {
+                return res.status(401).json({ message: "No refresh token found" });
+            }
+
+            const decoded = TokenUtility.verifyToken(accessToken,type)
+
+            if (!decoded) {
+                return res.status(403).json({ message: "Invalid refresh token" });
+            }
+
+            const user = await signup.findById(decoded.userId);
+
+            if (!user) {
+                return res.status(404).json({ message: "User not found" });
+            }
+
+            const newRefreshToken = TokenUtility.generateRefreshToken(user);
+
+            // console.log("New Refresh Token:", newRefreshToken);
+
+            res.cookie("refreshToken", newRefreshToken, {
+                httpOnly: config.jwt.httpOnly,
+                secure: config.env,
+                sameSite: "strict",
+            });
+
+            return res.status(200).json("Refresh token send")
+        } catch (err) {
+            console.log(err);
+            return res.status(500).json({ message: "Server error" });
+        }
+    }
+    refreshTesting(_,res){
+        console.clear();
+        console.log("working");
+        return res.send({ working : "working"})
+    }
+
 }
-
-//  Routes
-function aboutRoute(req, res) {
-  renderPage(res, "about", "About Us");
-}
-
-function configAPIUrl(req, res) {
-  res.json({ appUrl: config.url });
-}
-
-function accountRoute(req, res) {
-  renderPage(res, "account", "Account");
-}
-
-function indexRoute(req, res) {
-  renderPage(res, "index", "Shree Namrata Dresses and Tailor");
-}
-
-function uniformRoute(req, res) {
-  renderPage(res, "uniform", "School Uniform");
-}
-
-function feedbackRoute(req, res) {
-  renderPage(res, "feedback", "Feedback");
-}
-function feedbackMessage(req, res) {
-  const { name, emailId, rating, comments } = req.body;
-  const msg = `Thank you ${name} for your feedback.\nWe will be connecting with you soon... Email: ${emailId}, Rating: ${rating}, Comments: ${comments}`;
-  res.send(msg);
-}
-
-function orderEnquiryRoute(req, res) {
-  renderPage(res, "order-enquiry", "Order Enquiry");
-}
-
-function businessEnquiryRoute(req, res) {
-  renderPage(res, "business-enquiry", "Business Enquiry");
-}
-
-function mobileAppRoute(req, res) {
-  renderPage(res, "mobile-app", "Mobile App");
-}
-
-function contactRoute(req, res) {
-  renderPage(res, "contact", "Contact");
-}
-
-function chatbotRoute(req, res) {
-  renderPage(res, "chatbot", "Chatbot");
-}
-
-function contactingMessage(req, res) {
-  const { name, phoneNumber, emailId, gender, reason } = req.body;
-  const msg = `Thank you ${name} for contacting us.\nWe will be connecting with you soon... Phone: ${phoneNumber}, Email: ${emailId}, Gender: ${gender}, Reason: ${reason}`;
-  res.send(msg);
-}
-
-function stationaryRoute(req, res) {
-  renderPage(res, "stationary", "Stationary");
-}
-
-function refreshTokenRoute(req, res) {
-  const refreshToken =
-    req.cookies.refreshToken || req.headers.authorization?.split(" ")[1];
-
-  if (!refreshToken)
-    return res.status(401).json({ message: "No refresh token" });
-
-  jwt.verify(refreshToken, config.jwt.refreshSecret, async (err, decoded) => {
-    if (err) return res.status(403).json({ message: "Invalid refresh token" });
-
-    const user = await signup.findById(decoded.userId);
-    F;
-    if (!user) return res.status(404).json({ message: "User not found" });
-
-    const newAccessToken = generateAccessToken(user);
-    res.json({ accessToken: newAccessToken });
-  });
-}
-//  Export controllers
-const viewsControllers = {
-  aboutRoute,
-  accountRoute,
-  configAPIUrl,
-  indexRoute,
-  uniformRoute,
-  feedbackRoute,
-  feedbackMessage,
-  orderEnquiryRoute,
-  businessEnquiryRoute,
-  mobileAppRoute,
-  contactRoute,
-  contactingMessage,
-  chatbotRoute,
-  stationaryRoute,
-  refreshTokenRoute,
-};
-
-export default viewsControllers;
