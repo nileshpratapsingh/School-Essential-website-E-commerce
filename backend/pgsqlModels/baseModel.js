@@ -12,7 +12,6 @@ export async function showDatabase() {
       WHERE table_schema = 'public'
       ORDER BY table_name
   `);
-  const data = await pool.query("SELECT * FROM products");
   // console.log("Tables in database:", result.rows);
   // console.log("Tables data:", data.rows);
 }
