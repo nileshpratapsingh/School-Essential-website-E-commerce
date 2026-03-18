@@ -1,52 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %>
+    <%- include('../partials/head') %>
 
     <body>
         <%- include('../partials/header') %>
-            <%- include('../partials/sidebar') %>
-                <main>
+        <%- include('../partials/sidebar') %>
+        <main>
 
-                    <div class="cart-container">
-                        <div class="cart-items">
-                            <% if (!cart || cart.length===0) { %>
-                                <p>Your cart is empty!</p>
-                                <% } else { %>
-                                    <% cart.forEach(item=> { %>
-                                        <div class="cart-item">
-                                            <img src="<%= item.image %>" width="50" />
-                                            <div class="item-details">
-                                                <h4>
-                                                    <%= item.name %>
-                                                </h4>
-                                                <p>Price: ₹<%= item.price %>
-                                                </p>
-                                                <p>Quantity: <%= item.quantity %>
-                                                        <input type="number" name="quantity-change"
-                                                            id="quantity-change-btn" onclick="alterQuantity()">
-                                                </p>
-                                                <!-- Optional: remove button here -->
-                                                <button id="cart-delete-btn"
-                                                    onclick="deleteItem('<%= item.name%>','<%= item.id %>','<%= userId%>',)">Remove</button>
-                                            </div>
-                                        </div>
-                                        <% }) %>
-                                            <% } %>
-                        </div>
+            <div class="cart-container">
+                <div class="cart-items">
+                    <% if (!cart || cart.length === 0) { %>
+                    <img src="https://res.cloudinary.com/de4cxdtfv/image/upload/v1771777673/ChatGPT_Image_Feb_22_2026_09_54_45_PM_xgjyyx.png"/>
+                    <big><p>Your cart is empty!</p></big>
+                    <% } else { %>
+                    <% cart.forEach(item=> { %>
+                    <div class="cart-item">
+                        <img src="<%= item.image %>" width="50" />
+                        <div class="item-details">
+                            <h4>
+                                <%= item.name %>
+                            </h4>
+                            <p>Price: ₹<span id="total-<%= item.id %>">
+                                <%= item.price * item.quantity %>
+                            </span>
 
-                        <div class="cart-summary">
-                            <h2>Order Summary</h2>
-                            <p id="cart-total">Total: ₹<%= total || 0 %>
                             </p>
-                           <a href="/checkout">
-                               <button class="checkout-btn">Proceed to Checkout</button>
-                            </a>
+
+                            <p>
+                            Quantity: <span id="qty-text-<%= item.id %>"><%= item.quantity %></span>
+
+                            <input
+                                    type="number"
+                                    name="quantity-change"
+                                    id="quantity-change-btn"
+                                    value="<%= item.quantity %>"
+                                    min="1"
+                                    oninput="alterQuantity('<%= item.id %>', this.value, '<%= userId %>')"
+                                    >
+                            </p>
+
+                            <!-- Optional: remove button here -->
+                            <button id="cart-delete-btn"
+                                    onclick="deleteItem('<%= item.name%>','<%= item.id %>','<%= userId%>',)">Remove</button>
                         </div>
                     </div>
+                    <% }) %>
+                    <% } %>
+                </div>
+                <% if (total>0){ %>
+                <div class="cart-summary">
+                    <h2>Order Summary</h2>
+                    <p id="cart-total">Total: ₹<%= total || 0 %>
+                    </p>
+                    <a href="/checkout">
+                        <button class="checkout-btn">Proceed to Checkout</button>
+                    </a>
+                </div>
+                <%}%>
+            </div>
 
-                </main>
+        </main>
 
-                <%- include('../partials/footer') %>
+        <%- include('../partials/footer') %>
     </body>
 
 </html>
