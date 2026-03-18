@@ -1,24 +1,33 @@
 import express from "express";
-import productController from "../controller/product.controller.mjs";
+import { ProductController } from "../controller/product.controller.mjs";
 import { loginProtectedPath } from "../middleware/loginProtectedPath.mjs";
 
-const productRouter = express.Router();
+const PC = new ProductController();
 
-productRouter
-  .route("/product-preview/:id")
-  .get(productController.productPreview);
+class ProductRouter {
+  
+  constructor() {
+    this.router = express.Router();
+    this.initializeRoutes();
+  }
+  
+  initializeRoutes() {
+    this.router
+      .route("/product-preview/:id")
+      .get(PC.productPreview);
 
-productRouter
-  .route("/product")
-  .get(productController.productRoute);
+    this.router
+     .route("/product")
+     .get(PC.productRoute);
 
-productRouter
-  .route("/checkout")
-  .get(loginProtectedPath, productController.checkoutRoute);
+    this.router
+      .route("/checkout")
+      .get(loginProtectedPath, PC.checkoutRoute);
 
-productRouter
-  .route("/checkout/:id")
-  .get(loginProtectedPath,productController.singlePurchase);
+    this.router
+      .route("/checkout/:id")
+      .get(loginProtectedPath, PC.singlePurchase);
+  }
+}
 
-
-export default productRouter;
+export default new ProductRouter().router;
