@@ -33,7 +33,7 @@ const productSchema = new mongoose.Schema(
     },
     productImage: {
       type: String,
-      required: true,
+      default: null,
     },
     description: {
       type: String,
@@ -59,6 +59,7 @@ const productSchema = new mongoose.Schema(
       ],
       default: [],
     },
+    outOfStock: { type: Boolean, default: false },
     qa: {
       type: [
         {

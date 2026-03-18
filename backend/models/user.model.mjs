@@ -10,7 +10,7 @@ const signupSchema = new mongoose.Schema(
     middleName: {
       type: String,
       trim: true,
-      default:null,
+      default: null,
     },
     lastName: {
       type: String,
@@ -72,10 +72,14 @@ const signupSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    
+
     role: {
       type: String,
       default: "customer",
+    },
+    deprecated: {
+      type: Boolean,
+      default: false,
     },
 
     createdAt: {
@@ -99,10 +103,10 @@ const loginSchema = new mongoose.Schema(
       type: String,
       required: true,
     },
-    role:{
-      type:String,
-      required:true,
-    }
+    role: {
+      type: String,
+      required: true,
+    },
   },
 
   { timestamps: true }
