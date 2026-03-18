@@ -23,3 +23,5 @@ frontend/public/pages
 
 #static pages
 *.html
+#text file
+*.txt
