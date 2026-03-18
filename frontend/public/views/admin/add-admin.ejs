@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<%- include('../partials/head') %>
+
+    <body>
+        <%- include('../partials/header') %>
+            <%- include('../partials/sidebar') %>
+                <main class="user-card-container">
+                    <% users.forEach(user=> { %>
+                        <div class="user-card">
+                            <% if(user.deprecated){ %>
+                                <h1> User Deleted !!!</h1>
+                                <% } %>
+                                    <div class="user-image">
+                                        <% if (user.profileImage) { %>
+                                            <img src="<%= user.profileImage %>" alt="<%= user.firstName %>">
+                                            <% } else { %>
+                                                <img src="https://randomuser.me/api/portraits/men/1.jpg"
+                                                    alt="Default User">
+                                                <% } %>
+                                    </div>
+                                    <div class="user-details">
+                                        <h2>
+                                            <%= user.firstName %>
+                                                <%= user.middleName %>
+                                                    <%= user.lastName %>
+                                        </h2>
+                                        <p><strong>Role:</strong>
+                                            <% if (user.firstName==="Nilesh" && user.middleName==="Pratap"
+                                                &&user.lastName==="Singh" ){ %>
+                                                Super Admin
+                                                <% }else{%>
+                                                    <%= user.role.toLowerCase().charAt(0).toUpperCase()+user.role.slice(1)
+                                                        %>
+                                                        <%}%>
+                                        </p>
+                                        <p><strong>Email:</strong>
+                                            <%= user.email %>
+                                        </p>
+                                        <p><strong>Phone:</strong>
+                                            <%= user.phoneNumber %>
+                                        </p>
+                                        <p><strong>Gender:</strong>
+                                            <%= user.gender %>
+                                        </p>
+                                        <p><strong>Address:</strong>
+                                            <%= user.address.street %>,
+                                                <%= user.address.city %>,
+                                                    <%= user.address.state %> -
+                                                        <strong>PinCode:</strong>
+                                                        <%= user.address.zip %>
+                                        </p>
+                                        <p><strong>Joined:</strong>
+                                            <%= user.createdAt.toLocaleString() %>
+                                        </p>
+                                        <% if (user.firstName==="Nilesh" && user.middleName==="Pratap"
+                                            &&user.lastName==="Singh" ){ %>
+                                            <% }else { %>
+                                                <div class="role-switch-button">
+                                                    <button
+                                                        onclick="addAdmin('<%= user._id %>'); refreshData(this,'<%= user._id %>');">
+                                                        <% if(user.role==="admin" ){ %>
+                                                            Demote to User
+                                                            <% } else { %>
+                                                                Promote to Admin
+                                                                <% } %>
+                                                    </button>
+                                                </div>
+                                                <% } %>
+                                                    <p>
+                                                        <strong>Status:</strong>
+                                                        <% const isOnline=userStatus.some(u=> u.email === user.email);
+                                                            %>
+                                                            <% if (isOnline) { %>
+                                                                <strong style="color: green;">Online</strong>
+                                                                <% } else { %>
+                                                                    <strong style="color: red;">Offline</strong>
+                                                                    <% } %>
+                                                    </p>
+
+                                    </div>
+                        </div>
+                        <% }) %>
+                </main>
+
+
+
+                <%- include('../partials/footer') %>
+
+    </body>
+
+</html>
