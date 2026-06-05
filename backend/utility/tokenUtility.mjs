@@ -37,7 +37,7 @@ export class TokenUtility {
         const authHeader = req.headers.authorization;
 
         if (authHeader?.startsWith("Bearer ")) {
-            return authHeader.split(" ")[1];
+            return authHeader.split(" ")[1]||null;
         }
 
         let token;
@@ -70,7 +70,7 @@ export class TokenUtility {
                 const key = secret[expectedType]
                 return decoded = jwt.verify(token, key);
             }
-
+            //this is the default case scenario
             if (expectedType === null){
 
                 try {

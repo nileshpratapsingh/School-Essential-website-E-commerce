@@ -108,6 +108,7 @@ export class AdminController {
             const id = totalProducts === 0 ? 1 : totalProducts + 1;
 
             const specs = {};
+
             if (Array.isArray(specKeys)) {
                 specKeys.forEach((key, i) => {
                     if (key.trim() !== "") specs[key] = specValues[i];
@@ -126,7 +127,8 @@ export class AdminController {
                 features,
                 specs,
             });
-            console.log(req.file?.secure_url);
+
+            console.log(req.file?.secure_url|| req.file?.path);
 
             await newProduct.save();
             res.redirect("/product");
@@ -243,12 +245,13 @@ export class AdminController {
             await product.save();
 
             res.redirect("/remove-product");
+
             console.clear();
+
             console.log(
-                `Product ${product.title} is now ${
-                    product.outOfStock ? "Out of Stock" : "In Stock"
-                }`,
+                `Product ${product.title} is now ${ product.outOfStock ? "Out of Stock" : "In Stock"}`,
             );
+
         } catch (error) {
             console.log("Check admincontroller outOfStock!!\n\n".red, error.message);
             return res.status(500).send(
@@ -361,6 +364,7 @@ export class AdminController {
             });
         }
     }
+
     async removeUser(req,res){
         try{
             const userId = req.params.id;

@@ -3,12 +3,14 @@
 import express from "express";
 import path from "path";
 import cors from "cors";
+import { createServer } from "http";
+import { Server } from "socket.io";
 
 //configuration
 
 import { fileURLToPath } from "url";
 import { connectDB, disconnectDB } from "./config/database.mjs";
-import { connectPgSQL, disconnectPgSQL } from "./config/pgsql.mjs";
+// import { connectPgSQL, disconnectPgSQL } from "./config/pgsql.mjs";
 import { config } from "./config/config.mjs";
 import registerRoutes from "./utility/registerRouter.mjs";
 
@@ -16,12 +18,39 @@ import registerRoutes from "./utility/registerRouter.mjs";
 
 import { errorHandler } from "./middleware/errorHandler.mjs";
 import { notFoundHandler } from "./middleware/404notFoundhandler.mjs";
-import { showDatabase } from "./pgsqlModels/baseModel.js";
 import { registerMiddlewares } from "./utility/registerMiddleware.mjs";
+// import { showDatabase } from "./pgsqlModels/baseModel.js";
 // import securityMiddleWares from "./utility/registerSecurityMiddleware.mjs"
 
 const app = express();
 const PORT = config.port;
+const httpServer = createServer(app);
+
+// socket connection
+const io = new Server (httpServer, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+})
+
+// socket events
+io.on("connection", (socket) => {
+    console.log("User connected →", socket.id)
+
+    socket.on("message", (data) => {
+        console.log("Received →", data)
+        io.emit("message", data)   // bounce back to client
+    })
+
+    socket.on("disconnect", () => {
+        console.log("User disconnected →", socket.id)
+    })
+})
+
+io.on("connection", (socket) => {
+    console.log(socket.id);
+});
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -69,9 +98,9 @@ app.use(errorHandler);
 const startServer = async () => {
     try {
         console.clear();
-        connectPgSQL();
+        // connectPgSQL();
         connectDB();
-        showDatabase();
+        // showDatabase();
 
         if (registerMiddlewares && registerRoutes) {
             console.log("Middlewares Loaded ✓".blue);
@@ -80,7 +109,7 @@ const startServer = async () => {
             console.error("Error in loading!!!");
         }
 
-        const server = app.listen(PORT, () => {
+        const server = httpServer.listen(PORT, () => {
             setTimeout(() => {
                 console.log(`Server running at ${config.appUrl}`.yellow);
             }, 1000);
@@ -94,7 +123,7 @@ const startServer = async () => {
                 console.log("HTTP server closed");
 
                 await disconnectDB();
-                await disconnectPgSQL();
+                // await disconnectPgSQL();
 
                 console.log("MongoDB disconnected. Exiting...".green);
 
@@ -113,4 +142,3 @@ const startServer = async () => {
 
 console.clear();
 startServer();
-

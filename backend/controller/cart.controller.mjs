@@ -33,7 +33,7 @@ export class CartController {
 
             const cart =
                 (await Cart.findOne({ userId: user._id })) ||
-                new Cart({ userId: user._id, items: [] });
+                    new Cart({ userId: user._id, items: [] });
 
             const item = cart.items.find((i) => i.productId.equals(productId));
 
