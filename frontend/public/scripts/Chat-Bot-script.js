@@ -113,7 +113,7 @@ document.addEventListener("DOMContentLoaded", function () {
             }else if(counter <= 4){
                 return "⚠️ Teri Maa ka chut Bhosadike ke\nTameez me bola kar\nRandi ke pille\nHatt Bhadwa sala\nTeri maa ko choda 4 baar...";
             }else{
-                return `<iframe width="315" height="560" src="https://www.youtube.com/embed/d3XfKYymamQ?start=242&end=259&autoplay=1&loop=1&playlist=d3XfKYymamQ" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen> </iframe>` 
+                return ` <video width="315" height="560" autoplay loop playsinline > <source src="https://res.cloudinary.com/de4cxdtfv/video/upload/v1783957331/WhatsApp_Video_2026-07-13_at_21.10.23_fl3aoo.mp4" type="video/mp4"> </video> `;
             }
 
         }
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", function () {
             // Error or issue reports
         } else if (
             lowerMessage.includes("not working") ||
-            lowerMessage.includes("error")
+                lowerMessage.includes("error")
         ) {
             appendIncomingMessage(
                 "⚠️ If something is wrong, please fill out the feedback form. Our backend team will contact you soon."
@@ -184,34 +184,32 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function showHelpOptions() {
         const optionsHTML = `
-      <div style="display: flex; flex-direction: column; gap: 8px;">
-      <button onclick="handleCallStore()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Call Store</button>
-      <button onclick="handleNeedAgent()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Need Agent</button>
-      <button onclick="handleFeedback()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Feedback</button>
-      <button onclick="handleOrderStatus()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Order Status</button>
-      </div>
-      `;
+<div style="display: flex; flex-direction: column; gap: 8px;">
+<button onclick="handleCallStore()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Call Store</button>
+<button onclick="handleNeedAgent()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Need Agent</button>
+<button onclick="handleFeedback()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Feedback</button>
+<button onclick="handleOrderStatus()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Order Status</button>
+</div>
+`;
         appendIncomingMessage("🤖 Here are some options for you:");
         appendIncomingMessage(optionsHTML);
     }
 
     function ShowOrderOption() {
         const orderOptionHTML = `<div style="display: flex; flex-direction: column; gap: 8px;"><button onclick="handleOrderStatus()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Order Status</button>
-      </div>`;
+</div>`;
 
         appendIncomingMessage(orderOptionHTML);
     }
 
     function ShowFeedbackOption() {
-        const feedbackOptionHTML = `<div style="display: flex; flex-direction: column; gap: 8px;"><button onclick="handleFeedback()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Feedback</button>
-      </div>`;
+        const feedbackOptionHTML = `<div style="display: flex; flex-direction: column; gap: 8px;"><button onclick="handleFeedback()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Feedback</button></div>`;
 
         appendIncomingMessage(feedbackOptionHTML);
     }
 
     function showBussinessEnquiryOptions() {
-        const bussinessQueriesHTML = `<div style="display: flex; flex-direction: column; gap: 8px;"><button onclick="handleBussiness()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Bussiness</button>
-      </div>`;
+        const bussinessQueriesHTML = `<div style="display: flex; flex-direction: column; gap: 8px;"><button onclick="handleBussiness()" style="padding: 8px 12px; border: none; background-color: #2730e3; color: #fff; border-radius: 5px;">Bussiness</button></div>`;
 
         appendIncomingMessage(bussinessQueriesHTML);
     }
