@@ -1,99 +1,171 @@
 /*
- * Base class model for Postgres models
- * Can be extended for further schemas
- */
+* Base class model for Postgres models
+* Can be extended for further schemas
+*/
 
 import { pool } from "../config/pgsql.mjs";
 
-// export async function showDatabase() {
-//     const result = await pool.query(`
-// SELECT table_name
-// FROM information_schema.tables
-// WHERE table_schema = 'public'
-// ORDER BY table_name
-// `);
-//     // console.log("Tables in database:", result.rows);
-//     // console.log("Tables data:", data.rows);
-// }
-export class BaseSchema {
-    static table = null;
+export async function showDatabase() {
+  const result = await pool.query(
+    `select first_name,middle_name,user_id,last_name from signups;`,
+  );
+  // console.log("Tables in database:", result.rows);
+  console.log(
+    "Tables data:",
+    result.rows.map(
+      (r) =>
+        r.first_name +
+      " " +
+      r.middle_name +
+      " " +
+      r.last_name +
+      " " +
+      r.user_id,
+    ),
+  );
+  // console.log(result.fields.map((f)=>(f.name)))
+  // console.log(result);
+}
 
-    static validateTable() {
-        if (!this.table) {
-            throw new Error("Table name is not defined on model");
-        }
+export default class BaseSchema {
+  static table = null;
+
+  constructor(tableName) {
+    this.table = tableName;
+  }
+
+  static validateTable() {
+    if (!this.table) {
+      throw new Error("Table name is not defined on model");
+    }
+  }
+
+  static async execute(query) {
+    if (!query) console.log("Requires query to execute!!");
+    const result = await pool.query(query);
+    console.log(result);
+    return result;
+  }
+
+  static buildWhereClause(where = {}) {
+    const keys = Object.keys(where);
+
+    if (!keys.length) {
+      throw new Error("Where clause cannot be empty");
     }
 
-    static buildWhereClause(where = {}) {
-        const keys = Object.keys(where);
-        if (!keys.length) {
-            throw new Error("Where clause cannot be empty");
-        }
+    const values = Object.values(where);
 
-        const values = Object.values(where);
-        const clause = keys.map((k, i) => `"${k}" = $${i + 1}`).join(" AND ");
+    const clause = keys.map((k, i) => `"${k}" = $${i + 1}`).join(" AND ");
 
-        return { clause, values };
+    return {
+      clause,
+      values,
+    };
+  }
+
+  static buildOrWhereClause(where = {}) {
+    const keys = Object.keys(where);
+    if (!keys.lenght) {
+      throw new Error("WHERE clause cannot be empty");
     }
+    const values = Object.values(where);
+    const clause = keys.map((i, k) => `"${k} = $${i + 1}"`.join("OR"));
+    return { values, clause };
+  }
 
-    static async showDatabaseTables() {
-        const result = await pool.query(`
-SELECT table_name
-FROM information_schema.tables
-WHERE table_schema = 'public'
-ORDER BY table_name
-`);
-        console.log("Tables in database:", result.rows);
+  static async showDatabaseTables() {
+    const result = await pool.query(`
+      SELECT table_name
+      FROM information_schema.tables
+      WHERE table_schema = 'public'
+      ORDER BY table_name
+      `);
+      console.log("Tables in database:", result.rows);
     }
 
     static async findOne(tableName, where) {
-        this.validateTable();
-        const keys = Object.keys(where);
-        const values = Object.values(where);
-        const conditions = keys.map((k, i) => `"${k}"=$${i + 1}`).join(" AND ");
-        const { rows } = await pool.query(
-            `SELECT * FROM ${tableName} WHERE ${conditions} LIMIT 1`,
-            values,
-        );
-        return rows[0] || null;
+      const keys = Object.keys(where);
+      const values = Object.values(where);
+      const conditions = keys.map((k, i) => `"${k}"=$${i + 1}`).join(" AND ");
+      const { rows } = await pool.query(
+        `SELECT * FROM ${tableName} WHERE ${conditions} LIMIT 1`,
+        values,
+      );
+      return rows[0] || null;
     }
 
     static async findAll(tableName) {
-        this.validateTable();
-        return await pool.query(`SELECT * FROM ${tableName};`);
+      this.validateTable();
+      return await pool.query(`SELECT * FROM ${tableName};`);
     }
 
-    static async createOne({ data }, tableName) {
-        this.validateTable();
-        const keys = Object.keys(data);
-        const values = Object.values(data);
-        const placeholders = keys.map((_, i) => `$${i + 1}`).join(",");
-        const query = `INSERT INTO ${tableName} (${keys.join(
-",",
-)}) VALUES (${placeholders}) RETURNING *`;
+    static async createOne(tableName, data) {
+      const keys = Object.keys(data);
+      const values = Object.values(data);
 
-        const { rows } = await pool.query(query, values);
-        return rows[0];
+      const columns = keys.map((key) => `"${key}"`).join(", ");
+      const placeholders = keys.map((_, i) => `$${i + 1}`).join(", ");
+
+      const query = ` INSERT INTO ${tableName} (${columns}) VALUES (${placeholders}) RETURNING *;`;
+
+      const { rows } = await pool.query(query, values);
+      return rows[0];
     }
 
-    static async createMany() {
-        this.validateTable();
-    }
+    static async createMany(tableName, data) {
+      if (!data.length) return;
 
-    static async deleteone(id, tableName) {
-        this.validateTable();
-        const { rows } = await pool.query(
-            `DELETE FROM ${tableName} WHERE id=$1 RETURNING *`,
-            [id],
+      const keys = Object.keys(data[0]);
+      const columns = keys.join(", ");
+      const values = data.flatMap((obj) => Object.values(obj));
+
+      const rows = data.map((_, index) => {
+        const placeholders = keys.map(
+          (_, i) => `$${index * keys.length + i + 1}`,
         );
-        return rows[0];
+        return `(${placeholders.join(", ")})`;
+      });
+
+      const query = `INSERT INTO ${tableName} (${columns}) VALUES ${rows.join(", ")}`;
+
+      const result = await pool.query(query, values);
+      return result.rows;
+    }
+
+    static async deleteOne(tableName, where) {
+      const { values, clause } = BaseSchema.buildWhereClause(where);
+
+      const { rows } = await pool.query(
+        `DELETE FROM ${tableName} WHERE ${clause} RETURNING *;`,
+        values,
+      );
+
+      console.log("deleteOne called");
+
+      return rows;
     }
 
     static async deleteMany(tableName) {
-        this.validateTable();
-        const {deleteMany} = await pool.query(
-            `DELETE * FROM ${tableName};`
-        );
-        return deleteMany;
+      const { deleteMany } = await pool.query(`DELETE * FROM ${tableName};`);
+      return deleteMany;
     }
-}
+
+    static async updateOne(tableName, data, where = {}) {
+      const data_keys = Object.keys(data);
+      const data_values = Object.values(data);
+
+      const {clause, values} = BaseSchema.buildWhereClause(where);
+      const setClause = data_keys.map((key, i) => `${key} = $${i + 1}`).join(", ");
+
+      const query = `
+      UPDATE ${tableName}
+      SET ${setClause}
+      WHERE ${clause}
+      RETURNING *;
+      `;
+
+      const result = await pool.query(query, [...data_values, ...values]);
+      return result.rows[0];
+    }  
+  }
