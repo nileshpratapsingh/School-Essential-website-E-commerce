@@ -172,7 +172,7 @@ export class AuthController {
       const decoded = TokenUtility.verifyToken(token);
 
       const user = await Login.findOne(decoded.userEmail);
-      await Promise.resolve(AS.deleteLogin(user.accessToken));
+      await AS.deleteLogin(user.accessToken);
 
       // console.clear();
 
