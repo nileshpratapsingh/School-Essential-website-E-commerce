@@ -1,11 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %>
+    <%- include('../partials/head') %>
 
     <body>
         <%- include('../partials/header') %>
-            <%- include('../partials/sidebar') %>
-                    <%- include('../partials/footer') %>
+        <%- include('../partials/sidebar') %>
+        <%- include('../partials/footer') %>
+        <div>
+            <h1>school Uniform</h1>
+            <div class="display-uniform">
+                <ul class="uniform-collection">
+                    <% uniforms.map((item)=>(%>
+                    <li>
+                        <div id="uniform-item">
+                            <img src="" alt="">
+                            <label for=""><%= item.name%></label>
+                            <button type="button">Add to Cart</button>
+                            <input type="number" name="quantity" value="1">
+                            <label for="size">Available Sizes:</label>
+                            <select id="sizeSelect">
+                                <% item.sizes.forEach((itemSize) => { %>
+                                <option
+                                    value="<%= itemSize.size %>"
+                                    data-stock="<%= itemSize.stock %>">
+                                    <%= itemSize.size %>
+                                </option>
+                                <% }) %>
+                            </select>
+
+                            <label id="stockLabel">
+                                Stock: <%= item.sizes[0].stock %>
+                            </label>
+                        </div>
+                    </li>
+                    <%))%>
+                </ul>
+            </div>
+        </div>
+        <script>
+function updateStock() {
+    const stock = $("#select-size option:selected").data("stock");
+    $("#stock").text(`Stock: ${stock}`);
+}
+
+// Show default stock when page loads
+updateStock();
+
+// Update stock when selection changes
+$("#select-size").on("change", function () {
+    updateStock();
+});
+        </script>
     </body>
 
 </html>

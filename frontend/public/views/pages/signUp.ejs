@@ -1,90 +1,133 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %>
+    <%- include('../partials/head') %>
 
     <body>
         <%- include('../partials/header') %>
-            <%- include('../partials/sidebar') %>
+        <%- include('../partials/sidebar') %>
 
-                <main>
-                    <section class="formbody">
-                        <form action="/signup" method="POST" enctype="multipart/form-data" id="signup-form">
-                            <div class="input-container">
+        <main id="signup-section">
+            <section class="formbody">
+                <form action="/signup" method="POST" enctype="multipart/form-data" id="signup-form">
+                    <div class="input-container">
 
+                        <fieldset class="name-fields">
+                            <legend>Name</legend>
+
+                            <div class="firstName-field">
                                 <label for="firstName">First Name</label>
                                 <input type="text" name="firstName" id="firstName" required />
                                 <span class="error" id="firstNameError"></span>
+                            </div>
 
+                            <div class="middleName-field">
                                 <label for="middleName">Middle Name</label>
                                 <input type="text" name="middleName" id="middleName" />
+                            </div>
 
+                            <div class="lastName-field">
                                 <label for="lastName">Last Name</label>
                                 <input type="text" name="lastName" id="lastName" required />
+                                <span class="error" id="lastNameError"></span>
+                            </div>
+                        </fieldset>
 
-                                <label for="image">Profile Image</label>
-                                <input type="file" name="profileImage" id="fileInput" accept="image/*" />
-                                <img id="preview" src="" alt="Image Preview" style="display:none; max-width:300px;" />
-                                <br>
-                                <label for="phoneNumber">Phone No.</label>
-                                <input type="tel" name="phoneNumber" id="phoneNumber" />
+                        <div class="profileImage-field field-full">
+                            <label for="fileInput">Profile Image</label>
+                            <input type="file" name="profileImage" id="fileInput" accept="image/*" />
+                            <img class="preview-image" id="preview" src="" alt="Profile image preview" />
+                        </div>
 
-                                <label for="alternatePhoneNumber">Alternate Phone No.</label>
-                                <input type="tel" name="alternatePhoneNumber" id="alternatePhoneNumber" />
+                        <div class="phoneNumber-field">
+                            <label for="phoneNumber">Phone No.</label>
+                            <input type="tel" name="phoneNumber" id="phoneNumber" />
+                        </div>
 
-                                <label for="email">Email</label>
-                                <input type="email" name="email" id="email" />
-                                <span class="error" id="emailError"></span>
+                        <div class="alternatePhoneNumber-field">
+                            <label for="alternatePhoneNumber">Alternate Phone No.</label>
+                            <input type="tel" name="alternatePhoneNumber" id="alternatePhoneNumber" />
+                        </div>
 
-                                <label for="alternateEmail">Alternate Email</label>
-                                <input type="email" name="alternateEmail" id="alternateEmail" />
+                        <div class="email-field">
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" />
+                            <span class="error" id="emailError"></span>
+                        </div>
 
-                                <label for="dateOfBirth">Date of Birth</label>
-                                <input type="date" name="dateOfBirth" id="dateOfBirth" required />
+                        <div class="alternateEmail-field">
+                            <label for="alternateEmail">Alternate Email</label>
+                            <input type="email" name="alternateEmail" id="alternateEmail" />
+                        </div>
 
-                                <label>Gender</label>
-                                <div class="radio-group">
-                                    <label><input type="radio" name="gender" value="Male" /> Male</label>
-                                    <label><input type="radio" name="gender" value="Female" /> Female</label>
-                                    <label><input type="radio" name="gender" value="Others" /> Others</label>
-                                </div>
+                        <div class="dateOfBirth-field field-full">
+                            <label for="dateOfBirth">Date of Birth</label>
+                            <input type="date" name="dateOfBirth" id="dateOfBirth" required />
+                        </div>
 
-                                <label for="address">Address</label>
-                                <address>
-                                    <input type="text" id="street" placeholder="Street Address" name="address.street"
-                                        required> <span class="error" id="addressError"></span>
-                                    <select id="state" name="address.state" required>
-                                        <option value="">Select State</option>
-                                    </select> <span class="error" id="stateError"></span> <select id="city"
-                                        name="address.city" required>
-                                        <option value="">Select City</option>
-                                    </select>
-                                    <span class="error" id="cityError"></span>
-                                    <input type="text" id="zip" placeholder="ZIP Code" name="address.zip" required>
-                                    <span class="error" id="zipError"></span>
-                                </address>
+                        <fieldset class="radio-group">
+                            <legend>Gender</legend>
+                            <label><input type="radio" name="gender" value="Male" /> Male</label>
+                            <label><input type="radio" name="gender" value="Female" /> Female</label>
+                            <label><input type="radio" name="gender" value="Others" /> Others</label>
+                        </fieldset>
 
-                                <label for="password">Password</label>
-                                <input type="password" name="password" id="confirmPassword" required />
+                        <fieldset class="address-fields">
+                            <legend>Address</legend>
 
-                                <label for="password">Confirm Password</label>
-                                <input type="password" name="confirmPassword" id="confirmPassword" required />
+                            <div class="street-field field-full">
+                                <label for="street">Street Address</label>
+                                <input type="text" id="street" placeholder="Street Address" name="address.street" required />
+                                <span class="error" id="addressError"></span>
                             </div>
 
-                            <div class="signup-button-container">
-                                <button type="submit" class="signup-form-button">Create Account</button>
-                                <button type="reset" id="signup-reset">Reset</button>
-
-                                <p>Already have an account?</p>
-                                <a href="/login" class="signup-form-button"><button class="signup-form-button">Login</button>
-
-                                </a>
+                            <div class="state-field">
+                                <label for="state">State</label>
+                                <select id="state" name="address.state" required>
+                                    <option value="">Select State</option>
+                                </select>
+                                <span class="error" id="stateError"></span>
                             </div>
-                        </form>
-                    </section>
-                </main>
 
-                <%- include('../partials/loading-screen') %>
-                    <%- include('../partials/footer') %>
+                            <div class="city-field">
+                                <label for="city">City</label>
+                                <select id="city" name="address.city" required>
+                                    <option value="">Select City</option>
+                                </select>
+                                <span class="error" id="cityError"></span>
+                            </div>
+
+                            <div class="zip-field field-full">
+                                <label for="zip">ZIP Code</label>
+                                <input type="text" id="zip" placeholder="ZIP Code" name="address.zip" required />
+                                <span class="error" id="zipError"></span>
+                            </div>
+                        </fieldset>
+
+                        <div class="password-field">
+                            <label for="password">Password</label>
+                            <input type="password" name="password" id="password" required />
+                            <span class="error" id="passwordError"></span>
+                        </div>
+
+                        <div class="confirmPassword-field">
+                            <label for="confirmPassword">Confirm Password</label>
+                            <input type="password" name="confirmPassword" id="confirmPassword" required />
+                            <span class="error" id="confirmPasswordError"></span>
+                        </div>
+                    </div>
+
+                    <div class="signup-button-container">
+                        <button type="submit" class="signup-form-button">Create Account</button>
+                        <button type="reset" id="signup-reset">Reset</button>
+
+                        <p>Already have an account?</p>
+                        <a href="/login_page" class="signup-form-button">Login</a>
+                    </div>
+                </form>
+            </section>
+        </main>
+        <%- include('../partials/loading-screen') %>
+        <%- include('../partials/footer') %>
     </body>
 
 </html>

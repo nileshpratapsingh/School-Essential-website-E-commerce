@@ -1,124 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-<%- include('../partials/head') %>
+    <%- include('../partials/head') %>
 
-  <body>
-    <%- include('../partials/header') %>
-      <%- include('../partials/sidebar') %>
+    <body>
+        <%- include('../partials/header') %>
+        <%- include('../partials/sidebar') %>
 
         <main class="checkout-container">
-          <h2 class="checkout-title">Review Your Order</h2>
+            <h2 class="checkout-title">Review Your Order</h2>
 
-          <div class="checkout-flex">
-            <!-- Left Panel -->
-            <div class="checkout-left">
-              <!-- Shipping Address -->
-              <div class="checkout-box">
-                <h3>Shipping Address</h3>
-                <strong>Name: </strong>
-                <%= user?.firstName %>
-                  <%= user?.middleName %>
-                    <%= user?.lastName %><br>
-                      <strong>House: </strong>
-                      <%= user?.address.street %><br>
+            <div class="checkout-flex">
+                <!-- Left Panel -->
+                <div class="checkout-left">
+                    <!-- Shipping Address -->
+                    <div class="checkout-box">
+                        <h3>Shipping Address</h3>
+                        <strong>Name: </strong>
+                        <%= user?.firstName %>
+                        <%= user?.middleName %>
+                        <%= user?.lastName %><br>
+                        <strong>House: </strong>
+                        <%= user?.address.street %><br>
                         <strong>City: </strong>
                         <%= user?.address.city %><br>
-                          <strong>State: </strong>
-                          <%= user?.address.state %><br>
-                            <strong>Zip: </strong>
-                            <%= user?.address.zip %><br>
-                              <strong>Phone: </strong>
-                              <%= user?.phoneNumber %> <br>
-                                <strong>E-mail: </strong>
-                                <%= user?.email %> <br>
-                                  <strong>Date: </strong>
-                                  <%= new Date().toLocaleString("en-GB") %>
+                        <strong>State: </strong>
+                        <%= user?.address.state %><br>
+                        <strong>Zip: </strong>
+                        <%= user?.address.zip %><br>
+                        <strong>Phone: </strong>
+                        <%= user?.phoneNumber %> <br>
+                        <strong>E-mail: </strong>
+                        <%= user?.email %> <br>
+                        <strong>Date: </strong>
+                        <%= new Date().toLocaleString("en-GB") %>
 
-                                    <a href="#">Change</a>
-              </div>
+                        <a href="#">Change</a>
+                    </div>
 
-              <!-- Payment -->
-              <div class="checkout-box">
-                <h3>Payment Method</h3>
-                <p id="selected-payment">Selected at next step</p>
-                <a href="#checkout-form-id">Change</a>
-              </div>
+                    <!-- Payment -->
+                    <div class="checkout-box">
+                        <h3>Payment Method</h3>
+                        <p id="selected-payment">Selected at next step</p>
+                        <a href="#checkout-form-id">Change</a>
+                    </div>
 
-              <div class="checkout-box">
-                <div class="checkout-box">
-                  <h3>Order Items</h3>
-                  <ul class="items-list">
-                    <% if (cart && cart.length> 0) { %>
-                      <!-- Render cart items only -->
-                      <% cart.forEach(item=> { %>
-                        <li>
-                          <strong>
-                            <%= item.name %>
-                          </strong><br>
-                          ₹<%= item.price %> × <%= item.quantity %> = <strong>₹<%= item.price * item.quantity %>
-                              </strong>
-                        </li>
-                        <% }); %>
-                          <% } else if (product) { %>
-                            <!-- Render single product only -->
-                            <li>
-                              <img src="<%= product.productImage||product.image %>"
-                                alt="<%= product.productImage||product.image %>">
-                              <strong>
-                                <%= product.title %>
-                              </strong><br>
-                              ₹<%= product.price %> × <%= product.quantity %> = <strong>₹<%= product.price *
-                                      product.quantity %></strong>
-                            </li>
-                            <% } else { %>
-                              <!-- Fallback if neither exists -->
-                              <li>No items in your order.</li>
-                              <% } %>
-                  </ul>
+                    <div class="checkout-box">
+                        <div class="checkout-box">
+                            <h3>Order Items</h3>
+                            <ul class="items-list">
+                                <% if (cart && cart.length> 0) { %>
+                                <!-- Render cart items only -->
+                                <% cart.forEach(item=> { %>
+                                <li>
+                                    <strong>
+                                        <%= item.name %>
+                                    </strong><br>
+                                    ₹<%= item.price %> × <%= item.quantity %> = <strong>₹<%= item.price * item.quantity %>
+                                    </strong>
+                                </li>
+                                <% }); %>
+                                <% } else if (product) { %>
+                                <!-- Render single product only -->
+                                <li>
+                                    <img src="<%= product.productImage||product.image %>"
+                                        alt="<%= product.productImage||product.image %>">
+                                    <strong>
+                                        <%= product.title %>
+                                    </strong><br>
+                                    ₹<%= product.price %> × <%= product.quantity %> = <strong>₹<%= product.price *
+                                        product.quantity %></strong>
+                                </li>
+                                <% } else { %>
+                                <!-- Fallback if neither exists -->
+                                <li>No items in your order.</li>
+                                <% } %>
+                            </ul>
+                        </div>
+
+
+
+
+                        <!-- Order Form -->
+                        <form action="" method="" id="checkout-form-id" class="checkout-box checkout-form">
+                            <h3>Additional Info</h3>
+
+                            <label for="deliveryDate">Preferred Delivery Date</label>
+                            <input type="date" id="deliveryDate" name="deliveryDate" required>
+
+                            <label for="payment">Payment Method</label>
+                            <select id="payment" name="paymentMethod" required>
+                                <option value="" disabled>Select</option>
+                                <option value="Cash-On-Delivery">Cash on Delivery</option>
+                                <option value="RazorPay">RazorPay</option>
+                                <option value="Bank-Card">Credit/Debit Card</option>
+                                <option value="Pickup">Pickup</option>
+                            </select>
+
+                            <label for="notes">Order Notes</label>
+                            <textarea id="notes" name="notes" placeholder="Any special instructions?"></textarea>
+
+                            <button type="button"
+                                class="place-order-btn"
+                                onclick="checkout(
+                                event,
+                                '<%= total %>',
+                                '<%= cart?.map(item => item.id).join(',') || product?._id %>',
+                                '<%= user._id %>',
+                                '<%= user.email %>'
+                            )">Place Your Order</button>
+                        </form>
+                    </div>
+
+                    <!-- Right Panel -->
+                    <div class="checkout-right">
+                        <div class="checkout-box summary-box">
+                            <h3>Order Summary</h3>
+                            <hr><br>
+                            <strong>Items:</strong> ₹<%= total || product.price %> <br>
+                            <strong>Shipping:</strong>₹<p id="shipping">10.00</p><br>
+                            <strong>Tax:</strong>₹<p id="tax">10.00</p><br>
+                            <hr>
+                            <strong class="total-price">Order Total:</strong> ₹<%= total || product.price %>
+                        </div>
+                    </div>
                 </div>
-
-
-
-
-                <!-- Order Form -->
-                <form action="/place-order" method="POST" id="checkout-form-id" class="checkout-box checkout-form">
-                  <h3>Additional Info</h3>
-
-                  <label for="deliveryDate">Preferred Delivery Date</label>
-                  <input type="date" id="deliveryDate" name="deliveryDate" required>
-
-                  <label for="payment">Payment Method</label>
-                  <select id="payment" name="paymentMethod" required>
-                    <option value="" disabled>Select</option>
-                    <option value="Cash-On-Delivery">Cash on Delivery</option>
-                    <option value="UPI">UPI</option>
-                    <option value="Bank-Card">Credit/Debit Card</option>
-                    <option value="Pickup">Pickup</option>
-                  </select>
-
-                  <label for="notes">Order Notes</label>
-                  <textarea id="notes" name="notes" placeholder="Any special instructions?"></textarea>
-
-                  <button type="submit" class="place-order-btn">Place Your Order</button>
-                </form>
-              </div>
-
-              <!-- Right Panel -->
-              <div class="checkout-right">
-                <div class="checkout-box summary-box">
-                  <h3>Order Summary</h3>
-                  <hr><br>
-                  <strong>Items:</strong> ₹<%= total || product.price %> <br>
-                    <strong>Shipping:</strong> ₹0.00<br>
-                    <strong>Tax:</strong> ₹0.00 <br>
-                    <hr>
-                    <strong class="total-price">Order Total:</strong> ₹<%= total || product.price %>
-                </div>
-              </div>
-            </div>
         </main>
 
         <%- include('../partials/footer') %>
-  </body>
+    </body>
 
 </html>
