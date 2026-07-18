@@ -1,7 +1,6 @@
 // Import modules
 
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";
 
 // Import models
 
@@ -306,7 +305,7 @@ export class AuthController {
       await newUser.save();
       console.log("Mongo User", newUser);
 
-      await Promise.resolve(AS.createUser(newUser._id));
+      await AS.createUser(newUser._id);
       console.log("Backup:", await AS.findUser(newUser._id));
       res.redirect("/login?message=Signup successful! Please login.");
     } catch (error) {

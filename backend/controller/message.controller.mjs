@@ -26,7 +26,7 @@ export class MessageController {
       });
 
       await message.save();
-      await Promise.resolve(MS.createMessage(message._id));
+      await MS.createMessage(message._id);
       res.status(200).send({ message: "message send successfully" });
     } catch (err) {
       console.log("createMessage error check messge controller!!");
