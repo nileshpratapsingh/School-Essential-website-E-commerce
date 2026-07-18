@@ -98,7 +98,6 @@ export default class BaseSchema {
   }
 
   static async findAll(tableName) {
-    this.validateTable();
     return await BaseSchema.execute(`SELECT * FROM ${tableName};`);
   }
 
