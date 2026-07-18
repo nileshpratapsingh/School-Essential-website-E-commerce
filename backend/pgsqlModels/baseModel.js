@@ -1,7 +1,7 @@
 /*
-* Base class model for Postgres models
-* Can be extended for further schemas
-*/
+ * Base class model for Postgres models
+ * Can be extended for further schemas
+ */
 
 import { pool } from "../config/pgsql.mjs";
 
@@ -15,12 +15,12 @@ export async function showDatabase() {
     result.rows.map(
       (r) =>
         r.first_name +
-      " " +
-      r.middle_name +
-      " " +
-      r.last_name +
-      " " +
-      r.user_id,
+        " " +
+        r.middle_name +
+        " " +
+        r.last_name +
+        " " +
+        r.user_id,
     ),
   );
   // console.log(result.fields.map((f)=>(f.name)))
@@ -40,10 +40,12 @@ export default class BaseSchema {
     }
   }
 
-  static async execute(query) {
-    if (!query) console.log("Requires query to execute!!");
-    const result = await pool.query(query);
-    console.log(result);
+  static async execute(query, values = []) {
+    if (!query) {
+      throw new Error("Query is required.");
+    }
+
+    const result = await pool.query(query, values);
     return result;
   }
 
@@ -71,101 +73,117 @@ export default class BaseSchema {
     }
     const values = Object.values(where);
     const clause = keys.map((i, k) => `"${k} = $${i + 1}"`.join("OR"));
-    return { values, clause };
+    return { clause, values };
   }
 
   static async showDatabaseTables() {
-    const result = await pool.query(`
+    const result = await BaseSchema.execute(`
       SELECT table_name
       FROM information_schema.tables
       WHERE table_schema = 'public'
       ORDER BY table_name
       `);
-      console.log("Tables in database:", result.rows);
-    }
+    console.log("Tables in database:", result.rows);
+  }
 
-    static async findOne(tableName, where) {
-      const keys = Object.keys(where);
-      const values = Object.values(where);
-      const conditions = keys.map((k, i) => `"${k}"=$${i + 1}`).join(" AND ");
-      const { rows } = await pool.query(
-        `SELECT * FROM ${tableName} WHERE ${conditions} LIMIT 1`,
-        values,
+  static async findOne(tableName, where) {
+    const { clause, values } = BaseSchema.buildWhereClause(where);
+
+    const { rows } = await BaseSchema.execute(
+      `SELECT * FROM ${tableName} WHERE ${clause} LIMIT 1`,
+      values,
+    );
+
+    return rows[0] || null;
+  }
+
+  static async findAll(tableName) {
+    this.validateTable();
+    return await BaseSchema.execute(`SELECT * FROM ${tableName};`);
+  }
+
+  static async createOne(tableName, data) {
+    const keys = Object.keys(data);
+    const values = Object.values(data);
+
+    const columns = keys.map((key) => `"${key}"`).join(", ");
+    const placeholders = keys.map((_, i) => `$${i + 1}`).join(", ");
+
+    const query = ` INSERT INTO ${tableName} (${columns}) VALUES (${placeholders}) RETURNING *;`;
+
+    const { rows } = await pool.query(query, values);
+    return rows[0];
+  }
+
+  static async createMany(tableName, data) {
+    if (!data.length) return;
+
+    const keys = Object.keys(data[0]);
+    const columns = keys.join(", ");
+    const values = data.flatMap((obj) => Object.values(obj));
+
+    const rows = data.map((_, index) => {
+      const placeholders = keys.map(
+        (_, i) => `$${index * keys.length + i + 1}`,
       );
-      return rows[0] || null;
-    }
+      return `(${placeholders.join(", ")})`;
+    });
 
-    static async findAll(tableName) {
-      this.validateTable();
-      return await pool.query(`SELECT * FROM ${tableName};`);
-    }
+    const query = `INSERT INTO ${tableName} (${columns}) VALUES ${rows.join(", ")}`;
 
-    static async createOne(tableName, data) {
-      const keys = Object.keys(data);
-      const values = Object.values(data);
+    const result = await BaseSchema.execute(query, values);
+    return result.rows;
+  }
 
-      const columns = keys.map((key) => `"${key}"`).join(", ");
-      const placeholders = keys.map((_, i) => `$${i + 1}`).join(", ");
+  static async deleteOne(tableName, where) {
+    const { values, clause } = BaseSchema.buildWhereClause(where);
 
-      const query = ` INSERT INTO ${tableName} (${columns}) VALUES (${placeholders}) RETURNING *;`;
+    const { rows } = await pool.query(
+      `DELETE FROM ${tableName} WHERE ${clause} RETURNING *;`,
+      values,
+    );
 
-      const { rows } = await pool.query(query, values);
-      return rows[0];
-    }
+    console.log("deleteOne called");
 
-    static async createMany(tableName, data) {
-      if (!data.length) return;
+    return rows;
+  }
 
-      const keys = Object.keys(data[0]);
-      const columns = keys.join(", ");
-      const values = data.flatMap((obj) => Object.values(obj));
+  static async deleteMany(tableName) {
+    const { deleteMany } = await BaseSchema.execute(
+      `DELETE * FROM ${tableName};`,
+    );
+    return deleteMany;
+  }
 
-      const rows = data.map((_, index) => {
-        const placeholders = keys.map(
-          (_, i) => `$${index * keys.length + i + 1}`,
-        );
-        return `(${placeholders.join(", ")})`;
-      });
+  static async updateOne(tableName, data, where = {}) {
+    const data_keys = Object.keys(data);
+    const data_values = Object.values(data);
 
-      const query = `INSERT INTO ${tableName} (${columns}) VALUES ${rows.join(", ")}`;
+    const { clause, values } = BaseSchema.buildWhereClause(where);
+    const setClause = data_keys
+      .map((key, i) => `${key} = $${i + 1}`)
+      .join(", ");
 
-      const result = await pool.query(query, values);
-      return result.rows;
-    }
-
-    static async deleteOne(tableName, where) {
-      const { values, clause } = BaseSchema.buildWhereClause(where);
-
-      const { rows } = await pool.query(
-        `DELETE FROM ${tableName} WHERE ${clause} RETURNING *;`,
-        values,
-      );
-
-      console.log("deleteOne called");
-
-      return rows;
-    }
-
-    static async deleteMany(tableName) {
-      const { deleteMany } = await pool.query(`DELETE * FROM ${tableName};`);
-      return deleteMany;
-    }
-
-    static async updateOne(tableName, data, where = {}) {
-      const data_keys = Object.keys(data);
-      const data_values = Object.values(data);
-
-      const {clause, values} = BaseSchema.buildWhereClause(where);
-      const setClause = data_keys.map((key, i) => `${key} = $${i + 1}`).join(", ");
-
-      const query = `
+    const query = `
       UPDATE ${tableName}
       SET ${setClause}
       WHERE ${clause}
       RETURNING *;
       `;
 
-      const result = await pool.query(query, [...data_values, ...values]);
-      return result.rows[0];
-    }  
+    const result = await pool.query(query, [...data_values, ...values]);
+    return result.rows[0];
   }
+
+  static async countTotalEntries(tableName, where = {}) {
+    const { clause, values } = BaseSchema.buildWhereClause(where);
+
+    const query = Object.keys(where).length
+      ? `SELECT COUNT(*) AS total FROM ${tableName} WHERE ${clause};`
+      : `SELECT COUNT(*) AS total FROM ${tableName};`;
+
+    const { rows } = await BaseSchema.execute(query, values);
+
+    return Number(rows[0].total);
+  }
+}
