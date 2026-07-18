@@ -1,0 +1,103 @@
+/* Header Navigation Links */
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    justify-content: space-evenly;
+    padding: 16px 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ffeb3b;
+    transform: scale(1.1);
+}
+
+.nav-links a ion-icon {
+    font-size: 1.7rem;
+    position: relative;
+    top: 5px;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover ion-icon {
+    transform: rotate(15deg);
+}
+
+/* Authentication Buttons */
+.auth-buttons .login-btn,
+.auth-buttons .signup-btn,
+.auth-buttons .logout-btn {
+    display: flex;
+    padding: 5px 15px;
+    margin-left: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-btn {
+    background-color: #37475a;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.login-btn:hover {
+    background-color: #4a5a6a;
+}
+
+.signup-btn {
+    padding: 5px;
+    background-color: #febd69;
+    color: black;
+}
+
+.signup-btn:hover {
+    background-color: #ffc107;
+}
+
+.logout-btn {
+    background-color: #febd69;
+    padding: 10px;
+    color: black;
+}
+
+.logout-btn:hover {
+    background-color: #ffc107;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 12px 0;
+    }
+
+    .auth-buttons .login-btn,
+    .auth-buttons .signup-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links a {
+        font-size: 0.8rem;
+        margin: 0 5px;
+    }
+
+    .auth-buttons .login-btn,
+    .auth-buttons .signup-btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        margin-left: 5px;
+    }
+}

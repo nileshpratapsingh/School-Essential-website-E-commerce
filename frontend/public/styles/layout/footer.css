@@ -1,0 +1,61 @@
+/* Footer */
+footer {
+    width: 100%;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+    background: #14140F;
+    background: linear-gradient(360deg,rgba(20, 20, 15, 1) 85%, rgba(20, 20, 15, 0) 100%);
+}
+footer p {
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+}
+
+
+footer .social-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+footer .social-links li {
+    display: inline-block;
+}
+
+footer .social-links li a {
+    color: #fff;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+footer .social-links ion-icon {
+    font-size: 30px;
+    margin-top: 0px;
+}
+
+footer .social-links li a:hover {
+    color: #ffeb3b;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    footer {
+        padding: 10px;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li {
+        margin: 10px 0;
+    }
+
+    section ul {
+        flex-direction: column;
+        align-items: center;
+    }
+}

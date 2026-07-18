@@ -1,0 +1,13 @@
+/* Container */
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+.video-container {
+    margin: auto;
+    padding: 20px;
+    left: 0;
+}

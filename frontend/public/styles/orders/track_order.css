@@ -1,0 +1,90 @@
+/* Track Order Section */
+#track-order {
+    max-width: 500px;
+    margin: 50px auto;
+    background: #fff;
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
+}
+
+#track-order h2 {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+}
+
+/* Form Styling */
+.track-form {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1.5rem;
+}
+
+.track-form label {
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #444;
+}
+
+.track-form input {
+    padding: 0.6rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.track-form button {
+    padding: 0.7rem;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.track-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Order Result Styling */
+.order-result {
+    background: #e7f7e7;
+    padding: 1rem;
+    border-radius: 10px;
+    color: #2e7d32;
+    font-weight: 500;
+    margin-top: 1rem;
+}
+
+.order-error {
+    background: #fdecea;
+    color: #c62828;
+    padding: 1rem;
+    border-radius: 10px;
+    margin-top: 1rem;
+    font-weight: bold;
+}
+
+@media (max-width: 540px) {
+    #track-order {
+        margin: 20px;
+        padding: 1.2rem;
+    }
+}
+
+/* Container styling */
+#contact-form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: #ffffff;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+}

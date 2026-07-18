@@ -1,0 +1,79 @@
+/* login form */
+.loginform {
+    max-width: 600px;
+    margin: 0px auto;
+    padding: 40px 30px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0px 8px 25px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+/* Inputs */
+#email,
+#password {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 15px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#email:focus,
+#password:focus {
+    border-color: #0056b3;
+    box-shadow: 0 0 5px rgba(0, 86, 179, 0.3);
+}
+
+/* Labels */
+.loginform label {
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 5px;
+    display: block;
+    text-align: left;
+}
+
+/* Buttons */
+.loginform button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    background-color: #f1ca4c;
+    color: #000;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.loginform button:hover {
+    background-color: #0056b3;
+    color: #fff;
+}
+
+.loginform button[type="button"] {
+    background-color: #6c757d;
+}
+
+.loginform button[type="button"]:hover {
+    background-color: #5a6268;
+}
+
+/* Responsive */
+@media screen and (max-width: 600px) {
+    .loginform {
+        margin: 20px;
+        padding: 25px 20px;
+    }
+
+    .loginform button {
+        font-size: 15px;
+        padding: 10px;
+    }
+}

@@ -1,0 +1,195 @@
+/* Header Styles */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg,rgba(20, 20, 15, 1) 89%, rgba(20, 20, 15, 0) 100%);
+    color: white;
+    margin-bottom: 20px;
+}
+
+.logo img {
+    height: 5px;
+}
+
+#logo video {
+    width: 100px;
+
+}
+
+.logo-link {
+    margin: auto;
+}
+
+.search-container {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    margin-left: 15px;
+}
+
+.search-input {
+    width: 300px;
+    padding: 12px;
+    border: none;
+    border-radius: 5px 0 0 5px;
+}
+
+.search-button {
+    padding: 8px 15px;
+    background-color: #d5c812;
+    border: none;
+    cursor: pointer;
+    border-radius: 0 5px 5px 0;
+    margin-right: 30px;
+    font-weight: 500;
+    font-size: large;
+}
+
+.search-button ion-icon {
+    display: none;
+    width: 100%;
+    font-size: 1.5rem;
+
+}
+
+.search-history-list {
+    position: absolute;
+    top: 45px;
+    /* below input */
+    left: 0;
+    width: 200px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 2px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    list-style: none;
+    margin: 5px 0 0 0;
+    padding: 0;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1000;
+    display: none;
+}
+
+.search-history-list li {
+    padding: 10px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    border-bottom: 1px solid #eee;
+}
+
+.search-history-list li:last-child {
+    border-bottom: none;
+}
+
+.search-history-list li:hover {
+    background-color: #f6f6f6;
+}
+
+
+/* Header Navigation Links */
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+    justify-content: space-evenly;
+    padding: 16px 0;
+    font-size: 1.5rem;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #ffeb3b;
+    transform: scale(1.1);
+}
+
+.nav-links a ion-icon {
+    font-size: 1.7rem;
+    position: relative;
+    top: 5px;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover ion-icon {
+    transform: rotate(15deg);
+}
+
+/* Authentication Buttons */
+.auth-buttons .login-btn,
+.auth-buttons .signup-btn,
+.auth-buttons .logout-btn {
+    display: flex;
+    padding: 5px 15px;
+    margin-left: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 50px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.login-btn {
+    background-color: #37475a;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.login-btn:hover {
+    background-color: #4a5a6a;
+}
+
+.signup-btn {
+    padding: 5px;
+    background-color: #febd69;
+    color: black;
+}
+
+.signup-btn:hover {
+    background-color: #ffc107;
+}
+
+.logout-btn {
+    background-color: #febd69;
+    padding: 10px;
+    color: black;
+}
+
+.logout-btn:hover {
+    background-color: #ffc107;
+}
+
+/* Responsive Design */
+
+@media (max-width: 768px) {
+    .nav-links a {
+        font-size: 0.9rem;
+        padding: 12px 0;
+    }
+
+    .auth-buttons .login-btn,
+    .auth-buttons .signup-btn {
+        padding: 8px 12px;
+        font-size: 0.9rem;
+        margin-left: 5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links a {
+        font-size: 0.8rem;
+        margin: 0 5px;
+    }
+
+    .auth-buttons .login-btn,
+    .auth-buttons .signup-btn {
+        padding: 6px 10px;
+        font-size: 0.8rem;
+        margin-left: 5px;
+    }
+}

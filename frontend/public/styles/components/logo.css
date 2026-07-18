@@ -1,0 +1,25 @@
+.logo img {
+    height: 5px;
+}
+
+#logo video {
+    width: 100px;
+
+}
+
+.logo-link {
+    margin: auto;
+}
+@media screen and (max-width: 900px) {
+
+    #logo video {
+        width: 100px;
+        margin-left: -15px;
+    }
+
+    #logo video {
+        display: flex;
+        width: 70px;
+        margin-left: 10px;
+    }
+}

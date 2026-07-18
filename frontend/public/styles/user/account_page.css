@@ -1,0 +1,82 @@
+/*account page menu*/
+
+.account-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 10vh;
+    padding: 80px 0 80px 0;
+}
+
+
+.account-options {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 400px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    font-family: "Segoe UI", sans-serif;
+}
+
+
+.account-options li {
+    border-bottom: 1px solid #eee;
+}
+
+.account-options li:last-child {
+    border-bottom: none;
+}
+
+
+.account-options li a {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 18px;
+    color: #333;
+    text-decoration: none;
+    transition: all 0.25s ease-in-out;
+}
+
+
+.account-options li a p {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+
+.account-options li a ion-icon {
+    font-size: 22px;
+    color: #666;
+    transition: color 0.2s ease;
+}
+
+
+.account-options li a:hover {
+    background: #f8f9fa;
+    color: #0073e6;
+    padding-left: 24px;
+}
+
+.account-options li a:hover ion-icon {
+    color: #0073e6;
+}
+
+
+@media (max-width: 500px) {
+    .account-options {
+        max-width: 100%;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    .account-options li a {
+        padding: 12px 14px;
+        font-size: 15px;
+    }
+}

@@ -1,0 +1,88 @@
+/*user list*/
+
+.user-card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 40px;
+}
+
+.user-card {
+    background: white;
+    border-radius: 20px;
+    border: 1px solid #c7c7c7;
+    width: 280px;
+    padding: 20px;
+    text-align: center;
+}
+
+.user-image {
+    text-align: left;
+}
+
+.user-image img {
+    width: 120px;
+    height: 120px;
+    border-radius: 7%;
+    object-fit: cover;
+    border: 2px solid #56def0;
+}
+
+.user-details h2 {
+    text-align: left;
+}
+
+.user-details h2 {
+    margin-top: 10px;
+    color: #201b3e;
+}
+
+.user-details p {
+    text-align: left;
+    margin: 6px 0;
+    color: #555;
+}
+
+.role-switch-button button {
+    margin-top: 15px;
+    padding: 10px 15px;
+    background-color: #ff0000;
+    color: white;
+    border: solid 1px #880000;
+    border-radius: 80px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+.role-switch-button button:hover {
+    background-color: #b30000;
+}
+
+/* Users-list remove button*/
+
+#remove-button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    border: solid 1px black;
+}
+
+#remove-button:hover {
+    background-color: #c0392b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 10px rgba(0,0,0,0.15);
+}
+
+#remove-button:active {
+    transform: translateY(0);
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+

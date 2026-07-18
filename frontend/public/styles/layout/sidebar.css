@@ -1,0 +1,148 @@
+/*======Sidebar Styles=======*/
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: -280px;
+    width: 280px;
+    height: 100%;
+    background: rgba(29, 29, 29, 0.436);
+    color: white;
+    padding-top: 60px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #ffffff77 #2c3e50;
+    transition: left 0.3s;
+    z-index: 999;
+    backdrop-filter: blur(50px);
+}
+
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    padding: 15px 20px;
+    margin: 10px;
+    border-radius: 100px;
+    box-shadow: -3px 5px 9px -3.6px #0000003c;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+}
+
+.sidebar ul li a ion-icon {
+    transform: rotate(0deg);
+    transition: transform 0.8s ease;
+}
+
+.sidebar ul li a:hover ion-icon {
+    transform: rotate(-360deg);
+    transition: transform 0.7s ease;
+}
+
+.sidebar .bottom-links ul li {
+    position: fixed;
+    bottom: 30px;
+    width: auto;
+    padding: 15px 20px;
+    margin: 10px 10px 60px;
+    border-radius: 10px;
+    width: 92%;
+}
+
+.sidebar .bottom-links ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.sidebar .bottom-links ul li ion-icon {
+    margin-bottom: -3px;
+}
+
+.auth-buttons-sidebar {
+    background-color: #00000000;
+    position: relative;
+    bottom: -180px;
+    padding: 10px;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.Auth-login-btn, .Auth-signup-btn {
+    padding: 10px;
+    color: white;
+    border-radius: 8px;
+    background-color: rgba(44, 182, 197, 0);
+    box-shadow: -3px 5px 9px -3.6px #0000003c;
+    border: 0px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 10px;
+}
+
+#logout-button {
+    padding: 10px;
+    color: white;
+    border-radius: 8px;
+    background-color: rgba(44, 182, 197, 0);
+    box-shadow: -3px 5px 9px -3.6px #0000003c;
+    border: 0px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    margin: 10px;
+}
+
+.Auth-login-btn:hover, .Auth-signup-btn:hover {
+    color: yellow;
+}
+
+#logout-button:hover {
+    color: yellow;
+}
+
+.menu-toggle {
+    display: none;
+    background: none;
+    color: white;
+    font-size: 24px;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    margin-right: 20px;
+}
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 900px) {
+    .nav-links, .auth-buttons {
+        display: none;
+    }
+
+    .menu-toggle {
+        display: block;
+    }
+
+    .sidebar {
+        left: -100%;
+    }
+
+    .sidebar.active {
+        left: 0;
+    }
+
+}
