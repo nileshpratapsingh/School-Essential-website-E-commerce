@@ -1,8 +1,10 @@
 import express from "express";
 import { ViewsController } from "../controller/views.controller.mjs";
 import { loginProtectedPath } from "../middleware/loginProtectedPath.mjs";
+import Log from "../utility/logger.mjs";
 
 const VC = new ViewsController();
+Log.classTypeLogger(VC);
 
 class ViewRouter {
     /*
@@ -10,34 +12,29 @@ class ViewRouter {
      * Better for maintainance and adding more routes & methods in future
      */
 
-    //Open get route and methods
-    #openGetRoutesAndMethods={
-        "/":VC.indexRoute,
-        "/api":VC.configAPIUrl,
-        "/about":VC.aboutRoute,
-        "/uniform":VC.uniformRoute,
-        "/mobile-app":VC.mobileAppRoute,
-        "/stationary":VC.stationaryRoute,
-        "/refresh_token":VC.refreshTesting,
-        "/contact/contact_form":VC.contactingMessage,
-    }
-    //Open post route and methods 
-    #openPostRoutesAndMethods={
-        "/refresh_token":VC.refreshTokenRoute,
-        "/contact/contact_form":VC.contactingMessage,
-    }
-    //Login protected get routes and methods
-    #LoginProtectedGetRoutesAndMethods={
-        "/contact":VC.contactRoute,
-        "/chatbot":VC.chatbotRoute,
-        "/account":VC.accountRoute,
-        "/feedback":VC.feedbackRoute,
-        "/business-enquiry":VC.businessEnquiryRoute,
-    }
-    //login protected post routes and methods
-    #LoginProtectedPostRoutesAndMethods={
-        "/feedback":VC.feedbackRoute,
-    }
+    // Services with middleware
+    #Services = [
+        ["get", "/", VC.indexRoute],
+        ["get", "/api", VC.configAPIUrl],
+        ["get", "/about", VC.aboutRoute],
+        ["get", "/uniform", VC.uniformRoute],
+        ["get", "/mobile-app", VC.mobileAppRoute],
+        ["get", "/stationary", VC.stationaryRoute],
+        ["get", "/refresh_token", VC.refreshTesting],
+
+        ["post", "/refresh_token", VC.refreshTokenRoute],
+
+        ["get", "/contact/contact_form", VC.contactingMessage],
+        ["post", "/contact/contact_form", VC.contactingMessage],
+
+        ["get", "/contact", loginProtectedPath,VC.contactRoute,],
+        ["get", "/chatbot", loginProtectedPath,VC.chatbotRoute,],
+        ["get", "/account", loginProtectedPath,VC.accountRoute,],
+        ["get", "/feedback", loginProtectedPath,VC.feedbackRoute,],
+
+        ["post", "/feedback", loginProtectedPath, VC.feedbackRoute],
+        ["post", "/business-enquiry", loginProtectedPath, VC.businessEnquiryRoute],
+    ];
 
     constructor(){
         this.router = express.Router();
@@ -45,25 +42,11 @@ class ViewRouter {
     }
 
     initializeRoutes(){
-        Object.entries(this.#openGetRoutesAndMethods).forEach(([path, handler]) => {
+        this.#Services.forEach(([method, path, ...handlers]) => {
+            Log.pathLogger(path, handlers);
             this.router
                 .route(path)
-                .get(handler);
-        });
-        Object.entries(this.#openPostRoutesAndMethods).forEach(([path, handler]) => {
-            this.router
-                .route(path)
-                .post(handler);
-        });
-        Object.entries(this.#LoginProtectedGetRoutesAndMethods).forEach(([path, handler]) => {
-            this.router
-                .route(path)
-                .get(loginProtectedPath, handler);
-        });
-        Object.entries(this.#LoginProtectedPostRoutesAndMethods).forEach(([path, handler])=>{
-            this.router
-                .route(path) 
-                .post(loginProtectedPath, handler)
+                [method](...handlers);
         });
     }
 }

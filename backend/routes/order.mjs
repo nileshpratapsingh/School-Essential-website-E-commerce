@@ -1,12 +1,41 @@
 import express from "express";
-import orderController from "../controller/order.controller.mjs";
 import { loginProtectedPath } from "../middleware/loginProtectedPath.mjs";
-const orderRouter = express.Router();
+import adminProtectedPath from "../middleware/adminProtectedPath.mjs"
+import OrderController from "../controller/order.controller.mjs";
+import Log from "../utility/logger.mjs";
 
-// Render order page
-orderRouter.route("/order").get(loginProtectedPath, orderController.orderRoute);
+const OC = new OrderController();
+Log.classTypeLogger(OC);
 
-// Get order status by tracking ID (GET /order/status/ID)
-orderRouter.route("/order/status/:id").get(loginProtectedPath, orderController.orderStatus);
+class OrderRouter{
+    /*
+     * Route and their methods as private member of class
+     * Better for maintainance and adding more routes & methods in future
+     */
 
-export default orderRouter;
+    // Services
+    #Services =[
+        ["get","/user_orders",loginProtectedPath,OC.userOrders],
+        ["post","/cancel_order",loginProtectedPath,OC.cancelOrder],
+        ["post","/return_order",loginProtectedPath,OC.returnOrder],
+        ["post","/toggle_orders",adminProtectedPath,OC.toggleOrders],
+        ["get","/display_all",adminProtectedPath,OC.displayAllOrders],
+    ]
+
+    constructor(){
+        this.router = express.Router();
+        this.intializeRoutes();
+    }
+
+    intializeRoutes(){
+        this.#Services.forEach(([method, path, ...handlers]) => {
+            Log.pathLogger(path, handlers);
+            // Dyanamic Router
+            this.router
+                .route(path)
+                [method](...handlers);
+        });
+    }
+}
+
+export default new OrderRouter().router;

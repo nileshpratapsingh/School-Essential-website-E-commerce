@@ -1,8 +1,10 @@
 import  express from "express";
 import { PaymentController } from "../controller/payment.controller.mjs";
 import { loginProtectedPath } from "../middleware/loginProtectedPath.mjs";
+import Log from "../utility/logger.mjs";
 
 const PC = new PaymentController();
+Log.classTypeLogger(PC);
 
 class PaymentRouter{
     /*
@@ -31,13 +33,17 @@ class PaymentRouter{
         ]
     }
     #postRoutes = {
+        "/create_payment":[
+            loginProtectedPath,
+            PC.createPayment
+        ],
+        "/verify_payment":[
+            loginProtectedPath,
+            PC.verifyPayment
+        ],
         "/create_order":[
             loginProtectedPath,
             PC.createOrder
-        ],
-        "/verify_order":[
-            loginProtectedPath,
-            PC.verifyOrder
         ],
         "/cancel_order":[
             loginProtectedPath,
@@ -60,35 +66,41 @@ class PaymentRouter{
     }
 
     intializeRoutes() {
-       /*
+        /*
         * Dynamic Routers
         */
         //Get Router
-        Object.entries(this.#getRoutes).forEach(([path, handler])=>{
+        Object.entries(this.#getRoutes).forEach(([path, handler]) => {
+            Log.pathLogger(path, handler);
             this.router
                 .route(path)
-                .get(...handler)
-        })
+                .get(...handler);
+        });
         //Post Router
-        Object.entries(this.#postRoutes).forEach(([path, handler])=>{
+        Object.entries(this.#postRoutes).forEach(([path, handler]) => {
+            Log.pathLogger(path, handler);
+
             this.router
                 .route(path)
-                .post(...handler)
-        })
+                .post(...handler);
+        });
         //Put Router
         Object.entries(this.#putRoutes).forEach(([path, handler])=>{
+            Log.pathLogger(path, handler);
             this.router
                 .route(path)
                 .put(...handler)
         })
         //Delete Router
         Object.entries(this.#deleteRoutes).forEach(([path, handler])=>{
+            Log.pathLogger(path, handler);
             this.router
                 .route(path)
                 .delete(...handler)
         })
         //Patch Router
         Object.entries(this.#patchRoutes).forEach(([path, handler])=>{
+            Log.pathLogger(path, handler);
             this.router
                 .route(path)
                 .patch(...handler)
