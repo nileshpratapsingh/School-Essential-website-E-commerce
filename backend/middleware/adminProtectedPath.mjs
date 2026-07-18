@@ -6,7 +6,7 @@ import { signup } from "../models/user.model.mjs";
 
 import { TokenUtility } from "../utility/tokenUtility.mjs";
 
-export async function adminProtectedPath(req, res, next) {
+export default async function adminProtectedPath(req, res, next) {
     try {
         let token = TokenUtility.getToken(req);
 
