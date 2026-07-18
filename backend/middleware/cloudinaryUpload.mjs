@@ -3,7 +3,6 @@ import uploadToCloudinary from "../utility/uploadToCloudinary.mjs";
 import { config } from "../config/config.mjs";
 
 const memoryUpload = multer({ storage: multer.memoryStorage() });
-
 const cloudinaryUpload = {
     single: (fieldName) => [
         memoryUpload.single(fieldName),
