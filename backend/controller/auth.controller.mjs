@@ -73,6 +73,8 @@ export class AuthController {
 
       const accessToken = TokenUtility.generateAccessToken(user);
 
+      await Login.deleteMany({accessToken})
+
       const newLogin = new Login({
         accessToken,
         email,
@@ -102,6 +104,7 @@ export class AuthController {
       return res.status(200).json("Successfull👍");
     } catch (error) {
       console.error("Check login procedure", error.message);
+      console.error(error);
       res.status(500).send("Server error");
     }
   }
