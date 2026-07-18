@@ -59,6 +59,10 @@ const productSchema = new mongoose.Schema(
             ],
             default: [],
         },
+        totalStock:{
+            type:Number,
+            req:true,
+        },
         outOfStock: { type: Boolean, default: false },
         qa: {
             type: [
@@ -80,10 +84,6 @@ const productSchema = new mongoose.Schema(
     },
     { timestamps: true }
 );
-
-// // Indexes for performance
-// productSchema.index({ title: "text", description: "text" });
-// productSchema.index({ price: 1 });
 
 const Product = mongoose.model("Product", productSchema);
 

@@ -1,49 +1,47 @@
-import mongoose, { Schema } from "mongoose";
-import { v4 as uuidv4 } from "uuidv4";
+import mongoose from "mongoose";
 
 const messageSchema = new mongoose.Schema(
-  {
-    udi: {
-      type: String,
-      default: uuidv4,
-      unique: true,
-    },
+    {
+        senderName:{
+            type: String,
+            required:true,
+        },
+        senderPhone:{
+            type:Number,
+            required:true,
+        },
+        senderEmail:{
+            type:String,
+            required:true,
+        },
+        senderId:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'Signup',
+            required:false
+        },
 
-    messageType: {
-      type: String,
-      required: true,
-      trim: true,
+        message:{
+            type:String,
+            required:true,
+        },
+
+        messageType:{
+            enum:['business','refund','complaint','feedback','contact']
+        },
+
+        createdAt:{
+            type: Date,
+            default:Date.now,
+        },
+
+        status:{
+            enum:['read', 'notseen', 'deleted', 'draft']
+        },
+        userStatus:{
+            enum:['user', 'anonymous']
+        },
     },
-    
-    name: {
-      type: String,
-      required: true,
-      trim: true,
-    },
-    
-    emailId: {
-      type: String,
-      required: true,
-      lowercase: true,
-      trim: true,
-      match: [/^\S+@\S+\.\S+$/, "Please enter a valid email address"],
-    },
-    
-    rating: {
-      type: Number,
-      default:null,
-      required: true,
-      min: 1,
-      max: 5,
-    },
-    
-    comments: {
-      default:null,
-      type: String,
-      trim: true,
-    },
-  },
-  { timestamps: true } //  adds createdAt & updatedAt
+    { timestamps: true } //  adds createdAt & updatedAt
 );
 
 const messages = mongoose.model("Message", messageSchema);
