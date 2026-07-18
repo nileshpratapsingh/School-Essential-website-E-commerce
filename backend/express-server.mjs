@@ -10,16 +10,16 @@ import { Server } from "socket.io";
 
 import { fileURLToPath } from "url";
 import { connectDB, disconnectDB } from "./config/database.mjs";
-// import { connectPgSQL, disconnectPgSQL } from "./config/pgsql.mjs";
+import { connectPgSQL, disconnectPgSQL } from "./config/pgsql.mjs";
 import { config } from "./config/config.mjs";
 import registerRoutes from "./utility/registerRouter.mjs";
-
+import ProductSchema from "./pgsqlModels/productModel.js";
 //middlewares
 
 import { errorHandler } from "./middleware/errorHandler.mjs";
 import { notFoundHandler } from "./middleware/404notFoundhandler.mjs";
 import { registerMiddlewares } from "./utility/registerMiddleware.mjs";
-// import { showDatabase } from "./pgsqlModels/baseModel.js";
+import { showDatabase } from "./pgsqlModels/baseModel.js";
 // import securityMiddleWares from "./utility/registerSecurityMiddleware.mjs"
 
 const app = express();
@@ -77,30 +77,30 @@ app.use(
 
 // securityMiddleWares(app)
 
+
 // Health response
 
 app.get("/healthz", (_, res) => res.send("ok")); // hosting response
 
-// GET routes
-
-registerRoutes(app);
-
-// 404 fallback middleware
-
-app.use(notFoundHandler);
-
-// error and status-code handler
-
-app.use(errorHandler);
-
 // Start the server only after DB connects
-
 const startServer = async () => {
     try {
         console.clear();
-        // connectPgSQL();
         connectDB();
-        // showDatabase();
+        connectPgSQL();
+        showDatabase();
+
+        // GET routes
+
+        await registerRoutes(app);
+
+        // 404 fallback middleware
+
+        app.use(notFoundHandler);
+
+        // error and status-code handler
+
+        app.use(errorHandler);
 
         if (registerMiddlewares && registerRoutes) {
             console.log("Middlewares Loaded ✓".blue);
@@ -112,7 +112,7 @@ const startServer = async () => {
         const server = httpServer.listen(PORT, () => {
             setTimeout(() => {
                 console.log(`Server running at ${config.appUrl}`.yellow);
-            }, 1000);
+            }, 3000);
         });
 
         // Graceful shutdown handlers
@@ -123,7 +123,7 @@ const startServer = async () => {
                 console.log("HTTP server closed");
 
                 await disconnectDB();
-                // await disconnectPgSQL();
+                await disconnectPgSQL();
 
                 console.log("MongoDB disconnected. Exiting...".green);
 
