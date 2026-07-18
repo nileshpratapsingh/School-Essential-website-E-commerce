@@ -49,7 +49,7 @@ export function registerMiddlewares(app) {
 
         //logger middleware to check the routes
         (req, _, next) => {
-            console.log(`${req.method} ${req.url}`);
+            console.log(`[${new Date().toLocaleString().green}] `,`${req.method} ${req.url}`);
             next();
         },
 
