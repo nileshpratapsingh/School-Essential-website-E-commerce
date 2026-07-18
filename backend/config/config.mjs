@@ -22,7 +22,7 @@ export const config = {
 
     // PostgreSQL
     postgres: {
-        url: process.env.DATABASE_URL,
+        url: process.env.DATABASE_URL||"postgresql://postgres:7905700198nil@localhost:5432/mydatabase",
         user: process.env.PG_USER,
         host: process.env.PG_HOST,
         database: process.env.PG_DATABASE,
@@ -110,6 +110,11 @@ export const config = {
         key_id: process.env.RAZORPAY_ID,
         key_secret: process.env.RAZORPAY_SECRET,
     },
+
+    //uuid name_space
+    idGen:{
+        NAME_SPACE:process.env.NAME_SPACE,
+    }
 };
 
 export function parseBoolean(value) {
